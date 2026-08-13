@@ -1,0 +1,12 @@
+PVC-AEAD-0 v0.1.1 proof-and-boundary closure
+GCC Release: 29/29
+Clang Release: 29/29
+ASan+UBSan: 29/29
+Retained 48-vector corpus: byte-identical
+Stream/Auth structural injectivity proof: documented
+Counter boundary encoding: 0 and UINT64_MAX regression passed
+Frame-family role separation: regression passed
+Independent-key canonical KAT: passed
+Framing audit: retained bounded campaign, zero collisions
+Composition audit: retained 128 valid tuples / 510 tamper attempts, zero unexpected acceptances
+Construction frames and dependency snapshots: unchanged from v0.1.0

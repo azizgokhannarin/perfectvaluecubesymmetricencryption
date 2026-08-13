@@ -1,0 +1,14 @@
+VERSION: OK
+docs/SPECIFICATION.md: OK
+docs/CANDIDATE_FREEZE_A1.md: OK
+docs/FRAME_INJECTIVITY_PROOF.md: OK
+docs/SECURITY_REDUCTION.md: OK
+docs/SECURITY_CLAIMS.md: OK
+include/pvcaead0/aead.hpp: OK
+src/aead.cpp: OK
+independent/cpp_spec/include/pvcaead0_independent/aead.hpp: OK
+independent/cpp_spec/src/aead.cpp: OK
+DEPENDENCY_MANIFEST.SHA256: OK
+external/pvc_mac0_m1/CANDIDATE_MANIFEST.SHA256: OK
+vectors/PVC_AEAD0_VECTORS_0.1.0.csv: OK
+vectors/PVC_AEAD0_DIFFERENTIAL_A1.csv: OK

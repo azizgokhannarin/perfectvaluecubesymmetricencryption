@@ -1,0 +1,3 @@
+PVC_AEAD0_DIFFERENTIAL_A1.csv regenerated from fixed seed and compared byte-for-byte: MATCH
+cases: 4096
+sha256: f7680e58373fd903dfb51ca500455cf1cee6c858b2e1909b01623086b68acdb8

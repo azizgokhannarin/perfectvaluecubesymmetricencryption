@@ -1,0 +1,3 @@
+PVC-MAC-0 framing audit
+frames_tested=789507
+collisions=0

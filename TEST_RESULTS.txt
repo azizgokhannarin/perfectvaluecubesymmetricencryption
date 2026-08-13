@@ -1,0 +1,21 @@
+PVC-RotSymEnc-1 v0.1.0-draft local verification
+
+GCC Release:
+  CTest: 6/6
+  A1 equivalence: 4096/4096, mismatches=0
+
+Clang Release:
+  CTest: 6/6
+  A1 equivalence: 4096/4096, mismatches=0
+
+GCC Debug ASan+UBSan:
+  CTest: 6/6
+  A1 equivalence CTest budget: 256/256
+
+Official public-profile vectors:
+  verified 5/5
+
+Candidate A1 retained manifests:
+  verified
+
+PVC-RotSymEnc-1 adds no cryptographic transform beyond frozen Candidate A1.

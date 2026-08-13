@@ -1,0 +1,16 @@
+PVC-MAC-0 Candidate M1 / v0.2.0 closure campaign
+
+GCC 14.2 Release:                  26/26
+Clang 17 Release:                  26/26
+ASan + UBSan:                      26/26
+Release differential budget:      4096 cases
+Sanitizer differential budget:    256 cases
+Canonical KAT:                     48/48
+Independent KAT:                   48/48
+Differential frame/full/tag:       4096/4096 matched
+Cross-verification:                matched
+Modified-tag rejection:            matched
+Integration/API misuse audit:      passed
+Framing audit:                     789507 frames, 0 collisions
+Construction vs v0.1.1:            unchanged
+Candidate status:                  frozen experimental Candidate M1

@@ -1,0 +1,62 @@
+{
+  "algorithm": "PVC-RotSymEnc-1",
+  "version": "0.1.0-draft",
+  "equivalent_to": "PVC-AEAD-0 Candidate A1 / v0.2.0",
+  "vectors": [
+    {
+      "id": "canonical-independent-key-abc",
+      "enc_key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+      "mac_key": "808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9f",
+      "nonce": "000000000000000000000000000000000000000000000000",
+      "tag_bits": 256,
+      "associated_data": "",
+      "plaintext": "616263",
+      "ciphertext": "a10b4d",
+      "tag": "a16ff4b4dd13b48bab0701cd8a67f1248ebb4bf37a3146931f04e08c834d5cee"
+    },
+    {
+      "id": "upstream-V1",
+      "enc_key": "b78d81fbba01f9911cf7a0b652c7ce4b261ea89c280d32c662dfe59ff150c604",
+      "mac_key": "ddea023fbbae83028d47902188278e9b7e3787402c0ded6ff697c8e1820b0d84",
+      "nonce": "0469a0726387275fdb125d7e887fb4be77528a16088e8a89",
+      "tag_bits": 128,
+      "associated_data": "",
+      "plaintext": "",
+      "ciphertext": "",
+      "tag": "48c5b029f2e9407fd1cad9981d84cd61"
+    },
+    {
+      "id": "upstream-V2",
+      "enc_key": "66b5244f67ed2c6f22caf8772009448ea2ff653a9b24333af64334fd3784830a",
+      "mac_key": "a8df54a8cf1fb7b71a80f2c2f89dc79452de0a1a05570cb67159247853a698db",
+      "nonce": "a43c8d92d45b353a0bd0097df01d22b3819acdbf9c90b920",
+      "tag_bits": 192,
+      "associated_data": "",
+      "plaintext": "578c10d8fb80b68b3d3706c6fa1472",
+      "ciphertext": "f4d20b8e6f1f30d9087074227107d6",
+      "tag": "528067d5dc1deaf444b5569bb315144deb61cf74041d40e9"
+    },
+    {
+      "id": "upstream-V3",
+      "enc_key": "64a32f8ca179c0fbfadcd2cc388235085c4d65d31c41fdbf0f632e9d50ca56c2",
+      "mac_key": "392df551d2e37fd7f1e1cf8cf24d7a3292614bcf82a8e3cf6c1a4897efbdfc15",
+      "nonce": "90fde80e9f436d4306fdb83423e70f7286edc90c1e1c5743",
+      "tag_bits": 256,
+      "associated_data": "38",
+      "plaintext": "4d5edc4e88b394a5b309331202e2e7d1aa5677c375ccf5c52a73a1c2bb95e5d072",
+      "ciphertext": "661b1e17c13c560fc395a03e2afaab78f74f03084c186dbac21374ca4cc0b951ae",
+      "tag": "86b21ad1a13266f594cecf9a9975435a0708c96e26f248a79c36fea0d2935774"
+    },
+    {
+      "id": "upstream-V4",
+      "enc_key": "e457eeefce985dc137ad404201386f8ff3d25c1fc0d4fedc93b2e5953a8102e1",
+      "mac_key": "7bc5afa1820dfe713e0e1db05a1081a82fd27707add6dd1bcf5d49dd0b85476b",
+      "nonce": "8889002042c6b5893f01d8f6b5e725ef55bcf0b366ebc46a",
+      "tag_bits": 128,
+      "associated_data": "48",
+      "plaintext": "d1601ac93f1fd1e414aa3c66786f6e587bd9741f8f771b12d88176865d7a4258d0ef0e09bf61f8ae5646ef8092a2c7ca329c1f9a5708370ff481c29dbca23e8b21ad67f63413b6364f0e43e4c0f60d38ff6e18079b849e89f2a213d9fd41ee2350",
+      "ciphertext": "36f331a28ed78c945498b296a4a5ab7a3f6b2c0b3e6fa0fd76732ede68b74604b659fc014256bc9bb2cd64933d15077e4ac0e6638b469004ae60d4c9b1641ae22ff879e711395ceb06ad06c9cd7bb51f9827ee4f43a0363edb057c1ad5e8a7ba05",
+      "tag": "cd0564ec8584334e651ee214bd6d831f"
+    }
+  ]
+}

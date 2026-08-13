@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: "PVC-RotSymEnc-1: Perfect Value Cube Symmetric Encryption"
+message: "If you use this experimental research software, cite this repository and the underlying PVC-PRF-1, PVC-MAC-0, and PVC-AEAD-0 research components."
+type: software
+authors:
+  - family-names: Narin
+    given-names: Aziz Gökhan
+version: 0.1.0-draft
+license: MIT
+repository-code: "https://github.com/azizgokhannarin/perfectvaluecubesymmetricencryption"

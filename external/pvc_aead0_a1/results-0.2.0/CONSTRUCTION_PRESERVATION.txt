@@ -1,0 +1,8 @@
+PVC-AEAD-0 v0.1.1 -> Candidate A1 construction preservation
+src/aead.cpp: byte-identical
+app/main.cpp: byte-identical
+vectors/PVC_AEAD0_VECTORS_0.1.0.csv: byte-identical
+external dependency tree: byte-identical
+old src/aead.cpp sha256: 92ddd474cae8c173bd16df5aca3b88c34c8af431cecf7727a90fb6298a71160d
+new src/aead.cpp sha256: 92ddd474cae8c173bd16df5aca3b88c34c8af431cecf7727a90fb6298a71160d
+KAT corpus sha256: a40d691d9d3296d86dea1b9183889d650f780b3f2964b84c45a2e1939e171fa7

@@ -1,0 +1,2 @@
+same_nonce_xor_relation=observed
+warning=nonce reuse under one encryption key breaks confidentiality

@@ -1,0 +1,9 @@
+PVC-MAC-0 framing audit
+frames_tested=789507
+collisions=0
+
+Domain:
+- tag sizes: 16, 24, 32 bytes
+- context lengths: 0, 1, 2 bytes
+- message lengths: 0, 1, 2 bytes
+- for non-empty lengths, 256 canonical values per tested length

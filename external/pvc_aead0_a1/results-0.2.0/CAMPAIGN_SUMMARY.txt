@@ -1,0 +1,45 @@
+PVC-AEAD-0 Candidate A1 / v0.2.0 freeze campaign
+
+Construction preservation:
+- src/aead.cpp: byte-identical to v0.1.1
+- app/main.cpp: byte-identical to v0.1.1
+- frozen Candidate M1/C1 dependency tree: byte-identical
+- retained 48-vector KAT corpus: byte-identical
+
+Build verification:
+- GCC 14.2 Release: 31/31
+- Clang 17 Release: 31/31
+- ASan + UBSan: 31/31
+- Release differential budget: 4096 cases
+- Sanitizer differential budget: 256 cases
+- compiler warnings observed: 0
+
+Independent implementation:
+- independent AEAD wrapper does not include/link canonical AEAD
+- independent path uses Candidate M1 independent wrapper
+- both paths share only frozen Candidate C1
+- independent KAT reproduction: 48/48
+
+Wide differential:
+- tuples: 4096/4096
+- stream frames: matched
+- used keystream: matched
+- ciphertext: matched
+- authentication context: matched
+- tags: matched
+- canonical/independent cross-open: matched
+- one-bit tag modifications: 512, rejected by both
+- wrong nonce cases: 64, rejected by both
+- wrong AD cases: 64, rejected by both
+- wrong ciphertext cases: 63, rejected by both
+- seven counter boundary values: compared in 133 cases
+
+Retained campaigns:
+- framing: 30,720 frames, 0 collisions
+- composition: 128 valid roundtrips, 510 tamper rejections, 0 unexpected acceptances
+- nonce-reuse XOR relation: reproduced
+
+Status:
+Frozen experimental Candidate A1. Not proven secure, not nonce-misuse-resistant,
+not production-ready, and not assigned a quantified classical or post-quantum
+security level.

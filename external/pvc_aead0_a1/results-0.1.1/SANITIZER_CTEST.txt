@@ -1,0 +1,64 @@
+Internal ctest changing into directory: /mnt/data/pvcaead_work/perfectvaluecubeaead/build-san-new
+Test project /mnt/data/pvcaead_work/perfectvaluecubeaead/build-san-new
+      Start  1: pvc-aead0-vector-corpus
+ 1/29 Test  #1: pvc-aead0-vector-corpus ...........................   Passed    0.18 sec
+      Start  2: pvc-aead0-stream-frame-exact
+ 2/29 Test  #2: pvc-aead0-stream-frame-exact ......................   Passed    0.01 sec
+      Start  3: pvc-aead0-auth-frame-exact
+ 3/29 Test  #3: pvc-aead0-auth-frame-exact ........................   Passed    0.01 sec
+      Start  4: pvc-aead0-independent-key-canonical-vector
+ 4/29 Test  #4: pvc-aead0-independent-key-canonical-vector ........   Passed    0.01 sec
+      Start  5: pvc-aead0-stream-counter-boundaries
+ 5/29 Test  #5: pvc-aead0-stream-counter-boundaries ...............   Passed    0.01 sec
+      Start  6: pvc-aead0-frame-family-domain-separation
+ 6/29 Test  #6: pvc-aead0-frame-family-domain-separation ..........   Passed    0.01 sec
+      Start  7: pvc-aead0-auth-frame-injectivity-witnesses
+ 7/29 Test  #7: pvc-aead0-auth-frame-injectivity-witnesses ........   Passed    0.01 sec
+      Start  8: pvc-aead0-empty-roundtrip
+ 8/29 Test  #8: pvc-aead0-empty-roundtrip .........................   Passed    0.01 sec
+      Start  9: pvc-aead0-binary-roundtrip
+ 9/29 Test  #9: pvc-aead0-binary-roundtrip ........................   Passed    0.01 sec
+      Start 10: pvc-aead0-multiblock-roundtrip
+10/29 Test #10: pvc-aead0-multiblock-roundtrip ....................   Passed    0.01 sec
+      Start 11: pvc-aead0-determinism
+11/29 Test #11: pvc-aead0-determinism .............................   Passed    0.01 sec
+      Start 12: pvc-aead0-nonce-binding
+12/29 Test #12: pvc-aead0-nonce-binding ...........................   Passed    0.01 sec
+      Start 13: pvc-aead0-encryption-key-binding
+13/29 Test #13: pvc-aead0-encryption-key-binding ..................   Passed    0.01 sec
+      Start 14: pvc-aead0-authentication-key-binding
+14/29 Test #14: pvc-aead0-authentication-key-binding ..............   Passed    0.01 sec
+      Start 15: pvc-aead0-associated-data-binding
+15/29 Test #15: pvc-aead0-associated-data-binding .................   Passed    0.01 sec
+      Start 16: pvc-aead0-ciphertext-binding
+16/29 Test #16: pvc-aead0-ciphertext-binding ......................   Passed    0.01 sec
+      Start 17: pvc-aead0-tag-binding
+17/29 Test #17: pvc-aead0-tag-binding .............................   Passed    0.01 sec
+      Start 18: pvc-aead0-tag-size-domain-binding
+18/29 Test #18: pvc-aead0-tag-size-domain-binding .................   Passed    0.01 sec
+      Start 19: pvc-aead0-wrong-nonce-reject
+19/29 Test #19: pvc-aead0-wrong-nonce-reject ......................   Passed    0.01 sec
+      Start 20: pvc-aead0-wrong-ad-reject
+20/29 Test #20: pvc-aead0-wrong-ad-reject .........................   Passed    0.01 sec
+      Start 21: pvc-aead0-wrong-ciphertext-reject
+21/29 Test #21: pvc-aead0-wrong-ciphertext-reject .................   Passed    0.01 sec
+      Start 22: pvc-aead0-wrong-tag-reject
+22/29 Test #22: pvc-aead0-wrong-tag-reject ........................   Passed    0.01 sec
+      Start 23: pvc-aead0-invalid-tag-length-reject
+23/29 Test #23: pvc-aead0-invalid-tag-length-reject ...............   Passed    0.01 sec
+      Start 24: pvc-aead0-cross-profile-prefix-reject
+24/29 Test #24: pvc-aead0-cross-profile-prefix-reject .............   Passed    0.01 sec
+      Start 25: pvc-aead0-verify-before-decrypt
+25/29 Test #25: pvc-aead0-verify-before-decrypt ...................   Passed    0.01 sec
+      Start 26: pvc-aead0-nonce-reuse-xor-demonstration
+26/29 Test #26: pvc-aead0-nonce-reuse-xor-demonstration ...........   Passed    0.01 sec
+      Start 27: pvc-aead0-zero-length-ciphertext-authentication
+27/29 Test #27: pvc-aead0-zero-length-ciphertext-authentication ...   Passed    0.01 sec
+      Start 28: pvc-aead0-framing-audit-smoke
+28/29 Test #28: pvc-aead0-framing-audit-smoke .....................   Passed    0.04 sec
+      Start 29: pvc-aead0-composition-audit-smoke
+29/29 Test #29: pvc-aead0-composition-audit-smoke .................   Passed    0.94 sec
+
+100% tests passed, 0 tests failed out of 29
+
+Total Test time (real) =   1.42 sec

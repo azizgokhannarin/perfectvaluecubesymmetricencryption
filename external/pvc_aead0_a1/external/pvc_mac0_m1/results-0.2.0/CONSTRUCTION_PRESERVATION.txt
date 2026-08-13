@@ -1,0 +1,4 @@
+src/mac.cpp: byte-identical
+C1 manifest: byte-identical
+vendored C1 tree: byte-identical
+48-vector KAT corpus: byte-identical

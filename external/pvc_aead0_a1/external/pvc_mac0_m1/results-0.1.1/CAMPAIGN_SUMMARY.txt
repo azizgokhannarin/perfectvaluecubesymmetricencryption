@@ -1,0 +1,13 @@
+PVC-MAC-0 v0.1.1 documentation and verification closure
+
+Construction bytes changed: no
+C1 vendored snapshot changed: no
+Canonical 48-vector corpus changed: no
+
+Frame injectivity: structural proof documented
+Conditional PRF-as-MAC reduction: documented
+Supported tag verification: 16/24/32 bytes passed
+Invalid tag lengths: rejected
+Cross-profile 256-bit prefix as 128/192-bit tag: rejected
+Framing audit: 789507 frames, 0 collisions
+Message avalanche baseline: avg 127.879, min 108, max 147

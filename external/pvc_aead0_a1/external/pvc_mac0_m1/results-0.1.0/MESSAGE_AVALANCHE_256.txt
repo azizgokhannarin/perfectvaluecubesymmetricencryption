@@ -1,0 +1,10 @@
+PVC-MAC-0 v0.1.0 message-bit avalanche baseline
+key=00*32
+context=ASCII "PVC-MAC-0"
+message=00*32
+message_bit_flips=256
+tag_bytes=32
+samples=256
+average=127.879
+minimum=108
+maximum=147

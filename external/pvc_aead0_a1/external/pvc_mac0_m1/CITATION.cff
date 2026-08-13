@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: "PVC-MAC-0 Candidate M1"
+message: "Please cite this software and its exact frozen candidate version when using it in research."
+type: software
+authors:
+  - family-names: Narin
+    given-names: Aziz Gökhan
+version: 0.2.0
+date-released: 2026-08-02
+license: Apache-2.0

@@ -1,0 +1,12 @@
+PVC-MAC-0 v0.1.0 build verification
+
+GCC 14.2.0 Release:   20/20
+Clang 17.0.0 Release: 20/20
+GCC ASan + UBSan:     20/20
+GCC warnings:         0
+Clang warnings:       0
+
+C1 manifest:          OK
+C1 known vector:      matched
+48-vector corpus:     matched and byte-identically regenerated
+CLI verify:           VALID

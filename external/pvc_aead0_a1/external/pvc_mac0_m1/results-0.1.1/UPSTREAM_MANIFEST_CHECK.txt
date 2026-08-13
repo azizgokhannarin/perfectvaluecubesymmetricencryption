@@ -1,0 +1,16 @@
+./LICENSE: OK
+./VERSION: OK
+./docs/CANDIDATE_FREEZE_0.9.0.md: OK
+./docs/SPECIFICATION.md: OK
+./include/pvc1/controller.hpp: OK
+./include/pvc1/controller_b.hpp: OK
+./include/pvc1/cube.hpp: OK
+./include/pvc1/finalization.hpp: OK
+./include/pvc1/key_schedule.hpp: OK
+./include/pvc1/return_pass.hpp: OK
+./src/controller.cpp: OK
+./src/controller_b.cpp: OK
+./src/cube.cpp: OK
+./src/finalization.cpp: OK
+./src/key_schedule.cpp: OK
+./src/return_pass.cpp: OK

@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this experimental research artifact, cite the repository and exact version."
+title: "PVC-AEAD-0"
+version: "0.2.0"
+authors:
+  - family-names: "Narin"
+    given-names: "Aziz Gökhan"
+date-released: 2026-08-02
+license: MIT

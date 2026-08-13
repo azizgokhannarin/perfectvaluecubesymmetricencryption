@@ -1,0 +1,56 @@
+Internal ctest changing into directory: /mnt/data/pvcaead0_work/perfectvaluecubeaead/build-gcc
+Test project /mnt/data/pvcaead0_work/perfectvaluecubeaead/build-gcc
+      Start  1: pvc-aead0-vector-corpus
+ 1/25 Test  #1: pvc-aead0-vector-corpus ...........................   Passed    0.09 sec
+      Start  2: pvc-aead0-stream-frame-exact
+ 2/25 Test  #2: pvc-aead0-stream-frame-exact ......................   Passed    0.00 sec
+      Start  3: pvc-aead0-auth-frame-exact
+ 3/25 Test  #3: pvc-aead0-auth-frame-exact ........................   Passed    0.00 sec
+      Start  4: pvc-aead0-empty-roundtrip
+ 4/25 Test  #4: pvc-aead0-empty-roundtrip .........................   Passed    0.00 sec
+      Start  5: pvc-aead0-binary-roundtrip
+ 5/25 Test  #5: pvc-aead0-binary-roundtrip ........................   Passed    0.00 sec
+      Start  6: pvc-aead0-multiblock-roundtrip
+ 6/25 Test  #6: pvc-aead0-multiblock-roundtrip ....................   Passed    0.01 sec
+      Start  7: pvc-aead0-determinism
+ 7/25 Test  #7: pvc-aead0-determinism .............................   Passed    0.00 sec
+      Start  8: pvc-aead0-nonce-binding
+ 8/25 Test  #8: pvc-aead0-nonce-binding ...........................   Passed    0.00 sec
+      Start  9: pvc-aead0-encryption-key-binding
+ 9/25 Test  #9: pvc-aead0-encryption-key-binding ..................   Passed    0.00 sec
+      Start 10: pvc-aead0-authentication-key-binding
+10/25 Test #10: pvc-aead0-authentication-key-binding ..............   Passed    0.00 sec
+      Start 11: pvc-aead0-associated-data-binding
+11/25 Test #11: pvc-aead0-associated-data-binding .................   Passed    0.00 sec
+      Start 12: pvc-aead0-ciphertext-binding
+12/25 Test #12: pvc-aead0-ciphertext-binding ......................   Passed    0.00 sec
+      Start 13: pvc-aead0-tag-binding
+13/25 Test #13: pvc-aead0-tag-binding .............................   Passed    0.00 sec
+      Start 14: pvc-aead0-tag-size-domain-binding
+14/25 Test #14: pvc-aead0-tag-size-domain-binding .................   Passed    0.00 sec
+      Start 15: pvc-aead0-wrong-nonce-reject
+15/25 Test #15: pvc-aead0-wrong-nonce-reject ......................   Passed    0.00 sec
+      Start 16: pvc-aead0-wrong-ad-reject
+16/25 Test #16: pvc-aead0-wrong-ad-reject .........................   Passed    0.00 sec
+      Start 17: pvc-aead0-wrong-ciphertext-reject
+17/25 Test #17: pvc-aead0-wrong-ciphertext-reject .................   Passed    0.00 sec
+      Start 18: pvc-aead0-wrong-tag-reject
+18/25 Test #18: pvc-aead0-wrong-tag-reject ........................   Passed    0.00 sec
+      Start 19: pvc-aead0-invalid-tag-length-reject
+19/25 Test #19: pvc-aead0-invalid-tag-length-reject ...............   Passed    0.00 sec
+      Start 20: pvc-aead0-cross-profile-prefix-reject
+20/25 Test #20: pvc-aead0-cross-profile-prefix-reject .............   Passed    0.00 sec
+      Start 21: pvc-aead0-verify-before-decrypt
+21/25 Test #21: pvc-aead0-verify-before-decrypt ...................   Passed    0.00 sec
+      Start 22: pvc-aead0-nonce-reuse-xor-demonstration
+22/25 Test #22: pvc-aead0-nonce-reuse-xor-demonstration ...........   Passed    0.00 sec
+      Start 23: pvc-aead0-zero-length-ciphertext-authentication
+23/25 Test #23: pvc-aead0-zero-length-ciphertext-authentication ...   Passed    0.00 sec
+      Start 24: pvc-aead0-framing-audit-smoke
+24/25 Test #24: pvc-aead0-framing-audit-smoke .....................   Passed    0.01 sec
+      Start 25: pvc-aead0-composition-audit-smoke
+25/25 Test #25: pvc-aead0-composition-audit-smoke .................   Passed    0.55 sec
+
+100% tests passed, 0 tests failed out of 25
+
+Total Test time (real) =   0.73 sec

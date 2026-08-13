@@ -1,0 +1,6 @@
+PVC-MAC-0 v0.1.1 build verification
+GCC 14.2.0 Release: 23/23
+Clang 17.0.0 Release: 23/23
+GCC ASan + UBSan: 23/23
+GCC warnings: 0
+Clang warnings: 0

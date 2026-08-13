@@ -1,0 +1,5 @@
+PVC-MAC-0 v0.1.0 message-bit avalanche baseline
+samples=256
+average=127.879
+minimum=108
+maximum=147

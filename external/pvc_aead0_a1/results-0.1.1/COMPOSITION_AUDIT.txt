@@ -1,0 +1,4 @@
+cases=128
+valid_roundtrips=128
+rejected_tampers=510
+unexpected_acceptances=0

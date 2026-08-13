@@ -1,0 +1,14 @@
+PVC-MAC-0 v0.1.0 bootstrap campaign
+
+Canonical construction tests: 18/18
+Exhaustive short-frame audit: 789507 frames, 0 collisions
+Canonical differential corpus: 48 vectors
+Message-bit avalanche: average 127.879 / 256, min 108, max 147
+
+Interpretation:
+- framing implementation matches the bit-exact specification,
+- no short-domain frame collision was found,
+- basic message/key/context/tag-profile binding regressions pass,
+- diffusion baseline is centered near half of the 256-bit tag.
+
+These are bootstrap results, not a MAC security proof or a completed forgery campaign.

@@ -1,0 +1,4 @@
+stream_frames=24576
+authentication_frames=6144
+total_frames=30720
+collisions=0

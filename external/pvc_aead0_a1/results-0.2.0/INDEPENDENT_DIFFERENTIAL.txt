@@ -1,0 +1,2 @@
+PASS 4096 independent differential cases: frames/keystream/ciphertext/auth-context/tag/open matched
+tag_tamper_cases=512 nonce_tamper_cases=64 ad_tamper_cases=64 ciphertext_tamper_cases=63 boundary_counter_cases=133
