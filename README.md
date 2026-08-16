@@ -175,6 +175,22 @@ python3 scripts/verify_cross_platform_conformance.py \
   --generator build/pvc-rotsymenc1-cross-platform-conformance
 ```
 
+## Performance characterization
+
+The opt-in benchmark covers `seal` and successful `open`, all tag profiles,
+and payloads from 0 B through 1 MiB. On the recorded Intel i7-10710U host, the
+reference implementation reached about 0.066 MiB/s with GCC 14.2 and about
+0.089 MiB/s with Clang 19.1 at large payloads. An initial invalid RSS method is
+retained rather than hidden; the replacement campaign records Linux current
+RSS with the final API output live. These are local implementation measurements,
+not security results. See `docs/PERFORMANCE_CHARACTERIZATION.md`.
+
+```bash
+CXX=g++ ./scripts/run_performance_benchmark.sh \
+  build-performance-gcc results-0.1.0-draft/performance/GCC14_PRIMARY.json \
+  --require-tsc
+```
+
 ## Usage
 
 ```bash

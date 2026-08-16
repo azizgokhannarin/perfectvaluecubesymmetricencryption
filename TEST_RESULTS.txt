@@ -48,4 +48,12 @@ MSan standard-library boundary control:
 Candidate A1 retained manifests:
   verified
 
+Performance characterization on Intel Core i7-10710U, CPU 0:
+  GCC 14.2 primary matrix: 48/48
+  Clang 19.1 primary matrix: 48/48
+  successful-open plaintext checks: passed
+  large-payload throughput: about 0.066 MiB/s GCC, 0.089 MiB/s Clang
+  Attempt 1 ru_maxrss method: invalid, retained, replaced by current RSS
+  targeted Clang 1 MiB open replication: primary tag-profile anomaly not reproduced
+
 PVC-RotSymEnc-1 adds no cryptographic transform beyond frozen Candidate A1.

@@ -1,0 +1,150 @@
+{
+  "campaign": {
+    "associated_data_bytes": 32,
+    "case_order": "size-then-tag-then-operation",
+    "construction_version": "0.1.0-draft",
+    "large_threshold_bytes": 65536,
+    "maximum_iterations": 1048576,
+    "operations": [
+      "open-success"
+    ],
+    "samples_at_or_above_large_threshold": 3,
+    "samples_below_large_threshold": 3,
+    "seed": "0x50455246424D4B31",
+    "sizes": [
+      1048576
+    ],
+    "tag_bits": [
+      128,
+      192
+    ],
+    "target_sample_milliseconds": 100
+  },
+  "environment": {
+    "allowed_cpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "benchmark_path": "build-performance-clang/pvc-rotsymenc1-performance-benchmark",
+    "benchmark_sha256": "9396b7401cd97912e2ae2a5f59eb302a03f41a64fa698f3fb6f766a5e3db8dd1",
+    "completed_utc": "2026-08-16T19:07:40.398503Z",
+    "cpu_model": "Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz",
+    "git_commit": "3babb370a1bbeecea37e50db55cbf2fa8645da85",
+    "pinned_cpu": 0,
+    "platform": "Linux-6.12.95+deb13-amd64-x86_64-with-glibc2.41",
+    "python": "3.13.5",
+    "scaling_cur_freq_khz_at_end": "3974173",
+    "scaling_cur_freq_khz_at_start": "3904910",
+    "scaling_driver": "intel_pstate",
+    "scaling_governor": "powersave",
+    "scaling_max_freq_khz": "4700000",
+    "scaling_min_freq_khz": "400000",
+    "started_utc": "2026-08-16T19:05:47.170382Z",
+    "tracked_worktree_dirty": false,
+    "uname": [
+      "Linux",
+      "nuc",
+      "6.12.95+deb13-amd64",
+      "#1 SMP PREEMPT_DYNAMIC Debian 6.12.95-1 (2026-07-04)",
+      "x86_64",
+      ""
+    ]
+  },
+  "results": [
+    {
+      "api_input_bytes": 1048624,
+      "api_output_bytes": 1048576,
+      "architecture": "x86_64",
+      "associated_data_bytes": 32,
+      "benchmark_version": 2,
+      "compiler_id": "clang",
+      "compiler_version": "19.1.7 (3+b1)",
+      "construction_version": "0.1.0-draft",
+      "current_rss_after_measurement_kib": 6492,
+      "current_rss_before_measurement_kib": 5340,
+      "current_rss_with_retained_output_kib_max": 6492,
+      "current_rss_with_retained_output_kib_samples": [
+        6492,
+        6492,
+        6492
+      ],
+      "elapsed_nanoseconds_samples": [
+        11288913346,
+        11293300243,
+        11297766979
+      ],
+      "iterations_per_sample": 1,
+      "latency_nanoseconds_median": 11293300243,
+      "mebibytes_per_second_median": 0.08854807527319895,
+      "message_bytes": 1048576,
+      "ndebug": true,
+      "operation": "open-success",
+      "samples": 3,
+      "seed": "0x50455246424D4B31",
+      "sink": 68719522204,
+      "tag_bits": 128,
+      "target_sample_nanoseconds": 100000000,
+      "tsc_available": true,
+      "tsc_tick_samples": [
+        18152186513,
+        18159241487,
+        18166424080
+      ],
+      "tsc_ticks_per_byte_median": 17318.00221157074,
+      "tsc_ticks_per_operation_median": 18159241487
+    },
+    {
+      "api_input_bytes": 1048632,
+      "api_output_bytes": 1048576,
+      "architecture": "x86_64",
+      "associated_data_bytes": 32,
+      "benchmark_version": 2,
+      "compiler_id": "clang",
+      "compiler_version": "19.1.7 (3+b1)",
+      "construction_version": "0.1.0-draft",
+      "current_rss_after_measurement_kib": 6440,
+      "current_rss_before_measurement_kib": 5288,
+      "current_rss_with_retained_output_kib_max": 6440,
+      "current_rss_with_retained_output_kib_samples": [
+        6440,
+        6440,
+        6440
+      ],
+      "elapsed_nanoseconds_samples": [
+        11291872619,
+        11261654237,
+        11283636500
+      ],
+      "iterations_per_sample": 1,
+      "latency_nanoseconds_median": 11283636500,
+      "mebibytes_per_second_median": 0.08862391127186701,
+      "message_bytes": 1048576,
+      "ndebug": true,
+      "operation": "open-success",
+      "samples": 3,
+      "seed": "0x50455246424D4B31",
+      "sink": 68719522204,
+      "tag_bits": 192,
+      "target_sample_nanoseconds": 100000000,
+      "tsc_available": true,
+      "tsc_tick_samples": [
+        18156948351,
+        18108358618,
+        18143706025
+      ],
+      "tsc_ticks_per_byte_median": 17303.186440467834,
+      "tsc_ticks_per_operation_median": 18143706025
+    }
+  ],
+  "runner_version": 2
+}

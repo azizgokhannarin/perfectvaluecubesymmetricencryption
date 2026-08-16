@@ -1,0 +1,64 @@
+external_control_version=1
+candidate_linkage=none
+cpu_pin=0
+buffer_bytes=1048576
+seconds_per_case=3
+Linux nuc 6.12.95+deb13-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.12.95-1 (2026-07-04) x86_64 GNU/Linux
+OpenSSL 3.5.6 7 Apr 2026 (Library: OpenSSL 3.5.6 7 Apr 2026)
+built on: Sat Jun  6 19:55:35 2026 UTC
+platform: debian-amd64
+options:  bn(64,64)
+compiler: gcc -fPIC -pthread -m64 -Wa,--noexecstack -Wall -fzero-call-used-regs=used-gpr -Wa,--noexecstack -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/build/reproducible-path/openssl-3.5.6=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -DOPENSSL_USE_NODELETE -DL_ENDIAN -DOPENSSL_PIC -DOPENSSL_BUILDING_OPENSSL -DZLIB -DZSTD -DNDEBUG -Wdate-time -D_FORTIFY_SOURCE=2
+OPENSSLDIR: "/usr/lib/ssl"
+ENGINESDIR: "/usr/lib/x86_64-linux-gnu/engines-3"
+MODULESDIR: "/usr/lib/x86_64-linux-gnu/ossl-modules"
+Seeding source: os-specific
+CPUINFO: OPENSSL_ia32cap=0x7ffaf3bfffebffff:0x00000000029c67af:0x00000000bc000600:0x0000000000000000:0x0000000000000000
+control_begin algorithm=aes-256-gcm operation=encrypt
+You have chosen to measure elapsed time instead of user CPU time.
+Doing AES-256-GCM ops for 3s on 1048576 size blocks: 12452 AES-256-GCM ops in 3.00s
+version: 3.5.6
+built on: Sat Jun  6 19:55:35 2026 UTC
+options: bn(64,64)
+compiler: gcc -fPIC -pthread -m64 -Wa,--noexecstack -Wall -fzero-call-used-regs=used-gpr -Wa,--noexecstack -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/build/reproducible-path/openssl-3.5.6=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -DOPENSSL_USE_NODELETE -DL_ENDIAN -DOPENSSL_PIC -DOPENSSL_BUILDING_OPENSSL -DZLIB -DZSTD -DNDEBUG -Wdate-time -D_FORTIFY_SOURCE=2
+CPUINFO: OPENSSL_ia32cap=0x7ffaf3bfffebffff:0x00000000029c67af:0x00000000bc000600:0x0000000000000000:0x0000000000000000
+The 'numbers' are in 1000s of bytes per second processed.
+type        1048576 bytes
+AES-256-GCM    4352289.45k
+control_end algorithm=aes-256-gcm operation=encrypt
+control_begin algorithm=aes-256-gcm operation=decrypt
+You have chosen to measure elapsed time instead of user CPU time.
+Doing AES-256-GCM ops for 3s on 1048576 size blocks: 12535 AES-256-GCM ops in 3.00s
+version: 3.5.6
+built on: Sat Jun  6 19:55:35 2026 UTC
+options: bn(64,64)
+compiler: gcc -fPIC -pthread -m64 -Wa,--noexecstack -Wall -fzero-call-used-regs=used-gpr -Wa,--noexecstack -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/build/reproducible-path/openssl-3.5.6=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -DOPENSSL_USE_NODELETE -DL_ENDIAN -DOPENSSL_PIC -DOPENSSL_BUILDING_OPENSSL -DZLIB -DZSTD -DNDEBUG -Wdate-time -D_FORTIFY_SOURCE=2
+CPUINFO: OPENSSL_ia32cap=0x7ffaf3bfffebffff:0x00000000029c67af:0x00000000bc000600:0x0000000000000000:0x0000000000000000
+The 'numbers' are in 1000s of bytes per second processed.
+type        1048576 bytes
+AES-256-GCM    4381300.05k
+control_end algorithm=aes-256-gcm operation=decrypt
+control_begin algorithm=chacha20-poly1305 operation=encrypt
+You have chosen to measure elapsed time instead of user CPU time.
+Doing ChaCha20-Poly1305 ops for 3s on 1048576 size blocks: 6608 ChaCha20-Poly1305 ops in 3.00s
+version: 3.5.6
+built on: Sat Jun  6 19:55:35 2026 UTC
+options: bn(64,64)
+compiler: gcc -fPIC -pthread -m64 -Wa,--noexecstack -Wall -fzero-call-used-regs=used-gpr -Wa,--noexecstack -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/build/reproducible-path/openssl-3.5.6=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -DOPENSSL_USE_NODELETE -DL_ENDIAN -DOPENSSL_PIC -DOPENSSL_BUILDING_OPENSSL -DZLIB -DZSTD -DNDEBUG -Wdate-time -D_FORTIFY_SOURCE=2
+CPUINFO: OPENSSL_ia32cap=0x7ffaf3bfffebffff:0x00000000029c67af:0x00000000bc000600:0x0000000000000000:0x0000000000000000
+The 'numbers' are in 1000s of bytes per second processed.
+type        1048576 bytes
+ChaCha20-Poly1305  2309663.40k
+control_end algorithm=chacha20-poly1305 operation=encrypt
+control_begin algorithm=chacha20-poly1305 operation=decrypt
+You have chosen to measure elapsed time instead of user CPU time.
+Doing ChaCha20-Poly1305 ops for 3s on 1048576 size blocks: 6575 ChaCha20-Poly1305 ops in 3.00s
+version: 3.5.6
+built on: Sat Jun  6 19:55:35 2026 UTC
+options: bn(64,64)
+compiler: gcc -fPIC -pthread -m64 -Wa,--noexecstack -Wall -fzero-call-used-regs=used-gpr -Wa,--noexecstack -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/build/reproducible-path/openssl-3.5.6=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -DOPENSSL_USE_NODELETE -DL_ENDIAN -DOPENSSL_PIC -DOPENSSL_BUILDING_OPENSSL -DZLIB -DZSTD -DNDEBUG -Wdate-time -D_FORTIFY_SOURCE=2
+CPUINFO: OPENSSL_ia32cap=0x7ffaf3bfffebffff:0x00000000029c67af:0x00000000bc000600:0x0000000000000000:0x0000000000000000
+The 'numbers' are in 1000s of bytes per second processed.
+type        1048576 bytes
+ChaCha20-Poly1305  2298129.07k
+control_end algorithm=chacha20-poly1305 operation=decrypt

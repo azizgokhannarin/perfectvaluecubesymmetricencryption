@@ -26,6 +26,9 @@ No new cryptographic construction was introduced. PVC-RotSymEnc-1 is defined to 
 - opt-in x86 dudect timing characterization with retained raw measurements;
 - fixed-fingerprint cross-platform conformance on Linux x86-64, Linux ARM64,
   macOS ARM64, and Windows x64 with GCC, Clang, Apple Clang, MSVC, and clang-cl;
+- opt-in 0 B-1 MiB seal/open performance characterization with retained raw
+  samples, TSC ticks, corrected resident-memory measurements, and external
+  system-library controls;
 - GitHub Actions CI.
 
 ## Local verification summary
@@ -47,6 +50,8 @@ StreamFrame-domain campaign:    no distinguisher found at tested bounds
 Timing characterization:        secret-key-dependent C1 timing observed
 Cross-platform transcript:      4096/4096, 6 toolchain/platform combinations
 Cross-platform mismatches:      0
+Performance cases:              96/96 primary, plus targeted replication
+Large-payload throughput:       about 0.066 MiB/s GCC, 0.089 MiB/s Clang
 ```
 
 The conformance evidence establishes reproducibility of the public wrapper in
@@ -55,3 +60,5 @@ cryptographic security. The timing campaign found an implementation-side
 weakness; it did not demonstrate key recovery, forgery, or a remote attack.
 The cross-platform campaign found no byte-output divergence at the tested
 bounds; this does not establish portability outside the recorded matrix.
+The performance figures characterize one reference implementation and host;
+they are not security properties or cross-machine guarantees.
