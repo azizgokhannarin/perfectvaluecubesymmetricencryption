@@ -19,6 +19,8 @@ No new cryptographic construction was introduced. PVC-RotSymEnc-1 is defined to 
 - coverage-guided differential fuzzing for `seal` and `open` behavior;
 - GCC/Clang and separate ASan/UBSan/MSan verification;
 - explicit `-O0`, `-O2` and `-O3` conformance builds;
+- CBMC bounded verification of framing, length, counter, tag-gate, and
+  verify-before-decrypt invariants;
 - GitHub Actions CI.
 
 ## Local verification summary
@@ -35,6 +37,7 @@ Release A1 equivalence:      4096/4096 (Clang)
 Sanitizer equivalence:       1536/1536
 Official RotSymEnc vectors:      5/5
 Wrapper/A1 mismatches:             0
+CBMC selected properties:       passed (bounded; see BOUNDED_VERIFICATION.md)
 ```
 
 This evidence establishes reproducibility of the public wrapper in the tested environments. It does not establish cryptographic security.

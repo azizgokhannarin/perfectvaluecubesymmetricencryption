@@ -119,6 +119,18 @@ or malformed `open` inputs. The complete vendored call tree is instrumented
 with coverage, ASan and UBSan. See `fuzz/README.md` for the input encoding,
 deterministic smoke campaign and longer-run commands.
 
+## Bounded implementation verification
+
+The opt-in CBMC campaign checks the pinned Candidate A1 frame writer,
+tag-length gate, verify-before-decrypt control flow, bounded length preservation,
+and full-domain counter arithmetic. It uses explicit verification models and
+does not claim cryptographic security. See `docs/BOUNDED_VERIFICATION.md` for
+the exact bounds, source transformations, results, and limitations.
+
+```bash
+CBMC=/path/to/cbmc ./scripts/run_cbmc.sh
+```
+
 ## Usage
 
 ```bash
