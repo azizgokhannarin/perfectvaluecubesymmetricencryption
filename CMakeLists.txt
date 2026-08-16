@@ -125,6 +125,14 @@ if(PVCROTSYMENC1_BUILD_TESTS)
     pvcrotsymenc1_warnings(pvc-rotsymenc1-equivalence)
     add_test(NAME pvc-rotsymenc1-a1-equivalence-corpus
              COMMAND pvc-rotsymenc1-equivalence --count ${PVCROTSYMENC1_EQUIVALENCE_CASES})
+
+    add_executable(
+        pvc-rotsymenc1-cross-platform-conformance
+        tests/cross_platform_conformance.cpp)
+    target_link_libraries(
+        pvc-rotsymenc1-cross-platform-conformance
+        PRIVATE pvc_rotsymenc1)
+    pvcrotsymenc1_warnings(pvc-rotsymenc1-cross-platform-conformance)
 endif()
 
 if(PVCROTSYMENC1_BUILD_FUZZERS)

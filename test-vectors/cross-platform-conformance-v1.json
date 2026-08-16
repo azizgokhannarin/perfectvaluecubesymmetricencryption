@@ -1,0 +1,9 @@
+{
+  "format": "pvc-rotsymenc1-cross-platform-conformance-v1",
+  "construction_version": "0.1.0-draft",
+  "transcript_version": 1,
+  "seed": "0x43524F5353504C31",
+  "cases": 4096,
+  "transcript_bytes": 2533365,
+  "sha256": "42c2f89ac1e55d260cf8e90914f01e7fbcd39f54a50c814147bb1e5cc344ad8e"
+}

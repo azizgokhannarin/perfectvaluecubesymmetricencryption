@@ -146,3 +146,78 @@ jobs:
         env:
           CBMC: ${{ runner.temp }}/cbmc/usr/bin/cbmc
         run: ./scripts/run_cbmc.sh
+
+  arm64-conformance:
+    name: conformance (${{ matrix.platform }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux-arm64-gcc
+            os: ubuntu-24.04-arm
+            cc: gcc
+            cxx: g++
+          - platform: macos-arm64-clang
+            os: macos-15
+            cc: clang
+            cxx: clang++
+    env:
+      CC: ${{ matrix.cc }}
+      CXX: ${{ matrix.cxx }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: Record toolchain
+        run: |
+          uname -a
+          "${CXX}" --version | head -n 1
+      - name: Configure
+        run: |
+          cmake -S . -B build-conformance \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DPVCROTSYMENC1_WARNINGS_AS_ERRORS=ON
+      - name: Build
+        run: cmake --build build-conformance --parallel 2
+      - name: Test
+        run: ctest --test-dir build-conformance --output-on-failure
+      - name: Verify byte-identical corpus
+        run: |
+          python3 scripts/verify_cross_platform_conformance.py \
+            --generator build-conformance/pvc-rotsymenc1-cross-platform-conformance
+
+  windows-conformance:
+    name: conformance (windows-${{ matrix.compiler }})
+    runs-on: windows-2025
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [msvc, clang-cl]
+    steps:
+      - uses: actions/checkout@v7
+      - name: Record toolchain
+        shell: pwsh
+        run: |
+          if ("${{ matrix.compiler }}" -eq "msvc") {
+            cmake --version | Select-Object -First 1
+          } else {
+            clang-cl --version | Select-Object -First 1
+          }
+      - name: Configure
+        shell: pwsh
+        run: |
+          if ("${{ matrix.compiler }}" -eq "msvc") {
+            cmake -S . -B build-conformance -A x64 `
+              -DPVCROTSYMENC1_WARNINGS_AS_ERRORS=ON
+          } else {
+            cmake -S . -B build-conformance -A x64 -T ClangCL `
+              -DPVCROTSYMENC1_WARNINGS_AS_ERRORS=ON
+          }
+      - name: Build
+        run: cmake --build build-conformance --config Release --parallel 2
+      - name: Test
+        run: ctest --test-dir build-conformance -C Release --output-on-failure
+      - name: Verify byte-identical corpus
+        shell: pwsh
+        run: |
+          $generator = "build-conformance/Release/pvc-rotsymenc1-cross-platform-conformance.exe"
+          python scripts/verify_cross_platform_conformance.py --generator $generator

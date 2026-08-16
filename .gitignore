@@ -4,6 +4,8 @@ build-*/
 .idea/
 *.user
 *.swp
+__pycache__/
+*.py[cod]
 .DS_Store
 /AGENTS.md
 /RoadMap.txt
