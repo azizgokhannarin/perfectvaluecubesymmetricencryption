@@ -161,6 +161,20 @@ limitations.
 CXX=g++ ./scripts/run_timing_characterization.sh build-timing-gcc
 ```
 
+## Cross-platform conformance
+
+A versioned 4,096-case corpus compares byte-exact seal/open transcripts across
+local Linux x86-64 GCC/Clang and hosted Linux ARM64, macOS ARM64, Windows MSVC,
+and Windows clang-cl builds. All tested combinations matched the fixed
+2,533,365-byte transcript fingerprint. This is portability evidence, not a
+security result. See `docs/CROSS_PLATFORM_CONFORMANCE.md` for the inputs,
+toolchains, first-attempt harness failure, results, and limitations.
+
+```bash
+python3 scripts/verify_cross_platform_conformance.py \
+  --generator build/pvc-rotsymenc1-cross-platform-conformance
+```
+
 ## Usage
 
 ```bash

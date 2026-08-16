@@ -24,6 +24,8 @@ No new cryptographic construction was introduced. PVC-RotSymEnc-1 is defined to 
 - dedicated bounded StreamFrame-domain differential, Walsh, collision, and
   cross-role analysis;
 - opt-in x86 dudect timing characterization with retained raw measurements;
+- fixed-fingerprint cross-platform conformance on Linux x86-64, Linux ARM64,
+  macOS ARM64, and Windows x64 with GCC, Clang, Apple Clang, MSVC, and clang-cl;
 - GitHub Actions CI.
 
 ## Local verification summary
@@ -43,9 +45,13 @@ Wrapper/A1 mismatches:             0
 CBMC selected properties:       passed (bounded; see BOUNDED_VERIFICATION.md)
 StreamFrame-domain campaign:    no distinguisher found at tested bounds
 Timing characterization:        secret-key-dependent C1 timing observed
+Cross-platform transcript:      4096/4096, 6 toolchain/platform combinations
+Cross-platform mismatches:      0
 ```
 
 The conformance evidence establishes reproducibility of the public wrapper in
 the tested environments. The bounded negative cryptanalysis does not establish
 cryptographic security. The timing campaign found an implementation-side
 weakness; it did not demonstrate key recovery, forgery, or a remote attack.
+The cross-platform campaign found no byte-output divergence at the tested
+bounds; this does not establish portability outside the recorded matrix.

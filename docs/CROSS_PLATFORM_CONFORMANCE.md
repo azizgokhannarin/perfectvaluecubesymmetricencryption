@@ -2,8 +2,8 @@
 
 ## Status
 
-This document pre-registers the remote platform campaign before its first run.
-The candidate construction and canonical cryptographic vectors are unchanged.
+The pre-registered remote campaign is complete. The candidate construction and
+canonical cryptographic vectors are unchanged.
 
 ## Question
 
@@ -77,11 +77,54 @@ be regenerated solely to make a platform pass.
 
 ## Result
 
-Not yet run on the pre-registered remote matrix.
+All six tested platform/toolchain combinations produced the pre-registered
+transcript size and SHA-256 fingerprint:
+
+| Environment | Toolchain | CTest | Corpus | Fingerprint |
+|---|---|---:|---:|---:|
+| Local Linux x86-64 | GCC 14.2 | 6/6 | 4096/4096 | match |
+| Local Linux x86-64 | Clang 19.1 | 6/6 | 4096/4096 | match |
+| Ubuntu 24.04.4 ARM64 | GCC 13.3.0 | 6/6 | 4096/4096 | match |
+| macOS 15 ARM64 | Apple Clang 17.0.0 | 6/6 | 4096/4096 | match |
+| Windows Server 2025 x64 | MSVC 19.51.36252.0 | 6/6 | 4096/4096 | match |
+| Windows Server 2025 x64 | Clang 22.1.3, MSVC-compatible | 6/6 | 4096/4096 | match |
+
+Every successful corpus run reported:
+
+```text
+conformance_match = 1
+transcript bytes = 2533365
+SHA-256 = 42c2f89ac1e55d260cf8e90914f01e7fbcd39f54a50c814147bb1e5cc344ad8e
+```
+
+GitHub Actions run `31963608661` passed all 16 CI jobs, including the four
+remote conformance jobs. The Windows `windows-2025` jobs ran on Microsoft
+Windows Server 2025; the image identified itself as `windows-2025-vs2026`.
+CMake's compiler identification is reported above because the Visual Studio
+ClangCL generator selected its bundled Clang 22.1.3 rather than the unrelated
+Clang 20.1.8 executable found first on `PATH`.
+
+The first remote attempt, run `31963373038`, passed Linux ARM64, macOS ARM64,
+and Windows clang-cl but stopped in the MSVC test-harness build before corpus
+generation. MSVC warning C4244 identified two `std::fill` values inferred as
+`int` in `tests/cross_platform_conformance.cpp`; warnings-as-errors correctly
+made this a failure. The harness was changed to use explicit `std::uint8_t`
+values without weakening warnings. The full local transcript retained the
+pre-registered size and fingerprint after that change. This was a test-harness
+portability defect, not an observed construction or cross-platform byte-output
+mismatch.
 
 ## Interpretation
 
-Pending remote campaign.
+Within this corpus and matrix, no platform-dependent seal/open behavior was
+observed. The result provides evidence that the canonical wrapper's output,
+valid-open behavior, and tested invalid-tag rejection are byte-reproducible
+across the tested operating systems, instruction-set architectures, compilers,
+and C++ standard libraries.
+
+This is conformance evidence only. It neither establishes cryptographic
+security nor rules out undefined behavior or divergences outside the tested
+inputs and environments.
 
 ## Limitations
 
@@ -101,4 +144,11 @@ cmake --build build-conformance \
   --target pvc-rotsymenc1-cross-platform-conformance --parallel 2
 python3 scripts/verify_cross_platform_conformance.py \
   --generator build-conformance/pvc-rotsymenc1-cross-platform-conformance
+```
+
+The remote matrix is defined in `.github/workflows/ci.yml`. The completed
+campaign can be inspected with:
+
+```bash
+gh run view 31963608661
 ```
