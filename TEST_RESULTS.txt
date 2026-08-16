@@ -15,6 +15,13 @@ GCC Debug ASan+UBSan:
 Official public-profile vectors:
   verified 5/5
 
+Clang 19.1.7 libFuzzer + ASan + UBSan:
+  deterministic fuzz CTest: 2/2
+  seal differential: 4096 executions, mismatches=0
+  open differential: 4096 executions, mismatches=0
+  sanitizer findings: 0
+  LeakSanitizer: disabled because the managed runner is ptrace-restricted
+
 Candidate A1 retained manifests:
   verified
 

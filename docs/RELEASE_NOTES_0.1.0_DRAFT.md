@@ -16,6 +16,7 @@ No new cryptographic construction was introduced. PVC-RotSymEnc-1 is defined to 
 - retained Candidate A1 KAT and 4,096-case differential corpora;
 - RotSymEnc-specific machine-readable vectors;
 - wrapper-to-A1 deterministic equivalence test;
+- coverage-guided differential fuzzing for `seal` and `open` behavior;
 - GCC/Clang/ASan+UBSan verification;
 - GitHub Actions CI.
 

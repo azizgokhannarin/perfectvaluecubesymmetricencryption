@@ -1,0 +1,9 @@
+build/
+build-*/
+.vscode/
+.idea/
+*.user
+*.swp
+.DS_Store
+/AGENTS.md
+/RoadMap.txt

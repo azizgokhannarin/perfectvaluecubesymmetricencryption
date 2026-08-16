@@ -91,6 +91,14 @@ For a broader wrapper-to-A1 equivalence campaign:
 ./build/pvc-rotsymenc1-equivalence --count 4096
 ```
 
+## Differential fuzzing
+
+Two opt-in Clang libFuzzer targets compare the public wrapper with the
+independent Candidate A1 implementation for valid `seal` inputs and arbitrary
+or malformed `open` inputs. The complete vendored call tree is instrumented
+with coverage, ASan and UBSan. See `fuzz/README.md` for the input encoding,
+deterministic smoke campaign and longer-run commands.
+
 ## Usage
 
 ```bash

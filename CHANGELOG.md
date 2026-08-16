@@ -9,3 +9,6 @@
 - Retained Candidate A1 KAT and independent differential corpora.
 - Added security target, provenance, freeze policy, review workflow and cryptanalysis challenge.
 - Added wrapper-to-A1 conformance and equivalence tests.
+- Added opt-in Clang libFuzzer differential targets for valid `seal` tuples and
+  arbitrary or malformed `open` tuples, with ASan/UBSan instrumentation,
+  deterministic seed corpora and CI smoke coverage.

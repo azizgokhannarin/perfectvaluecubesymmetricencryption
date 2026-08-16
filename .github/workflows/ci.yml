@@ -1,0 +1,49 @@
+name: ci
+on:
+  push:
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure compiler
+        run: |
+          if [ "${{ matrix.compiler }}" = "clang" ]; then
+            echo "CC=clang" >> "$GITHUB_ENV"
+            echo "CXX=clang++" >> "$GITHUB_ENV"
+          else
+            echo "CC=gcc" >> "$GITHUB_ENV"
+            echo "CXX=g++" >> "$GITHUB_ENV"
+          fi
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DPVCROTSYMENC1_WARNINGS_AS_ERRORS=ON
+      - name: Build
+        run: cmake --build build -j2
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+
+  fuzz-smoke:
+    runs-on: ubuntu-latest
+    env:
+      CC: clang
+      CXX: clang++
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: |
+          cmake -S . -B build-fuzz \
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DPVCROTSYMENC1_BUILD_FUZZERS=ON \
+            -DPVCROTSYMENC1_WARNINGS_AS_ERRORS=ON
+      - name: Build fuzzers
+        run: |
+          cmake --build build-fuzz \
+            --target pvc-rotsymenc1-fuzz-seal-equivalence \
+                     pvc-rotsymenc1-fuzz-open-equivalence \
+            --parallel 2
+      - name: Deterministic fuzz smoke
+        run: ctest --test-dir build-fuzz -L fuzz --output-on-failure
