@@ -16,6 +16,7 @@
 #include <span>
 #include <stdexcept>
 #include <string>
+#include <string_view>
 #include <vector>
 
 namespace {
@@ -50,6 +51,21 @@ struct DistanceStats {
     std::uint64_t distance_sum{};
     std::size_t minimum = std::numeric_limits<std::size_t>::max();
     std::size_t maximum{};
+};
+
+enum class StateRegion : std::size_t {
+    Cube,
+    AxisControl,
+    AmountControl,
+    Feedback,
+    Transcript,
+    Count,
+};
+
+struct StateLocalization {
+    std::array<std::uint64_t, static_cast<std::size_t>(StateRegion::Count)>
+        unchanged_by_region{};
+    std::vector<std::array<std::size_t, 2>> one_bit_candidates;
 };
 
 [[noreturn]] void fail(const std::string& message) {
@@ -137,6 +153,76 @@ void observe(DistanceStats& stats, std::size_t distance) {
     stats.maximum = std::max(stats.maximum, distance);
     if (distance == 0U) ++stats.unchanged;
     if (distance == 1U) ++stats.one_bit;
+}
+
+StateRegion state_region(std::size_t bit) {
+    require(bit < kC1StateBits, "state-region bit is outside model");
+    if (bit < kCubeStateBits) return StateRegion::Cube;
+    bit -= kCubeStateBits;
+    if (bit < 16U) return StateRegion::AxisControl;
+    bit -= 16U;
+    if (bit < 16U) return StateRegion::AmountControl;
+    bit -= 16U;
+    if (bit < 32U) return StateRegion::Feedback;
+    return StateRegion::Transcript;
+}
+
+const char* state_region_name(StateRegion region) {
+    switch (region) {
+        case StateRegion::Cube: return "cube";
+        case StateRegion::AxisControl: return "axis_control";
+        case StateRegion::AmountControl: return "amount_control";
+        case StateRegion::Feedback: return "feedback";
+        case StateRegion::Transcript: return "transcript";
+        case StateRegion::Count: break;
+    }
+    fail("invalid C1 state region");
+}
+
+std::size_t changed_bit(std::span<const std::uint8_t> left,
+                        std::span<const std::uint8_t> right) {
+    require(bit_distance(left, right) == 1U,
+            "changed-bit localization requires distance one");
+    for (std::size_t bit = 0U; bit < left.size() * 8U; ++bit) {
+        const auto mask = static_cast<std::uint8_t>(1U << (bit % 8U));
+        if (((left[bit / 8U] ^ right[bit / 8U]) & mask) != 0U) return bit;
+    }
+    fail("distance-one output did not expose a changed bit");
+}
+
+void localize_state_fault(StateLocalization& localization,
+                          std::size_t state_bit,
+                          std::size_t distance,
+                          std::span<const std::uint8_t> canonical,
+                          std::span<const std::uint8_t> faulted) {
+    if (distance == 0U) {
+        const auto region = static_cast<std::size_t>(state_region(state_bit));
+        ++localization.unchanged_by_region[region];
+    }
+    if (distance == 1U) {
+        localization.one_bit_candidates.push_back(
+            {state_bit, changed_bit(canonical, faulted)});
+    }
+}
+
+void print_localization(const char* label,
+                        std::size_t profile_bits,
+                        const StateLocalization& localization) {
+    std::cout << label << " profile_bits=" << profile_bits;
+    for (std::size_t index = 0U;
+         index < static_cast<std::size_t>(StateRegion::Count);
+         ++index) {
+        const auto region = static_cast<StateRegion>(index);
+        std::cout << " unchanged_" << state_region_name(region)
+                  << '=' << localization.unchanged_by_region[index];
+    }
+    std::cout << '\n';
+    for (const auto& candidate : localization.one_bit_candidates) {
+        std::cout << label << "-one-bit-candidate profile_bits=" << profile_bits
+                  << " state_bit=" << candidate[0]
+                  << " state_region=" << state_region_name(state_region(candidate[0]))
+                  << " tag_or_output_bit=" << candidate[1] << '\n';
+    }
 }
 
 void print_distance(const char* label, const DistanceStats& stats) {
@@ -501,7 +587,7 @@ void test_post_authentication_faults(const CampaignCase& test_case) {
     print_distance("post-auth-nonce-fault", nonce_stats);
 }
 
-void test_c1_stream_state_faults(const CampaignCase& test_case) {
+void test_c1_stream_state_faults(const CampaignCase& test_case, bool localize) {
     const auto frame = pvcaead0::frame_stream_block(
         test_case.nonce, UINT64_C(0), to_a1_tag_size(test_case.tag_size));
     const auto canonical = pvc1::research_keyed_return_output_a2(
@@ -512,17 +598,24 @@ void test_c1_stream_state_faults(const CampaignCase& test_case) {
             "C1 stream state baseline output mismatch");
 
     DistanceStats stats;
+    StateLocalization localization;
     for (std::size_t bit = 0U; bit < kC1StateBits; ++bit) {
         auto faulted_state = base_state;
         flip_c1_state_bit(faulted_state, bit);
         const auto faulted = pvc1::research_bound_output_a2(
             faulted_state, frame.size());
-        observe(stats, bit_distance(canonical, faulted));
+        const auto distance = bit_distance(canonical, faulted);
+        observe(stats, distance);
+        if (localize) {
+            localize_state_fault(localization, bit, distance, canonical, faulted);
+        }
     }
     print_distance("c1-stream-state-bit-fault", stats);
+    if (localize) print_localization("c1-stream-state", 256U, localization);
 }
 
-void test_c1_mac_state_faults(const std::array<CampaignCase, 3>& cases) {
+void test_c1_mac_state_faults(const std::array<CampaignCase, 3>& cases,
+                              bool localize) {
     for (const auto& test_case : cases) {
         const auto a1_tag_size = to_a1_tag_size(test_case.tag_size);
         const auto context = pvcaead0::frame_authentication_context(
@@ -546,6 +639,7 @@ void test_c1_mac_state_faults(const std::array<CampaignCase, 3>& cases) {
                 "C1 MAC state baseline output mismatch");
 
         DistanceStats stats;
+        StateLocalization localization;
         const auto tag_bytes = test_case.sealed.tag.size();
         const auto canonical_prefix = std::span<const std::uint8_t>(canonical).first(tag_bytes);
         for (std::size_t bit = 0U; bit < kC1StateBits; ++bit) {
@@ -555,7 +649,12 @@ void test_c1_mac_state_faults(const std::array<CampaignCase, 3>& cases) {
                 faulted_state, mac_frame.size());
             const auto faulted_prefix =
                 std::span<const std::uint8_t>(faulted).first(tag_bytes);
-            observe(stats, bit_distance(canonical_prefix, faulted_prefix));
+            const auto distance = bit_distance(canonical_prefix, faulted_prefix);
+            observe(stats, distance);
+            if (localize) {
+                localize_state_fault(
+                    localization, bit, distance, canonical_prefix, faulted_prefix);
+            }
         }
         std::cout << "c1-mac-state-bit-fault profile_bits=" << tag_bytes * 8U
                   << " faults=" << stats.attempts
@@ -564,13 +663,23 @@ void test_c1_mac_state_faults(const std::array<CampaignCase, 3>& cases) {
                   << " distance_min=" << stats.minimum
                   << " distance_max=" << stats.maximum
                   << " distance_sum=" << stats.distance_sum << '\n';
+        if (localize) {
+            print_localization(
+                "c1-mac-state", tag_bytes * 8U, localization);
+        }
     }
 }
 
 } // namespace
 
-int main() {
+int main(int argc, char** argv) {
     try {
+        bool localize = false;
+        if (argc == 2 && std::string_view(argv[1]) == "--localize") {
+            localize = true;
+        } else if (argc != 1) {
+            fail("usage: pvc-rotsymenc1-fault-injection-campaign [--localize]");
+        }
         const auto cases = make_cases();
         std::cout << "PVC-RotSymEnc-1 software fault-injection campaign\n"
                   << "campaign_version=1\n"
@@ -579,13 +688,14 @@ int main() {
                   << "fault_model=analysis-only-single-software-fault\n"
                   << "c1_fault_point=after-transcript-return-before-finalization\n"
                   << "c1_state_bits=" << kC1StateBits << '\n';
+        if (localize) std::cout << "localization_mode=1\n";
         test_tag_and_mac_result_bits(cases);
         test_comparison_skip(cases);
         test_tag_length_faults(cases);
         test_authentication_branch_skip(cases);
         test_post_authentication_faults(cases.back());
-        test_c1_stream_state_faults(cases.back());
-        test_c1_mac_state_faults(cases);
+        test_c1_stream_state_faults(cases.back(), localize);
+        test_c1_mac_state_faults(cases, localize);
         std::cout << "unexpected_canonical_acceptances=0\n"
                   << "explicit_model_bypass_classes=3\n"
                   << "unexpected_failure_count=0\n"
