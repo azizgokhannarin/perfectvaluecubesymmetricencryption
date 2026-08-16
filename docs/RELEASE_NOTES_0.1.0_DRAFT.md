@@ -26,6 +26,8 @@ No new cryptographic construction was introduced. PVC-RotSymEnc-1 is defined to 
 - opt-in x86 dudect timing characterization with retained raw measurements;
 - fixed-fingerprint cross-platform conformance on Linux x86-64, Linux ARM64,
   macOS ARM64, and Windows x64 with GCC, Clang, Apple Clang, MSVC, and clang-cl;
+- opt-in nonce-management and misuse analysis with analysis-only detector and
+  persistent-counter prototypes;
 - opt-in 0 B-1 MiB seal/open performance characterization with retained raw
   samples, TSC ticks, corrected resident-memory measurements, and external
   system-library controls;

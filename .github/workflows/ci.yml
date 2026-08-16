@@ -156,6 +156,38 @@ jobs:
             --target pvc-rotsymenc1-timing-characterization \
             --parallel 2
 
+  nonce-misuse-analysis:
+    name: nonce misuse analysis (${{ matrix.profile }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - profile: gcc-release
+            cxx: g++
+            build_type: Release
+            sanitizer: none
+          - profile: clang-release
+            cxx: clang++
+            build_type: Release
+            sanitizer: none
+          - profile: clang-address
+            cxx: clang++
+            build_type: RelWithDebInfo
+            sanitizer: address
+          - profile: clang-undefined
+            cxx: clang++
+            build_type: RelWithDebInfo
+            sanitizer: undefined
+    env:
+      CXX: ${{ matrix.cxx }}
+      BUILD_TYPE: ${{ matrix.build_type }}
+      SANITIZER: ${{ matrix.sanitizer }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: Run pre-registered nonce misuse campaign
+        run: ./scripts/run_nonce_misuse_campaign.sh build-nonce-misuse
+
   bounded-verification:
     runs-on: ubuntu-24.04
     env:

@@ -161,6 +161,18 @@ limitations.
 CXX=g++ ./scripts/run_timing_characterization.sh build-timing-gcc
 ```
 
+## Nonce management and misuse analysis
+
+An opt-in GNU/Linux campaign reproduces the specified nonce-reuse XOR
+disclosure and evaluates analysis-only reuse-detector and persistent-counter
+prototypes under restart, injected process crashes, concurrent allocation, and
+snapshot rollback. These helpers do not change the construction or make it
+nonce-misuse resistant. See `docs/NONCE_MISUSE_CAMPAIGN.md`.
+
+```bash
+CXX=g++ ./scripts/run_nonce_misuse_campaign.sh build-nonce-misuse-gcc
+```
+
 ## Cross-platform conformance
 
 A versioned 4,096-case corpus compares byte-exact seal/open transcripts across

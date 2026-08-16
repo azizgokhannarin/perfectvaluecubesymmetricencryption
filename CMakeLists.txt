@@ -96,6 +96,22 @@ if(PVCROTSYMENC1_BUILD_ANALYSIS)
         PRIVATE pvc_aead0 pvc_prf1_c1)
     pvcrotsymenc1_warnings(pvc-rotsymenc1-streamframe-domain-audit)
 
+    if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+        add_executable(
+            pvc-rotsymenc1-nonce-misuse-campaign
+            analysis/nonce_management/nonce_management.cpp
+            analysis/nonce_misuse_campaign.cpp)
+        target_include_directories(
+            pvc-rotsymenc1-nonce-misuse-campaign
+            PRIVATE analysis)
+        target_link_libraries(
+            pvc-rotsymenc1-nonce-misuse-campaign
+            PRIVATE pvc_rotsymenc1)
+        pvcrotsymenc1_warnings(pvc-rotsymenc1-nonce-misuse-campaign)
+    else()
+        message(STATUS "Skipping Linux nonce-management campaign target")
+    endif()
+
     if(UNIX AND CMAKE_SYSTEM_PROCESSOR MATCHES "^(x86_64|AMD64|amd64)$")
         add_executable(
             pvc-rotsymenc1-timing-characterization
