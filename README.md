@@ -145,6 +145,22 @@ CXX=g++ ./scripts/run_streamframe_domain_audit.sh build-streamframe-gcc
 CXX=clang++ ./scripts/run_streamframe_domain_audit.sh build-streamframe-clang
 ```
 
+## Timing characterization
+
+The opt-in x86-64 dudect campaign measures C1, M1, seal, and both open paths
+with fixed-versus-random input classes. On the recorded Intel i7-10710U host,
+GCC and Clang builds showed repeatable timing leakage evidence in C1, including
+when only the secret key changed and the public StreamFrame remained identical.
+This is an implementation-side security finding, not a key-recovery attack or
+a cryptographic break. The M1 first-versus-last mismatch-position isolation did
+not cross the threshold at the tested bounds. See
+`docs/TIMING_CHARACTERIZATION.md` for the exact method, raw results, and
+limitations.
+
+```bash
+CXX=g++ ./scripts/run_timing_characterization.sh build-timing-gcc
+```
+
 ## Usage
 
 ```bash

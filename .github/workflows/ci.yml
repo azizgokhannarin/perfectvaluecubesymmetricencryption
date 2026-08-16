@@ -122,6 +122,11 @@ jobs:
           fi
       - name: Run pre-registered StreamFrame campaign
         run: ./scripts/run_streamframe_domain_audit.sh build-streamframe-domain
+      - name: Build timing characterization harness
+        run: |
+          cmake --build build-streamframe-domain \
+            --target pvc-rotsymenc1-timing-characterization \
+            --parallel 2
 
   bounded-verification:
     runs-on: ubuntu-24.04

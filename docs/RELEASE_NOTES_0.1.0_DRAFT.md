@@ -21,6 +21,9 @@ No new cryptographic construction was introduced. PVC-RotSymEnc-1 is defined to 
 - explicit `-O0`, `-O2` and `-O3` conformance builds;
 - CBMC bounded verification of framing, length, counter, tag-gate, and
   verify-before-decrypt invariants;
+- dedicated bounded StreamFrame-domain differential, Walsh, collision, and
+  cross-role analysis;
+- opt-in x86 dudect timing characterization with retained raw measurements;
 - GitHub Actions CI.
 
 ## Local verification summary
@@ -38,6 +41,11 @@ Sanitizer equivalence:       1536/1536
 Official RotSymEnc vectors:      5/5
 Wrapper/A1 mismatches:             0
 CBMC selected properties:       passed (bounded; see BOUNDED_VERIFICATION.md)
+StreamFrame-domain campaign:    no distinguisher found at tested bounds
+Timing characterization:        secret-key-dependent C1 timing observed
 ```
 
-This evidence establishes reproducibility of the public wrapper in the tested environments. It does not establish cryptographic security.
+The conformance evidence establishes reproducibility of the public wrapper in
+the tested environments. The bounded negative cryptanalysis does not establish
+cryptographic security. The timing campaign found an implementation-side
+weakness; it did not demonstrate key recovery, forgery, or a remote attack.

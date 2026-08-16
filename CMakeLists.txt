@@ -94,6 +94,21 @@ if(PVCROTSYMENC1_BUILD_ANALYSIS)
         pvc-rotsymenc1-streamframe-domain-audit
         PRIVATE pvc_aead0 pvc_prf1_c1)
     pvcrotsymenc1_warnings(pvc-rotsymenc1-streamframe-domain-audit)
+
+    if(UNIX AND CMAKE_SYSTEM_PROCESSOR MATCHES "^(x86_64|AMD64|amd64)$")
+        add_executable(
+            pvc-rotsymenc1-timing-characterization
+            analysis/timing_characterization.cpp)
+        target_include_directories(
+            pvc-rotsymenc1-timing-characterization
+            SYSTEM PRIVATE analysis/third_party/dudect)
+        target_link_libraries(
+            pvc-rotsymenc1-timing-characterization
+            PRIVATE pvc_rotsymenc1 pvc_aead0 pvc_mac0_m1 pvc_prf1_c1)
+        pvcrotsymenc1_warnings(pvc-rotsymenc1-timing-characterization)
+    else()
+        message(STATUS "Skipping x86-64 Unix timing characterization target")
+    endif()
 endif()
 
 if(PVCROTSYMENC1_BUILD_TESTS)

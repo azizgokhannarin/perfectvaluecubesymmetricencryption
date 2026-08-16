@@ -32,3 +32,20 @@ An exploratory second seed did not reproduce a same-direction global Walsh
 maximum observed in the primary run. This is a bounded negative result, not a
 C1 PRF-security argument. Full parameters and limitations are recorded in
 `STREAMFRAME_DOMAIN_ANALYSIS.md`.
+
+## Timing leakage observation
+
+The current C1 implementation uses secret-derived coordinates, axes, rotation
+amounts, branches, and memory accesses. A pinned dudect campaign on an Intel
+i7-10710U found repeatable fixed-versus-random timing separation under GCC 14.2
+and Clang 19.1. Key-only localization kept the public StreamFrame identical and
+still crossed the `|t| > 10` threshold in both seeds and compilers, with maximum
+absolute t-statistics from 102.54 to 154.16. Composite M1 tag generation, seal,
+failed open, and successful open classes also showed timing separation. Because
+those classes vary multiple inputs, they do not isolate C1 as the sole source;
+their results are consistent with propagation through operations that use C1.
+
+This is empirical implementation-side leakage evidence, not a demonstrated
+key-recovery attack, remote exploit, or full cryptographic break. The isolated
+M1 first-versus-last tag-mismatch test remained below threshold in both
+compilers. See `TIMING_CHARACTERIZATION.md`.

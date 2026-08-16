@@ -1,0 +1,245 @@
+-- The CXX compiler identification is GNU 14.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/agn/Projects/perfectvaluecubesymmetricencryption/build-timing-gcc
+[ 26%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/controller_b.cpp.o
+[ 26%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/return_pass.cpp.o
+[ 26%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/controller.cpp.o
+[ 26%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/finalization.cpp.o
+[ 33%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/cube.cpp.o
+[ 40%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/key_schedule.cpp.o
+[ 46%] Linking CXX static library libpvc_prf1_c1.a
+[ 46%] Built target pvc_prf1_c1
+[ 53%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_mac0_m1.dir/external/pvc_mac0_m1/src/mac.cpp.o
+[ 60%] Linking CXX static library libpvc_mac0_m1.a
+[ 60%] Built target pvc_mac0_m1
+[ 66%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_aead0.dir/src/aead.cpp.o
+[ 73%] Linking CXX static library libpvc_aead0.a
+[ 73%] Built target pvc_aead0
+[ 80%] Building CXX object CMakeFiles/pvc_rotsymenc1.dir/src/symmetric_encryption.cpp.o
+[ 86%] Linking CXX static library libpvc_rotsymenc1.a
+[ 86%] Built target pvc_rotsymenc1
+[ 93%] Building CXX object CMakeFiles/pvc-rotsymenc1-timing-characterization.dir/analysis/timing_characterization.cpp.o
+[100%] Linking CXX executable pvc-rotsymenc1-timing-characterization
+[100%] Built target pvc-rotsymenc1-timing-characterization
+runner_version=1
+kernel=Linux 6.12.95+deb13-amd64
+architecture=x86_64
+cpu_model=Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz
+allowed_cpus=0-11
+pinned_cpu=0
+compiler_command=g++
+g++ (Debian 14.2.0-19) 14.2.0
+runner_target_begin=positive-control
+PVC-RotSymEnc-1 timing characterization
+campaign_version=1
+construction_version=0.1.0-draft
+dudect_commit=dc269651fb2567e46755cfb2a13d3875592968b5
+compiler=gcc-14.2.0
+target=positive-control
+class0=first-byte-nonzero
+class1=last-byte-nonzero
+seed=0x54494D494E473031
+measurements_per_batch=12000
+warmup_batches=1
+statistics_batches=3
+tag_bits=256
+associated_data_bytes=32
+payload_bytes=64
+batch=0 phase=warmup
+batch=1 phase=statistics
+meas:    0.01 M, max t:  +64.88, max tau: 5.93e-01, (5/tau)^2: 7.12e+01. Probably not constant time.
+batch=2 phase=statistics
+meas:    0.02 M, max t: +505.59, max tau: 3.57e+00, (5/tau)^2: 1.97e+00. Definitely not constant time.
+batch=3 phase=statistics
+meas:    0.03 M, max t: +609.58, max tau: 3.46e+00, (5/tau)^2: 2.09e+00. Definitely not constant time.
+summary target=positive-control raw_t=-138.635497 raw_mean_class0=62.365643 raw_mean_class1=102.400445 raw_n_class0=17982 raw_n_class1=17985 max_t=-609.582106 max_test=cropped-26 max_test_measurements=31120 threshold=10.0 enough_measurements=1 leakage_evidence=1 sink=0
+interpretation=leakage-detection-not-a-constant-time-proof-or-attack
+runner_target_end=positive-control
+runner_target_begin=c1-evaluate
+PVC-RotSymEnc-1 timing characterization
+campaign_version=1
+construction_version=0.1.0-draft
+dudect_commit=dc269651fb2567e46755cfb2a13d3875592968b5
+compiler=gcc-14.2.0
+target=c1-evaluate
+class0=fixed-key-and-streamframe
+class1=random-key-and-streamframe
+seed=0x54494D494E473031
+measurements_per_batch=12000
+warmup_batches=1
+statistics_batches=3
+tag_bits=256
+associated_data_bytes=32
+payload_bytes=64
+batch=0 phase=warmup
+batch=1 phase=statistics
+meas:    0.01 M, max t:  +26.17, max tau: 2.39e-01, (5/tau)^2: 4.38e+02. Probably not constant time.
+batch=2 phase=statistics
+meas:    0.02 M, max t:  +85.20, max tau: 5.84e-01, (5/tau)^2: 7.33e+01. Probably not constant time.
+batch=3 phase=statistics
+meas:    0.03 M, max t: +111.48, max tau: 6.31e-01, (5/tau)^2: 6.28e+01. Probably not constant time.
+summary target=c1-evaluate raw_t=-42.688321 raw_mean_class0=549350.418799 raw_mean_class1=555616.712070 raw_n_class0=17980 raw_n_class1=17987 max_t=-111.481247 max_test=cropped-29 max_test_measurements=31218 threshold=10.0 enough_measurements=1 leakage_evidence=1 sink=38
+interpretation=leakage-detection-not-a-constant-time-proof-or-attack
+runner_target_end=c1-evaluate
+runner_target_begin=m1-compute
+PVC-RotSymEnc-1 timing characterization
+campaign_version=1
+construction_version=0.1.0-draft
+dudect_commit=dc269651fb2567e46755cfb2a13d3875592968b5
+compiler=gcc-14.2.0
+target=m1-compute
+class0=fixed-key-context-message
+class1=random-key-context-message
+seed=0x54494D494E473031
+measurements_per_batch=12000
+warmup_batches=1
+statistics_batches=3
+tag_bits=256
+associated_data_bytes=32
+payload_bytes=64
+batch=0 phase=warmup
+batch=1 phase=statistics
+meas:    0.01 M, max t:   +1.80, max tau: 1.65e-02, (5/tau)^2: 9.22e+04. For the moment, maybe constant time.
+batch=2 phase=statistics
+meas:    0.02 M, max t:  +20.32, max tau: 1.43e-01, (5/tau)^2: 1.22e+03. Probably not constant time.
+batch=3 phase=statistics
+meas:    0.03 M, max t:  +23.05, max tau: 1.35e-01, (5/tau)^2: 1.38e+03. Probably not constant time.
+summary target=m1-compute raw_t=0.695299 raw_mean_class0=1317431.035651 raw_mean_class1=1316661.229110 raw_n_class0=17980 raw_n_class1=17987 max_t=-23.047206 max_test=cropped-25 max_test_measurements=29336 threshold=10.0 enough_measurements=1 leakage_evidence=1 sink=205
+interpretation=leakage-detection-not-a-constant-time-proof-or-attack
+runner_target_end=m1-compute
+runner_target_begin=m1-verify-mismatch-position
+PVC-RotSymEnc-1 timing characterization
+campaign_version=1
+construction_version=0.1.0-draft
+dudect_commit=dc269651fb2567e46755cfb2a13d3875592968b5
+compiler=gcc-14.2.0
+target=m1-verify-mismatch-position
+class0=first-tag-byte-wrong
+class1=last-tag-byte-wrong
+seed=0x54494D494E473031
+measurements_per_batch=12000
+warmup_batches=1
+statistics_batches=3
+tag_bits=256
+associated_data_bytes=32
+payload_bytes=64
+batch=0 phase=warmup
+batch=1 phase=statistics
+meas:    0.01 M, max t:   +1.50, max tau: 1.37e-02, (5/tau)^2: 1.34e+05. For the moment, maybe constant time.
+batch=2 phase=statistics
+meas:    0.02 M, max t:   +2.61, max tau: 1.72e-02, (5/tau)^2: 8.42e+04. For the moment, maybe constant time.
+batch=3 phase=statistics
+meas:    0.03 M, max t:   +2.87, max tau: 1.55e-02, (5/tau)^2: 1.04e+05. For the moment, maybe constant time.
+summary target=m1-verify-mismatch-position raw_t=-1.628296 raw_mean_class0=1313598.339654 raw_mean_class1=1315398.674210 raw_n_class0=17983 raw_n_class1=17984 max_t=-2.874528 max_test=cropped-49 max_test_measurements=34468 threshold=10.0 enough_measurements=1 leakage_evidence=0 sink=0
+interpretation=leakage-detection-not-a-constant-time-proof-or-attack
+runner_target_end=m1-verify-mismatch-position
+runner_target_begin=seal
+PVC-RotSymEnc-1 timing characterization
+campaign_version=1
+construction_version=0.1.0-draft
+dudect_commit=dc269651fb2567e46755cfb2a13d3875592968b5
+compiler=gcc-14.2.0
+target=seal
+class0=fixed-seal-tuple
+class1=random-seal-tuple
+seed=0x54494D494E473031
+measurements_per_batch=12000
+warmup_batches=1
+statistics_batches=3
+tag_bits=256
+associated_data_bytes=32
+payload_bytes=64
+batch=0 phase=warmup
+batch=1 phase=statistics
+meas:    0.01 M, max t:  +10.69, max tau: 9.76e-02, (5/tau)^2: 2.62e+03. Probably not constant time.
+batch=2 phase=statistics
+meas:    0.02 M, max t:  +21.90, max tau: 1.55e-01, (5/tau)^2: 1.04e+03. Probably not constant time.
+batch=3 phase=statistics
+meas:    0.03 M, max t:  +31.44, max tau: 1.87e-01, (5/tau)^2: 7.19e+02. Probably not constant time.
+summary target=seal raw_t=-5.537993 raw_mean_class0=2423336.325347 raw_mean_class1=2429073.713968 raw_n_class0=17990 raw_n_class1=17977 max_t=-31.436345 max_test=cropped-23 max_test_measurements=28406 threshold=10.0 enough_measurements=1 leakage_evidence=1 sink=41
+interpretation=leakage-detection-not-a-constant-time-proof-or-attack
+runner_target_end=seal
+runner_target_begin=open-failure
+PVC-RotSymEnc-1 timing characterization
+campaign_version=1
+construction_version=0.1.0-draft
+dudect_commit=dc269651fb2567e46755cfb2a13d3875592968b5
+compiler=gcc-14.2.0
+target=open-failure
+class0=fixed-invalid-open-tuple
+class1=random-invalid-open-tuple
+seed=0x54494D494E473031
+measurements_per_batch=12000
+warmup_batches=1
+statistics_batches=3
+tag_bits=256
+associated_data_bytes=32
+payload_bytes=64
+batch=0 phase=warmup
+batch=1 phase=statistics
+meas:    0.01 M, max t:   +8.80, max tau: 8.04e-02, (5/tau)^2: 3.87e+03. For the moment, maybe constant time.
+batch=2 phase=statistics
+meas:    0.02 M, max t:  +37.79, max tau: 2.68e-01, (5/tau)^2: 3.47e+02. Probably not constant time.
+batch=3 phase=statistics
+meas:    0.03 M, max t:  +48.58, max tau: 2.98e-01, (5/tau)^2: 2.81e+02. Probably not constant time.
+summary target=open-failure raw_t=-13.382108 raw_mean_class0=1316546.672930 raw_mean_class1=1320334.314739 raw_n_class0=17987 raw_n_class1=17980 max_t=-48.578103 max_test=cropped-21 max_test_measurements=26562 threshold=10.0 enough_measurements=1 leakage_evidence=1 sink=0
+interpretation=leakage-detection-not-a-constant-time-proof-or-attack
+runner_target_end=open-failure
+runner_target_begin=open-success
+PVC-RotSymEnc-1 timing characterization
+campaign_version=1
+construction_version=0.1.0-draft
+dudect_commit=dc269651fb2567e46755cfb2a13d3875592968b5
+compiler=gcc-14.2.0
+target=open-success
+class0=fixed-valid-open-tuple
+class1=random-valid-open-tuple
+seed=0x54494D494E473031
+measurements_per_batch=12000
+warmup_batches=1
+statistics_batches=3
+tag_bits=256
+associated_data_bytes=32
+payload_bytes=64
+batch=0 phase=warmup
+batch=1 phase=statistics
+meas:    0.01 M, max t:   +7.67, max tau: 7.01e-02, (5/tau)^2: 5.09e+03. For the moment, maybe constant time.
+batch=2 phase=statistics
+meas:    0.02 M, max t:  +19.47, max tau: 1.36e-01, (5/tau)^2: 1.35e+03. Probably not constant time.
+batch=3 phase=statistics
+meas:    0.02 M, max t:  +34.63, max tau: 2.26e-01, (5/tau)^2: 4.89e+02. Probably not constant time.
+summary target=open-success raw_t=-1.790137 raw_mean_class0=2460650.243354 raw_mean_class1=2463921.646761 raw_n_class0=17982 raw_n_class1=17985 max_t=-34.632067 max_test=cropped-15 max_test_measurements=23452 threshold=10.0 enough_measurements=1 leakage_evidence=1 sink=19
+interpretation=leakage-detection-not-a-constant-time-proof-or-attack
+runner_target_end=open-success
+runner_target_begin=open-validity-control
+PVC-RotSymEnc-1 timing characterization
+campaign_version=1
+construction_version=0.1.0-draft
+dudect_commit=dc269651fb2567e46755cfb2a13d3875592968b5
+compiler=gcc-14.2.0
+target=open-validity-control
+class0=invalid-tag
+class1=valid-tag
+seed=0x54494D494E473031
+measurements_per_batch=12000
+warmup_batches=1
+statistics_batches=3
+tag_bits=256
+associated_data_bytes=32
+payload_bytes=64
+batch=0 phase=warmup
+batch=1 phase=statistics
+meas:    0.01 M, max t: +875.40, max tau: 7.99e+00, (5/tau)^2: 3.91e-01. Definitely not constant time.
+batch=2 phase=statistics
+meas:    0.02 M, max t: +2467.89, max tau: 1.71e+01, (5/tau)^2: 8.55e-02. Definitely not constant time.
+batch=3 phase=statistics
+meas:    0.03 M, max t: +3447.81, max tau: 1.95e+01, (5/tau)^2: 6.60e-02. Definitely not constant time.
+summary target=open-validity-control raw_t=-1001.354971 raw_mean_class0=1315923.303475 raw_mean_class1=2425648.393060 raw_n_class0=17985 raw_n_class1=17982 max_t=-3447.807929 max_test=cropped-26 max_test_measurements=31381 threshold=10.0 enough_measurements=1 leakage_evidence=1 sink=0
+interpretation=leakage-detection-not-a-constant-time-proof-or-attack
+runner_target_end=open-validity-control
