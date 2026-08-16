@@ -2,10 +2,11 @@
 
 ## Status
 
-This document registers a targeted follow-up after campaign version 1 produced
-unchanged finalization outputs and one 128-bit MAC-prefix result at Hamming
-distance one. Localization results are pending. The default campaign behavior,
-fault set, construction, and canonical vectors remain unchanged.
+This targeted follow-up is complete. Its definition was committed as
+`770ade7` before measurement after campaign version 1 produced unchanged
+finalization outputs and one 128-bit MAC-prefix result at Hamming distance one.
+The default campaign behavior, fault set, construction, and canonical vectors
+remain unchanged.
 
 ## Question
 
@@ -39,16 +40,25 @@ compilers = GCC 14.2 and Clang 19.1
 
 ## Result
 
-Pending the first localization run after this follow-up definition is
-committed.
+GCC 14.2 and Clang 19.1 produced byte-identical records with SHA-256
+`fb655ee5b82bd02addd25215dfd2d3581941e9c6b598c57cd6b214ca7e42c6ae`.
+Every unchanged result originated in the 4,096-bit cube region: 232 stream
+faults and 420, 333, and 272 MAC faults for the 128-, 192-, and 256-bit
+profiles. No axis-control, amount-control, feedback, or transcript bit fault
+left the observed prefix unchanged.
+
+The sole primary distance-one candidate was the 128-bit MAC case at state bit
+2,763. It maps to cube cell 345, coordinate `(1, 3, 5)`, cell bit 3. The
+changed tag bit was 122, or byte 15 bit 2 with zero-based indexing.
 
 ## Interpretation
 
-Pending measurement. An unchanged prefix means that the selected injected bit
-did not change the observed prefix at this injection point and input. It does
-not mean the complete internal trajectory was unchanged. A distance-one tag
-candidate identifies a precise software model relation, not fault feasibility,
-attacker knowledge, or a practical forgery.
+The localization confines the primary silent observations and distance-one
+candidate to cube-state faults in this model. An unchanged prefix means only
+that the selected injected bit did not change the observed prefix at this
+injection point and input; it does not mean the complete internal trajectory
+was unchanged. The exact distance-one relation is a software-model candidate,
+not fault feasibility, attacker knowledge, or a practical forgery.
 
 ## Limitations
 

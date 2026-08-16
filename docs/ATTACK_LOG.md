@@ -1,5 +1,68 @@
 # Attack Log
 
+## 2026-08-16: Finalization-boundary software fault injection
+
+### Classification
+
+Confirmed bounded software-fault-model warning. The campaign found recurrent
+silent C1 output-prefix faults and exact distance-one fault-assisted tag
+candidates at one late injection boundary. This is not a demonstrated physical
+fault, practical forgery, key-recovery attack, or full fault-resistance result.
+
+### Question
+
+Can a modeled single data, control-flow, or finalization-adjacent C1 state fault
+bypass canonical authentication or create low-distance stream/tag outputs?
+
+### Method and parameters
+
+Campaign version 1 used seed `0x4641554C54494E4A`. It exercised actual
+canonical input mutations, explicit models that omit a comparison or failed-
+authentication return, post-authentication counter/nonce corruption, and all
+4,224 modeled C1 state bits after transcript return and before finalization.
+The targeted replication enumerated 101,376 state faults across eight
+deterministic cases for each 128-, 192-, and 256-bit tag profile. GCC 14.2,
+Clang 19.1, ASan, and UBSan outputs were compared.
+
+### Result
+
+Canonical `open` accepted none of the altered real tuples. The explicit
+removed-operation models produced their pre-registered bypasses, and every
+post-authentication counter/nonce fault corrupted released plaintext. In the
+primary C1 cases, 232 stream faults and 420/333/272 MAC faults left the
+observed prefix unchanged. Localization placed all such faults in cube state
+and identified one 128-bit distance-one candidate.
+
+Replication found silent MAC-prefix faults in all 24 cases and distance-one
+candidates in 3/8, 6/8, and 3/8 cases for the 128-, 192-, and 256-bit profiles.
+Every distance-one candidate originated in cube state and affected only the
+last tag byte. Four compiler/sanitizer profiles produced byte-identical
+replication records; no sanitizer finding or unexpected campaign failure
+occurred.
+
+### Interpretation and limitations
+
+The recurrent last-byte relation is consistent with late cube-state faults
+remaining latent until the final portion of sequential output, but this
+mechanism has not been formally established. The counts apply only to the
+registered deterministic inputs and exact software injection point. The work
+does not show that an attacker can target, predict, or observe the relevant
+state bit, derive the required tag mutation, combine faults, or reproduce the
+effect with physical equipment. A bounded negative canonical result is not
+evidence of general fault resistance.
+
+### Reproduction
+
+```bash
+CXX=g++ ./scripts/run_fault_injection_campaign.sh build-fault-gcc
+build-fault-gcc/pvc-rotsymenc1-fault-injection-campaign --localize
+build-fault-gcc/pvc-rotsymenc1-fault-injection-campaign --replicate
+```
+
+See `FAULT_INJECTION_CAMPAIGN.md`, `FAULT_INJECTION_LOCALIZATION.md`, and
+`FAULT_INJECTION_REPLICATION.md` for the pre-registered definitions, complete
+measurements, and limitations.
+
 ## 2026-08-16: Nonce reuse and allocator rollback
 
 ### Classification

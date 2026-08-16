@@ -2,10 +2,10 @@
 
 ## Status
 
-This document pre-registers campaign version 1. Results are pending. The
-candidate construction, public `seal`/`open` API, vendored C1/M1/A1 sources,
-and canonical vectors are unchanged. All fault mechanisms are confined to a
-standalone analysis executable.
+Campaign version 1 is complete. The definition was committed as `4abd98c`
+before measurement. The candidate construction, public `seal`/`open` API,
+vendored C1/M1/A1 sources, and canonical vectors are unchanged. All fault
+mechanisms are confined to a standalone analysis executable.
 
 ## Question
 
@@ -84,13 +84,46 @@ control-flow bypasses is an alarm.
 
 ## Result
 
-Pending the first campaign run after this definition is committed.
+GCC 14.2, Clang 19.1, Clang ASan, and Clang UBSan produced byte-identical
+primary records with SHA-256
+`51cb843ad1dd765bd968e6f6c48d38d9b7bdda4dad6fad9f826c57921855d67f`.
+No compiler disagreement, sanitizer finding, baseline failure, or unexpected
+canonical acceptance occurred.
+
+The unmodified canonical wrapper rejected all 576 supplied-tag bit mutations,
+18 actual tag-length mutations, and the 12 altered nonce, AD, ciphertext, or
+tag tuples. All 576 recomputed-MAC bit faults rejected the correct tag, causing
+the pre-registered availability failures.
+
+The explicit analysis-only models produced their expected logical bypasses:
+72/72 omitted mismatching comparison bytes, 3/3 post-validation length faults,
+and 12/12 skipped failed-authentication returns released output. Six of the 12
+released plaintexts differed from the original. These counts describe removed
+operations in the model, not acceptances by canonical `open`.
+
+All 192 post-authentication counter faults and all 192 nonce faults changed the
+released plaintext. Hamming distances were 106--149 bits for counter faults
+and 348--424 bits for nonce faults.
+
+At the C1 finalization boundary, 232/4,224 stream-state faults left the
+observed 256-bit stream output unchanged. The unchanged MAC-prefix counts were
+420, 333, and 272 out of 4,224 for the 128-, 192-, and 256-bit profiles. One
+128-bit MAC-prefix result was at Hamming distance one; the other profiles had
+no distance-one result in the primary case. This prompted the separately
+pre-registered localization and replication campaigns.
 
 ## Interpretation
 
-Pending measurement. Modeled comparison or branch removal demonstrates the
-logical consequence of the removed operation. It does not establish voltage,
-clock, laser, electromagnetic, Rowhammer, or remote fault feasibility.
+Within this bounded campaign, altering the actual canonical input tuple did
+not bypass authentication. The comparison, length, and branch models show that
+removing the sole authentication operation predictably removes its protection;
+they are not evidence that the compiled binary was faulted. Authentication
+also does not detect computation faults injected after successful verification.
+
+The silent and distance-one C1 observations are a structural warning about
+this late software injection boundary and the observed output prefix. They do
+not establish voltage, clock, laser, electromagnetic, Rowhammer, or remote
+fault feasibility, and they are not a practical forgery or key-recovery result.
 
 ## Limitations
 
@@ -121,3 +154,7 @@ BUILD_TYPE=RelWithDebInfo SANITIZER=address CXX=clang++ \
 BUILD_TYPE=RelWithDebInfo SANITIZER=undefined CXX=clang++ \
   ./scripts/run_fault_injection_campaign.sh build-fault-ubsan
 ```
+
+Targeted follow-ups are documented in `FAULT_INJECTION_LOCALIZATION.md` and
+`FAULT_INJECTION_REPLICATION.md`. Raw records and their hashes are retained in
+`results-0.1.0-draft/fault-injection/`.

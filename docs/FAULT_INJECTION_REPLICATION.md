@@ -2,10 +2,10 @@
 
 ## Status
 
-This document pre-registers a targeted replication prompted by the localized
-128-bit distance-one C1 state-fault candidate. Results are pending. The
-construction, canonical vectors, injection point, and state-bit enumeration are
-unchanged.
+This targeted replication is complete. Its definition was committed as
+`db40564` before measurement after the localized 128-bit distance-one C1
+state-fault candidate. The construction, canonical vectors, injection point,
+and state-bit enumeration are unchanged.
 
 ## Question
 
@@ -57,7 +57,37 @@ compilers = GCC 14.2 and Clang 19.1
 
 ## Result
 
-Pending the first replication run after this definition is committed.
+GCC 14.2, Clang 19.1, Clang ASan, and Clang UBSan produced byte-identical
+records with SHA-256
+`809830e9ce701a06bf1b189652dd52f29d982712dc9eb3abdc8a86c387f880f6`.
+No baseline, compiler, or sanitizer alarm occurred.
+
+```text
+profile  cases  faults  unchanged  distance-one  cases unchanged  cases distance-one
+128      8      33792   3671       9             8                3
+192      8      33792   2462       18            8                6
+256      8      33792   1666       8             8                3
+```
+
+Every distance-one candidate originated in the cube region. All changed tag
+bits were in the final tag byte: bits 120, 122, 124--127 for the 128-bit
+profile; 184--191 for the 192-bit profile; and 248, 250, 252, 254, and 255 for
+the 256-bit profile. Every case in every profile contained at least one silent
+prefix fault. Distance-one candidates occurred in 3/8, 6/8, and 3/8 cases for
+the respective profiles.
+
+## Interpretation
+
+The recurrence shows that the primary silent and distance-one observations
+were not unique to one deterministic input. Their restriction to the last tag
+byte is consistent with a late cube-state fault remaining latent until the
+last part of sequential finalization output. This is an implementation-based
+interpretation, not a formal proof of the mechanism.
+
+The campaign therefore records a bounded structural warning and exact
+fault-assisted tag candidates for this software model. It does not establish
+that an attacker can predict or induce the required state fault, supply the
+corresponding altered tag, recover a key, or obtain a practical forgery.
 
 ## Limitations
 

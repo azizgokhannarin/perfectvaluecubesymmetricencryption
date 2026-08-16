@@ -60,6 +60,9 @@ Performance cases:              96/96 primary, plus targeted replication
 Large-payload throughput:       about 0.066 MiB/s GCC, 0.089 MiB/s Clang
 Nonce management profiles:      4/4; 2 expected known misuse findings
 Nonce campaign CI:              4/4 profiles; full run 23/23 jobs
+Fault injection profiles:       4/4; canonical altered-tuple acceptances 0
+Fault replication:              101376 state faults; 35 distance-one candidates
+Fault campaign CI:              4/4 profiles; full run 27/27 jobs
 One-command reproduction:       local 9/9 stages; CI 19/19 jobs
 ```
 
@@ -74,3 +77,6 @@ they are not security properties or cross-machine guarantees.
 The nonce campaign reproduced the specified reuse disclosure and showed that
 snapshot rollback defeats a standalone persistent counter; the tested helper
 prototype is not a supported API or a misuse-resistance claim.
+The software fault campaign found recurrent silent C1 prefixes and
+distance-one tag candidates at one late injection boundary. It did not
+demonstrate physical fault feasibility, practical forgery, or key recovery.

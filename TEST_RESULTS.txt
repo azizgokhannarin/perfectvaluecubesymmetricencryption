@@ -69,6 +69,19 @@ Nonce management and misuse campaign, definition commit 5a674eb:
   local LeakSanitizer: unavailable under documented ptrace restriction
   GitHub Actions run 31971780631: 23/23 jobs; nonce matrix 4/4
 
+Software fault-injection campaign, definition commits 4abd98c/770ade7/db40564:
+  GCC 14.2 and Clang 19.1 Release outputs: byte-identical
+  canonical altered-tuple acceptances: 0
+  explicit model bypass classes: 3; unexpected failures: 0
+  primary C1 state faults: 16,896
+  replication C1 state faults: 101,376
+  replication silent-prefix cases: 24/24
+  replication distance-one cases: 12/24
+  distance-one candidates: cube region, final tag byte only
+  Clang ASan/UBSan findings: 0
+  local LeakSanitizer: unavailable under documented ptrace restriction
+  GitHub Actions run 31973527136: 27/27 jobs; fault matrix 4/4
+
 One-command reproduction campaign, commit 930ecdd:
   local fail-closed stages: 9/9 plus artifact manifest
   GitHub Actions run 31967427920: 19/19 jobs

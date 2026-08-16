@@ -1,0 +1,49 @@
+PVC-RotSymEnc-1 software fault-injection campaign
+campaign_version=1
+construction_version=0.1.0-draft
+seed=0x4641554C54494E4A
+fault_model=analysis-only-single-software-fault
+c1_fault_point=after-transcript-return-before-finalization
+c1_state_bits=4224
+replication_mode=1
+replication_cases_per_profile=8
+c1-mac-state-replication profile_bits=128 cases=8 faults=33792 unchanged=3671 one_bit=9 cases_with_unchanged=8 cases_with_one_bit=3 distance_min=0 distance_max=87 distance_sum=1805593
+c1-mac-state-replication-one-bit-candidate profile_bits=128 case=0 state_bit=3823 state_region=cube tag_bit=120
+c1-mac-state-replication-one-bit-candidate profile_bits=128 case=0 state_bit=3834 state_region=cube tag_bit=125
+c1-mac-state-replication-one-bit-candidate profile_bits=128 case=6 state_bit=816 state_region=cube tag_bit=120
+c1-mac-state-replication-one-bit-candidate profile_bits=128 case=6 state_bit=820 state_region=cube tag_bit=124
+c1-mac-state-replication-one-bit-candidate profile_bits=128 case=6 state_bit=823 state_region=cube tag_bit=127
+c1-mac-state-replication-one-bit-candidate profile_bits=128 case=6 state_bit=2229 state_region=cube tag_bit=127
+c1-mac-state-replication-one-bit-candidate profile_bits=128 case=7 state_bit=762 state_region=cube tag_bit=122
+c1-mac-state-replication-one-bit-candidate profile_bits=128 case=7 state_bit=766 state_region=cube tag_bit=126
+c1-mac-state-replication-one-bit-candidate profile_bits=128 case=7 state_bit=767 state_region=cube tag_bit=127
+c1-mac-state-replication profile_bits=192 cases=8 faults=33792 unchanged=2462 one_bit=18 cases_with_unchanged=8 cases_with_one_bit=6 distance_min=0 distance_max=126 distance_sum=2802483
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=0 state_bit=1737 state_region=cube tag_bit=184
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=0 state_bit=1738 state_region=cube tag_bit=188
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=1 state_bit=2006 state_region=cube tag_bit=191
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=1 state_bit=2774 state_region=cube tag_bit=187
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=3 state_bit=992 state_region=cube tag_bit=185
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=3 state_bit=994 state_region=cube tag_bit=187
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=3 state_bit=998 state_region=cube tag_bit=190
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=4 state_bit=1839 state_region=cube tag_bit=188
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=6 state_bit=360 state_region=cube tag_bit=186
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=6 state_bit=362 state_region=cube tag_bit=188
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=6 state_bit=365 state_region=cube tag_bit=191
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=6 state_bit=366 state_region=cube tag_bit=184
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=7 state_bit=2366 state_region=cube tag_bit=184
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=7 state_bit=3360 state_region=cube tag_bit=186
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=7 state_bit=3362 state_region=cube tag_bit=188
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=7 state_bit=3364 state_region=cube tag_bit=190
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=7 state_bit=3365 state_region=cube tag_bit=191
+c1-mac-state-replication-one-bit-candidate profile_bits=192 case=7 state_bit=3366 state_region=cube tag_bit=184
+c1-mac-state-replication profile_bits=256 cases=8 faults=33792 unchanged=1666 one_bit=8 cases_with_unchanged=8 cases_with_one_bit=3 distance_min=0 distance_max=160 distance_sum=3798155
+c1-mac-state-replication-one-bit-candidate profile_bits=256 case=1 state_bit=912 state_region=cube tag_bit=248
+c1-mac-state-replication-one-bit-candidate profile_bits=256 case=1 state_bit=918 state_region=cube tag_bit=254
+c1-mac-state-replication-one-bit-candidate profile_bits=256 case=1 state_bit=919 state_region=cube tag_bit=255
+c1-mac-state-replication-one-bit-candidate profile_bits=256 case=1 state_bit=1052 state_region=cube tag_bit=252
+c1-mac-state-replication-one-bit-candidate profile_bits=256 case=4 state_bit=113 state_region=cube tag_bit=250
+c1-mac-state-replication-one-bit-candidate profile_bits=256 case=4 state_bit=114 state_region=cube tag_bit=254
+c1-mac-state-replication-one-bit-candidate profile_bits=256 case=4 state_bit=244 state_region=cube tag_bit=252
+c1-mac-state-replication-one-bit-candidate profile_bits=256 case=5 state_bit=2100 state_region=cube tag_bit=255
+unexpected_failure_count=0
+interpretation=targeted-replication-not-physical-feasibility

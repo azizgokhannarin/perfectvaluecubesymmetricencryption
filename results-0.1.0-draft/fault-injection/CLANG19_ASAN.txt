@@ -1,0 +1,23 @@
+PVC-RotSymEnc-1 software fault-injection campaign
+campaign_version=1
+construction_version=0.1.0-draft
+seed=0x4641554C54494E4A
+fault_model=analysis-only-single-software-fault
+c1_fault_point=after-transcript-return-before-finalization
+c1_state_bits=4224
+tag-bit-fault attempts=576 canonical_acceptances=0
+mac-result-bit-fault attempts=576 canonical_tag_acceptances=0 availability_failures=576
+comparison-skip-fault attempts=72 canonical_acceptances=0 model_bypasses=72
+tag-length-prevalidation-fault attempts=18 canonical_acceptances=0
+tag-length-postvalidation-fault attempts=3 canonical_acceptances=0 model_bypasses=3
+authentication-branch-skip-fault attempts=12 canonical_acceptances=0 model_plaintext_releases=12 model_wrong_plaintexts=6
+post-auth-counter-fault faults=192 unchanged=0 one_bit=0 distance_min=106 distance_max=149 distance_sum=24664
+post-auth-nonce-fault faults=192 unchanged=0 one_bit=0 distance_min=348 distance_max=424 distance_sum=73615
+c1-stream-state-bit-fault faults=4224 unchanged=232 one_bit=0 distance_min=0 distance_max=159 distance_sum=464910
+c1-mac-state-bit-fault profile_bits=128 faults=4224 unchanged=420 one_bit=1 distance_min=0 distance_max=85 distance_sum=226428
+c1-mac-state-bit-fault profile_bits=192 faults=4224 unchanged=333 one_bit=0 distance_min=0 distance_max=123 distance_sum=348838
+c1-mac-state-bit-fault profile_bits=256 faults=4224 unchanged=272 one_bit=0 distance_min=0 distance_max=155 distance_sum=471421
+unexpected_canonical_acceptances=0
+explicit_model_bypass_classes=3
+unexpected_failure_count=0
+interpretation=bounded-fault-map-not-a-physical-attack
