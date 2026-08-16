@@ -222,7 +222,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Run pre-registered fault-injection campaign
-        run: ./scripts/run_fault_injection_campaign.sh build-fault-injection
+        run: |
+          ./scripts/run_fault_injection_campaign.sh build-fault-injection
+          build-fault-injection/pvc-rotsymenc1-fault-injection-campaign --replicate
 
   bounded-verification:
     runs-on: ubuntu-24.04

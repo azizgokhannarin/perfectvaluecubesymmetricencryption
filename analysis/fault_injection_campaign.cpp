@@ -34,6 +34,7 @@ constexpr std::size_t kCubeStateBits = 512U * 8U;
 constexpr std::size_t kControllerStateBits = 16U + 16U + 32U + 64U;
 constexpr std::size_t kC1StateBits = kCubeStateBits + kControllerStateBits;
 constexpr std::size_t kStreamBlockBytes = 32U;
+constexpr std::size_t kReplicationCasesPerProfile = 8U;
 
 struct CampaignCase {
     KeyPair512 keys;
@@ -670,17 +671,118 @@ void test_c1_mac_state_faults(const std::array<CampaignCase, 3>& cases,
     }
 }
 
+void test_c1_mac_state_replication() {
+    const std::array<TagSize, 3> profiles{
+        TagSize::Bits128,
+        TagSize::Bits192,
+        TagSize::Bits256,
+    };
+    for (std::size_t profile_index = 0U;
+         profile_index < profiles.size();
+         ++profile_index) {
+        auto random_state = kSeed
+            ^ (UINT64_C(0x9E3779B97F4A7C15)
+               * static_cast<std::uint64_t>(profile_index + 1U));
+        DistanceStats aggregate;
+        std::uint64_t cases_with_unchanged = 0U;
+        std::uint64_t cases_with_one_bit = 0U;
+        std::vector<std::array<std::size_t, 3>> candidates;
+
+        for (std::size_t case_index = 0U;
+             case_index < kReplicationCasesPerProfile;
+             ++case_index) {
+            const auto test_case = make_case(random_state, profiles[profile_index]);
+            const auto context = pvcaead0::frame_authentication_context(
+                test_case.nonce,
+                test_case.associated_data,
+                to_a1_tag_size(test_case.tag_size));
+            const auto mac_frame = pvcmac0::frame_message(
+                context,
+                test_case.sealed.ciphertext,
+                to_mac_tag_size(test_case.tag_size));
+            const auto canonical = pvc1::research_keyed_return_output_a2(
+                test_case.keys.authentication_key, mac_frame);
+            require(std::equal(
+                        test_case.sealed.tag.begin(),
+                        test_case.sealed.tag.end(),
+                        canonical.begin()),
+                    "replication C1 MAC baseline does not match sealed tag");
+            const auto base_state = pvc1::evaluate_keyed_return_a2(
+                test_case.keys.authentication_key, mac_frame);
+            require(
+                pvc1::research_bound_output_a2(base_state, mac_frame.size()) == canonical,
+                "replication C1 MAC state baseline output mismatch");
+
+            const auto tag_bytes = test_case.sealed.tag.size();
+            const auto canonical_prefix =
+                std::span<const std::uint8_t>(canonical).first(tag_bytes);
+            std::uint64_t case_unchanged = 0U;
+            std::uint64_t case_one_bit = 0U;
+            for (std::size_t state_bit = 0U; state_bit < kC1StateBits; ++state_bit) {
+                auto faulted_state = base_state;
+                flip_c1_state_bit(faulted_state, state_bit);
+                const auto faulted = pvc1::research_bound_output_a2(
+                    faulted_state, mac_frame.size());
+                const auto faulted_prefix =
+                    std::span<const std::uint8_t>(faulted).first(tag_bytes);
+                const auto distance = bit_distance(canonical_prefix, faulted_prefix);
+                observe(aggregate, distance);
+                if (distance == 0U) ++case_unchanged;
+                if (distance == 1U) {
+                    ++case_one_bit;
+                    candidates.push_back(
+                        {case_index,
+                         state_bit,
+                         changed_bit(canonical_prefix, faulted_prefix)});
+                }
+            }
+            if (case_unchanged > 0U) ++cases_with_unchanged;
+            if (case_one_bit > 0U) ++cases_with_one_bit;
+        }
+
+        const auto profile_bits =
+            pvcrotsymenc1::tag_size_bytes(profiles[profile_index]) * 8U;
+        std::cout << "c1-mac-state-replication profile_bits=" << profile_bits
+                  << " cases=" << kReplicationCasesPerProfile
+                  << " faults=" << aggregate.attempts
+                  << " unchanged=" << aggregate.unchanged
+                  << " one_bit=" << aggregate.one_bit
+                  << " cases_with_unchanged=" << cases_with_unchanged
+                  << " cases_with_one_bit=" << cases_with_one_bit
+                  << " distance_min=" << aggregate.minimum
+                  << " distance_max=" << aggregate.maximum
+                  << " distance_sum=" << aggregate.distance_sum << '\n';
+        for (const auto& candidate : candidates) {
+            std::cout << "c1-mac-state-replication-one-bit-candidate"
+                      << " profile_bits=" << profile_bits
+                      << " case=" << candidate[0]
+                      << " state_bit=" << candidate[1]
+                      << " state_region="
+                      << state_region_name(state_region(candidate[1]))
+                      << " tag_bit=" << candidate[2] << '\n';
+        }
+    }
+}
+
 } // namespace
 
 int main(int argc, char** argv) {
     try {
         bool localize = false;
-        if (argc == 2 && std::string_view(argv[1]) == "--localize") {
-            localize = true;
+        bool replicate = false;
+        if (argc == 2) {
+            const std::string_view mode(argv[1]);
+            if (mode == "--localize") {
+                localize = true;
+            } else if (mode == "--replicate") {
+                replicate = true;
+            } else {
+                fail("unknown fault campaign mode");
+            }
         } else if (argc != 1) {
-            fail("usage: pvc-rotsymenc1-fault-injection-campaign [--localize]");
+            fail("usage: pvc-rotsymenc1-fault-injection-campaign "
+                 "[--localize|--replicate]");
         }
-        const auto cases = make_cases();
         std::cout << "PVC-RotSymEnc-1 software fault-injection campaign\n"
                   << "campaign_version=1\n"
                   << "construction_version=0.1.0-draft\n"
@@ -688,6 +790,17 @@ int main(int argc, char** argv) {
                   << "fault_model=analysis-only-single-software-fault\n"
                   << "c1_fault_point=after-transcript-return-before-finalization\n"
                   << "c1_state_bits=" << kC1StateBits << '\n';
+        if (replicate) {
+            std::cout << "replication_mode=1\n"
+                      << "replication_cases_per_profile="
+                      << kReplicationCasesPerProfile << '\n';
+            test_c1_mac_state_replication();
+            std::cout << "unexpected_failure_count=0\n"
+                      << "interpretation=targeted-replication-not-physical-feasibility\n";
+            return 0;
+        }
+
+        const auto cases = make_cases();
         if (localize) std::cout << "localization_mode=1\n";
         test_tag_and_mac_result_bits(cases);
         test_comparison_skip(cases);
