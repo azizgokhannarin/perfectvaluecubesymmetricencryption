@@ -22,6 +22,52 @@ PVC-AEAD-0 Candidate A1
 ciphertext, tag
 ```
 
+## Where the Perfect Value Cube is used
+
+`PVC-RotSymEnc-1` does use the original 8×8×8 Perfect Value Cube. The cube is not
+redeclared in `src/symmetric_encryption.cpp` because this repository is a byte-exact
+profile over frozen Candidate A1; the public wrapper delegates to the already frozen
+C1/M1/A1 implementation chain.
+
+Both cryptographic paths ultimately enter PVC-PRF-1 Candidate C1:
+
+```text
+PVC-RotSymEnc-1
+        |
+        v
+PVC-AEAD-0 Candidate A1
+   |                         |
+   | confidentiality         | integrity
+   v                         v
+C1_Kenc(StreamFrame)     PVC-MAC-0 Candidate M1
+                              |
+                              v
+                         C1_Kmac(MAC Frame)
+   \_________________________/
+               |
+               v
+       PVC-PRF-1 Candidate C1
+               |
+               v
+      8×8×8 Perfect Value Cube
+      512 cells + keyed line rotations
+```
+
+The byte-preserved cube implementation is vendored at:
+
+```text
+external/pvc_aead0_a1/
+  external/pvc_mac0_m1/
+    external/pvc_prf1_c1/
+      src/cube.cpp
+```
+
+That file contains the 512-cell `kPerfectCube` table. `Cube::perfect()` instantiates
+the state from that table, and the frozen C1 controller applies the actual cube
+transformation through `Cube::rotate_line(...)` on the X/Y/Z axes. The `Rot` in
+`PVC-RotSymEnc-1` therefore refers to the rotational Perfect Value Cube core inherited
+from C1, not to an additional rotation layer in the public wrapper.
+
 > Research software only. Do not use PVC-RotSymEnc-1 to protect production data, credentials, firmware, financial transactions, safety-critical systems, or other real secrets.
 
 ## Current status
