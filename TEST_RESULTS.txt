@@ -82,6 +82,21 @@ Software fault-injection campaign, definition commits 4abd98c/770ade7/db40564:
   local LeakSanitizer: unavailable under documented ptrace restriction
   GitHub Actions run 31973527136: 27/27 jobs; fault matrix 4/4
 
+Fault-finalization diagnosis, definition commit 698cace:
+  entry single-bit checks: 101,376/101,376
+  canonical baseline mirror checks: 24/24
+  retained fault mirror checks: 7,834/7,834
+  prior silent/distance-one counts: reproduced
+  prefix-silent first visible after prefix: 6,676/7,799
+  silent through canonical 32 bytes: 5,058/7,799
+  silent through analysis-only 64 bytes: 1,123/7,799
+  prefix-distance-one growth at 64 bytes: 35/35, distance 115--195
+  dependency-family all-case intersections: 0
+  GCC/Clang/ASan/UBSan outputs: byte-identical
+  sanitizer findings: 0
+  local LeakSanitizer: unavailable under documented ptrace restriction
+  GitHub Actions run 31978436170: 27/27 jobs; fault matrix 4/4
+
 One-command reproduction campaign, commit 930ecdd:
   local fail-closed stages: 9/9 plus artifact manifest
   GitHub Actions run 31967427920: 19/19 jobs

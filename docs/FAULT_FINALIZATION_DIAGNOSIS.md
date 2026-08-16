@@ -2,10 +2,11 @@
 
 ## Status
 
-This document pre-registers diagnostic campaign version 1. Results are
-pending. The construction, public API, vendored C1/M1/A1 implementation, and
-canonical vectors are unchanged. All new behavior is confined to optional
-analysis modes in the existing software fault-injection executable.
+Diagnostic campaign version 1 is complete. Its definition was committed as
+`698cace` before measurement. The construction, public API, vendored C1/M1/A1
+implementation, and canonical vectors are unchanged. All new behavior is
+confined to optional analysis modes in the existing software fault-injection
+executable.
 
 ## Question
 
@@ -109,7 +110,80 @@ sanitizers = Clang AddressSanitizer and UndefinedBehaviorSanitizer
 
 ## Result
 
-Pending the first campaign run after this definition is committed.
+GCC 14.2, Clang 19.1, Clang ASan, and Clang UBSan produced byte-identical
+diagnostic records with SHA-256
+`180ec4c4b2b7d5ff7bd26a6a45984c8f6bccc04e8374d8e8db053390b86c4fc8`.
+GCC and Clang also produced byte-identical 7,835-line maps (one header and
+7,834 retained faults) with SHA-256
+`75210707565177495693f266038e79d7ebd930f99db17be8e769c363c74dce76`.
+No compiler, sanitizer, or campaign alarm occurred. GitHub Actions run
+`31978436170` completed all 27 jobs, including the four fault-analysis
+profiles and hosted LeakSanitizer coverage.
+
+All 101,376 injected entry states differed from their baseline by exactly the
+registered single bit. The analysis mirror matched all 24 baseline canonical
+outputs and all 7,834 retained faulted outputs over the canonical 32 bytes.
+The prior silent and distance-one counts reproduced exactly.
+
+No retained fault showed a controller difference at the recorded boundaries
+after finalization entry, any of the 16 controller-binding symbols, or squeeze
+entry. Every distance-one fault and 6,700 of 7,799 prefix-silent faults first
+showed a controller difference at a recorded squeeze boundary. The controller
+remained equal through the 64-byte observation for 1,099 prefix-silent faults.
+
+```text
+profile  prefix-silent  first change after prefix  full-32 silent  64-byte silent
+128      3671           3411                       1683            260
+192      2462           2026                       1709            436
+256      1666           1239                       1666            427
+```
+
+Across the 7,799 prefix-silent faults, 6,676 first changed output only after
+the selected profile prefix. A total of 5,058 remained silent over canonical
+32-byte output, while 1,123 remained silent through the analysis-only 64-byte
+continuation.
+
+```text
+profile  prefix-HD1  full-32 distance  64-byte distance  single-bit until first output
+128      9           56--69            180--195          7
+192      18          25--36            144--173          9
+256      8           1                 115--146          3
+```
+
+All 35 distance-one observations occurred at the profile's final prefix byte.
+None remained distance one in the 64-byte continuation. Every retained fault
+originated in cube state; no distance-one state bit repeated across the eight
+primary cases within a profile.
+
+The fixed-key valid-nonce and fixed-frame varying-key controls both had empty
+all-case intersections for silent and distance-one sets in every profile.
+Every distance-one set also had zero pairwise overlap within each family and
+profile. Silent-set pairwise Jaccard values ranged from 0 to 0.134 across the
+registered families. The valid-nonce family also changes ciphertext, as noted
+in the method.
+
+## Interpretation
+
+The entry and mirror checks provide evidence against the registered harness
+timing/copy and finalizer-mirror hypotheses. No controller difference survives
+to a recorded binding boundary in these cases. The measurements are consistent
+with the selected difference following a dynamic cube trajectory until squeeze
+output or a squeeze move reaches it. Once a changed output byte is absorbed,
+later output generally diverges strongly.
+
+The 128- and 192-bit final-byte concentration is therefore substantially
+explained by M1 prefix truncation: the same fault usually affects later
+canonical C1 bytes. The 256-bit distance-one cases occur at the actual final
+canonical byte, but the difference grows to 115--146 bits in the analysis-only
+continuation. Zero coordinate intersection under both dependency controls is
+evidence against one fixed globally inactive cube region at these bounds and
+is consistent with key- and transcript-dependent access trajectories.
+
+This is a confirmed structural characteristic of the exact software fault
+model at one late boundary. It does not establish a normal-input distinguisher,
+global algebraic degree, physical fault feasibility, forgery, state recovery,
+or key recovery. The 1,123 continuation-silent observations remain a bounded
+coverage warning and require no reinterpretation as a practical attack.
 
 ## Limitations
 

@@ -234,7 +234,10 @@ CXX=g++ ./scripts/run_fault_injection_campaign.sh build-fault-gcc
 The follow-up finalization diagnostic separates profile-prefix truncation,
 stepwise difference propagation, exact cube geometry, and bounded key/nonce
 dependency controls. Its 32-byte extension is analysis-only and does not
-change Candidate C1. See `docs/FAULT_FINALIZATION_DIAGNOSIS.md`.
+change Candidate C1. It found that the registered distance-one prefix faults
+grow to high distance under continued squeeze observation and that no tested
+coordinate is common to every dependency-family case. See
+`docs/FAULT_FINALIZATION_DIAGNOSIS.md`.
 
 ## Cross-platform conformance
 

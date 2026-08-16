@@ -1,5 +1,63 @@
 # Attack Log
 
+## 2026-08-17: Dynamic squeeze reachability after a late state fault
+
+### Classification
+
+Confirmed bounded structural characteristic under the registered software
+fault model. The result localizes earlier silent and distance-one tag-prefix
+observations to profile truncation and input-dependent squeeze reachability. It
+is not a normal-input distinguisher, physical-fault demonstration, forgery,
+state-recovery result, or key-recovery result.
+
+### Question
+
+Do the earlier final-byte observations come from a harness artifact, a fixed
+inactive cube region, or a one-bit difference that remains local until the
+sequential squeeze reaches it?
+
+### Method and parameters
+
+The definition was committed as `698cace` before measurement. An analysis
+mirror traced state differences across finalization entry, 16 binding symbols,
+squeeze entry, 32 canonical output bytes, and a 32-byte analysis-only
+continuation. It checked all 101,376 registered entry faults, traced 7,834
+prefix-silent or distance-one faults, retained an exact coordinate map, and
+ran 196,608 cube faults in fixed-key valid-nonce and fixed-frame varying-key
+controls. Four compiler/sanitizer profiles were compared.
+
+### Result
+
+Every entry fault was exactly one bit, and the mirror matched every checked
+canonical and faulted 32-byte output. No retained fault showed a controller
+difference at a recorded finalization-entry or binding boundary. Of 7,799
+prefix-silent faults, 6,676 first affected output after the selected prefix,
+5,058 remained silent for the canonical 32 bytes, and 1,123 remained silent
+for 64 observed bytes. All 35
+prefix-distance-one cases grew to 115--195 output bits at 64 bytes. Coordinate
+intersections were empty across every registered key/nonce family and profile.
+
+### Interpretation and limitations
+
+The observed bit follows a key- and transcript-dependent cube trajectory until
+squeeze output or squeeze feedback reaches it; absorbing a changed output then
+causes broader divergence. Prefix truncation explains much of the 128- and
+192-bit concentration. The exact finalizer still has bounded late-reachability
+and continuation-silent cases, but no fixed globally inactive coordinate was
+identified. The continuation is not Candidate C1 output, the families are
+small and partly confounded as documented, and no attacker capability or
+cryptographic advantage was demonstrated.
+
+### Reproduction
+
+```bash
+build-fault-diagnosis/pvc-rotsymenc1-fault-injection-campaign --diagnose
+build-fault-diagnosis/pvc-rotsymenc1-fault-injection-campaign --map
+```
+
+See `FAULT_FINALIZATION_DIAGNOSIS.md` and the retained raw records for the
+complete parameters and interpretation rules.
+
 ## 2026-08-16: Finalization-boundary software fault injection
 
 ### Classification

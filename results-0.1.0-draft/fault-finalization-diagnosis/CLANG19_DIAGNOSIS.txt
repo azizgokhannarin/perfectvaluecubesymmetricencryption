@@ -1,0 +1,129 @@
+PVC-RotSymEnc-1 software fault-injection campaign
+campaign_version=1
+construction_version=0.1.0-draft
+seed=0x4641554C54494E4A
+fault_model=analysis-only-single-software-fault
+c1_fault_point=after-transcript-return-before-finalization
+c1_state_bits=4224
+diagnosis_mode=1
+diagnosis_version=1
+canonical_output_bytes=32
+analysis_continuation_bytes=32
+family_cases_per_profile=8
+fault-diagnosis category=prefix-silent profile_bits=128 selected=3671 entry_checks=3671 mirror_checks=3671 full32_unchanged=1683 full32_one_bit=1 extended64_unchanged=260 extended64_one_bit=5 first_change_after_prefix=3411 no_change_in_extended=260 single_bit_until_first_output=601 controller_first_entry=0 controller_first_binding=0 controller_first_squeeze_entry=0 controller_first_squeeze=3411 controller_never=260 full32_distance_min=0 full32_distance_max=79 full32_distance_sum=69819 extended64_distance_min=0 extended64_distance_max=213 extended64_distance_sum=445528 non_cube=0 x=352,464,477,496,576,441,490,375 y=512,585,261,468,593,544,331,377 z=577,482,450,425,389,466,392,490 cell_bit=459,457,458,461,462,459,459,456
+fault-diagnosis category=prefix-one profile_bits=128 selected=9 entry_checks=9 mirror_checks=9 full32_unchanged=0 full32_one_bit=0 extended64_unchanged=0 extended64_one_bit=0 first_change_after_prefix=0 no_change_in_extended=0 single_bit_until_first_output=7 controller_first_entry=0 controller_first_binding=0 controller_first_squeeze_entry=0 controller_first_squeeze=9 controller_never=0 full32_distance_min=56 full32_distance_max=69 full32_distance_sum=552 extended64_distance_min=180 extended64_distance_max=195 extended64_distance_sum=1688 non_cube=0 x=0,0,0,0,0,1,4,4 y=0,0,1,5,3,0,0,0 z=0,6,0,0,1,0,0,2 cell_bit=1,0,2,0,1,1,1,3
+fault-diagnosis category=prefix-silent profile_bits=192 selected=2462 entry_checks=2462 mirror_checks=2462 full32_unchanged=1709 full32_one_bit=6 extended64_unchanged=436 extended64_one_bit=0 first_change_after_prefix=2026 no_change_in_extended=436 single_bit_until_first_output=724 controller_first_entry=0 controller_first_binding=0 controller_first_squeeze_entry=0 controller_first_squeeze=2042 controller_never=420 full32_distance_min=0 full32_distance_max=43 full32_distance_sum=13265 extended64_distance_min=0 extended64_distance_max=188 extended64_distance_sum=214749 non_cube=0 x=203,321,235,300,404,360,296,343 y=336,384,398,205,284,218,291,346 z=314,256,398,327,330,227,426,184 cell_bit=307,307,309,309,308,307,309,306
+fault-diagnosis category=prefix-one profile_bits=192 selected=18 entry_checks=18 mirror_checks=18 full32_unchanged=0 full32_one_bit=0 extended64_unchanged=0 extended64_one_bit=0 first_change_after_prefix=0 no_change_in_extended=0 single_bit_until_first_output=9 controller_first_entry=0 controller_first_binding=0 controller_first_squeeze_entry=0 controller_first_squeeze=18 controller_never=0 full32_distance_min=25 full32_distance_max=36 full32_distance_sum=561 extended64_distance_min=144 extended64_distance_max=173 extended64_distance_sum=2860 non_cube=0 x=0,2,2,0,8,5,0,1 y=0,0,0,3,7,4,0,4 z=4,3,0,4,1,1,5,0 cell_bit=3,1,4,0,1,2,6,1
+fault-diagnosis category=prefix-silent profile_bits=256 selected=1666 entry_checks=1666 mirror_checks=1666 full32_unchanged=1666 full32_one_bit=0 extended64_unchanged=427 extended64_one_bit=1 first_change_after_prefix=1239 no_change_in_extended=427 single_bit_until_first_output=560 controller_first_entry=0 controller_first_binding=0 controller_first_squeeze_entry=0 controller_first_squeeze=1247 controller_never=419 full32_distance_min=0 full32_distance_max=0 full32_distance_sum=0 extended64_distance_min=0 extended64_distance_max=147 extended64_distance_sum=101223 non_cube=0 x=184,322,240,208,172,184,170,186 y=273,208,215,152,224,256,192,146 z=216,104,228,286,200,216,160,256 cell_bit=208,207,210,208,210,207,208,208
+fault-diagnosis category=prefix-one profile_bits=256 selected=8 entry_checks=8 mirror_checks=8 full32_unchanged=0 full32_one_bit=8 extended64_unchanged=0 extended64_one_bit=0 first_change_after_prefix=0 no_change_in_extended=0 single_bit_until_first_output=3 controller_first_entry=0 controller_first_binding=0 controller_first_squeeze_entry=0 controller_first_squeeze=8 controller_never=0 full32_distance_min=1 full32_distance_max=1 full32_distance_sum=8 extended64_distance_min=115 extended64_distance_max=146 extended64_distance_sum=1001 non_cube=0 x=0,0,3,1,0,0,4,0 y=2,2,0,1,0,0,3,0 z=3,3,1,0,1,0,0,0 cell_bit=1,1,1,0,3,0,1,1
+fault-diagnosis-validation entry_checks=101376 baseline_mirror_checks=24 selected_mirror_checks=7834 prior_counts_reproduced=1
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=128 case=0 selected=402
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=128 case=1 selected=594
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=128 case=2 selected=496
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=128 case=3 selected=513
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=128 case=4 selected=504
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=128 case=5 selected=521
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=128 case=6 selected=520
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=128 case=7 selected=429
+fault-family-overlap family=fixed-key-valid-nonce category=prefix-silent profile_bits=128 cases=8 total_selected=3979 intersection=0 union=2600 nonempty_pairs=28 pair_jaccard_min_ppm=26402 pair_jaccard_max_ppm=133651
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=128 case=0 selected=3
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=128 case=1 selected=4
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=128 case=2 selected=1
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=128 case=3 selected=1
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=128 case=4 selected=1
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=128 case=5 selected=0
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=128 case=6 selected=0
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=128 case=7 selected=5
+fault-family-overlap family=fixed-key-valid-nonce category=prefix-one profile_bits=128 cases=8 total_selected=15 intersection=0 union=15 nonempty_pairs=27 pair_jaccard_min_ppm=0 pair_jaccard_max_ppm=0
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=128 case=0 selected=497
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=128 case=1 selected=436
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=128 case=2 selected=479
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=128 case=3 selected=402
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=128 case=4 selected=376
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=128 case=5 selected=493
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=128 case=6 selected=333
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=128 case=7 selected=479
+fault-family-overlap family=fixed-frame-vary-key category=prefix-silent profile_bits=128 cases=8 total_selected=3495 intersection=0 union=2422 nonempty_pairs=28 pair_jaccard_min_ppm=17524 pair_jaccard_max_ppm=95380
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=128 case=0 selected=3
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=128 case=1 selected=4
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=128 case=2 selected=3
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=128 case=3 selected=0
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=128 case=4 selected=2
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=128 case=5 selected=10
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=128 case=6 selected=6
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=128 case=7 selected=5
+fault-family-overlap family=fixed-frame-vary-key category=prefix-one profile_bits=128 cases=8 total_selected=33 intersection=0 union=33 nonempty_pairs=28 pair_jaccard_min_ppm=0 pair_jaccard_max_ppm=0
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=192 case=0 selected=440
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=192 case=1 selected=275
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=192 case=2 selected=480
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=192 case=3 selected=234
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=192 case=4 selected=259
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=192 case=5 selected=296
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=192 case=6 selected=298
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=192 case=7 selected=248
+fault-family-overlap family=fixed-key-valid-nonce category=prefix-silent profile_bits=192 cases=8 total_selected=2530 intersection=0 union=1838 nonempty_pairs=28 pair_jaccard_min_ppm=13651 pair_jaccard_max_ppm=117647
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=192 case=0 selected=1
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=192 case=1 selected=3
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=192 case=2 selected=0
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=192 case=3 selected=0
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=192 case=4 selected=0
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=192 case=5 selected=0
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=192 case=6 selected=2
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=192 case=7 selected=7
+fault-family-overlap family=fixed-key-valid-nonce category=prefix-one profile_bits=192 cases=8 total_selected=13 intersection=0 union=13 nonempty_pairs=22 pair_jaccard_min_ppm=0 pair_jaccard_max_ppm=0
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=192 case=0 selected=323
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=192 case=1 selected=396
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=192 case=2 selected=313
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=192 case=3 selected=264
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=192 case=4 selected=265
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=192 case=5 selected=272
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=192 case=6 selected=336
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=192 case=7 selected=387
+fault-family-overlap family=fixed-frame-vary-key category=prefix-silent profile_bits=192 cases=8 total_selected=2556 intersection=0 union=1980 nonempty_pairs=28 pair_jaccard_min_ppm=12269 pair_jaccard_max_ppm=90529
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=192 case=0 selected=4
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=192 case=1 selected=1
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=192 case=2 selected=0
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=192 case=3 selected=0
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=192 case=4 selected=0
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=192 case=5 selected=0
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=192 case=6 selected=1
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=192 case=7 selected=0
+fault-family-overlap family=fixed-frame-vary-key category=prefix-one profile_bits=192 cases=8 total_selected=6 intersection=0 union=6 nonempty_pairs=18 pair_jaccard_min_ppm=0 pair_jaccard_max_ppm=0
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=256 case=0 selected=154
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=256 case=1 selected=169
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=256 case=2 selected=196
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=256 case=3 selected=291
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=256 case=4 selected=226
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=256 case=5 selected=288
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=256 case=6 selected=120
+fault-family-case family=fixed-key-valid-nonce category=prefix-silent profile_bits=256 case=7 selected=128
+fault-family-overlap family=fixed-key-valid-nonce category=prefix-silent profile_bits=256 cases=8 total_selected=1572 intersection=0 union=1417 nonempty_pairs=28 pair_jaccard_min_ppm=0 pair_jaccard_max_ppm=51835
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=256 case=0 selected=0
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=256 case=1 selected=1
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=256 case=2 selected=0
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=256 case=3 selected=0
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=256 case=4 selected=2
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=256 case=5 selected=0
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=256 case=6 selected=0
+fault-family-case family=fixed-key-valid-nonce category=prefix-one profile_bits=256 case=7 selected=0
+fault-family-overlap family=fixed-key-valid-nonce category=prefix-one profile_bits=256 cases=8 total_selected=3 intersection=0 union=3 nonempty_pairs=13 pair_jaccard_min_ppm=0 pair_jaccard_max_ppm=0
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=256 case=0 selected=112
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=256 case=1 selected=328
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=256 case=2 selected=178
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=256 case=3 selected=260
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=256 case=4 selected=183
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=256 case=5 selected=270
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=256 case=6 selected=264
+fault-family-case family=fixed-frame-vary-key category=prefix-silent profile_bits=256 case=7 selected=237
+fault-family-overlap family=fixed-frame-vary-key category=prefix-silent profile_bits=256 cases=8 total_selected=1832 intersection=0 union=1528 nonempty_pairs=28 pair_jaccard_min_ppm=0 pair_jaccard_max_ppm=126177
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=256 case=0 selected=0
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=256 case=1 selected=0
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=256 case=2 selected=1
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=256 case=3 selected=4
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=256 case=4 selected=0
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=256 case=5 selected=1
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=256 case=6 selected=0
+fault-family-case family=fixed-frame-vary-key category=prefix-one profile_bits=256 case=7 selected=0
+fault-family-overlap family=fixed-frame-vary-key category=prefix-one profile_bits=256 cases=8 total_selected=6 intersection=0 union=6 nonempty_pairs=18 pair_jaccard_min_ppm=0 pair_jaccard_max_ppm=0
+unexpected_failure_count=0
+interpretation=diagnostic-layer-separation-not-remediation

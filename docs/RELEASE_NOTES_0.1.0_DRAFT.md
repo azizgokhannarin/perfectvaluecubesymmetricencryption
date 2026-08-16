@@ -63,6 +63,8 @@ Nonce campaign CI:              4/4 profiles; full run 23/23 jobs
 Fault injection profiles:       4/4; canonical altered-tuple acceptances 0
 Fault replication:              101376 state faults; 35 distance-one candidates
 Fault campaign CI:              4/4 profiles; full run 27/27 jobs
+Fault finalization diagnosis:   297984 state faults plus stepwise traces
+Fault diagnosis mirror:         101376 entry; 7858 canonical/faulted checks
 One-command reproduction:       local 9/9 stages; CI 19/19 jobs
 ```
 
@@ -80,3 +82,6 @@ prototype is not a supported API or a misuse-resistance claim.
 The software fault campaign found recurrent silent C1 prefixes and
 distance-one tag candidates at one late injection boundary. It did not
 demonstrate physical fault feasibility, practical forgery, or key recovery.
+The diagnostic follow-up attributed much of the final-byte concentration to
+profile truncation plus dynamic squeeze reachability; it found no fixed
+all-case coordinate and made no normal-input security claim.

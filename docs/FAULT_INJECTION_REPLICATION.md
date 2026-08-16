@@ -84,6 +84,11 @@ byte is consistent with a late cube-state fault remaining latent until the
 last part of sequential finalization output. This is an implementation-based
 interpretation, not a formal proof of the mechanism.
 
+The pre-registered follow-up in `FAULT_FINALIZATION_DIAGNOSIS.md` subsequently
+showed that C1 always produces 32 bytes and that prefix truncation explains a
+substantial part of the 128- and 192-bit concentration. All distance-one cases
+grew to high distance when squeeze observation continued to 64 bytes.
+
 The campaign therefore records a bounded structural warning and exact
 fault-assisted tag candidates for this software model. It does not establish
 that an attacker can predict or induce the required state fault, supply the
