@@ -225,6 +225,7 @@ jobs:
         run: |
           ./scripts/run_fault_injection_campaign.sh build-fault-injection
           build-fault-injection/pvc-rotsymenc1-fault-injection-campaign --replicate
+          build-fault-injection/pvc-rotsymenc1-fault-injection-campaign --diagnose
 
   bounded-verification:
     runs-on: ubuntu-24.04

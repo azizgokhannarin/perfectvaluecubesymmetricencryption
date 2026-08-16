@@ -231,6 +231,11 @@ or claim physical fault feasibility or fault resistance. See
 CXX=g++ ./scripts/run_fault_injection_campaign.sh build-fault-gcc
 ```
 
+The follow-up finalization diagnostic separates profile-prefix truncation,
+stepwise difference propagation, exact cube geometry, and bounded key/nonce
+dependency controls. Its 32-byte extension is analysis-only and does not
+change Candidate C1. See `docs/FAULT_FINALIZATION_DIAGNOSIS.md`.
+
 ## Cross-platform conformance
 
 A versioned 4,096-case corpus compares byte-exact seal/open transcripts across
