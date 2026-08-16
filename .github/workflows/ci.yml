@@ -104,6 +104,34 @@ jobs:
       - name: Deterministic fuzz smoke
         run: ctest --test-dir build-fuzz -L fuzz --output-on-failure
 
+  performance-benchmark-smoke:
+    name: performance benchmark smoke (${{ matrix.compiler }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [gcc, clang]
+    steps:
+      - uses: actions/checkout@v7
+      - name: Configure compiler
+        run: |
+          if [ "${{ matrix.compiler }}" = "clang" ]; then
+            echo "CXX=clang++" >> "$GITHUB_ENV"
+          else
+            echo "CXX=g++" >> "$GITHUB_ENV"
+          fi
+      - name: Build and run benchmark smoke
+        run: |
+          ./scripts/run_performance_benchmark.sh \
+            build-performance \
+            "${RUNNER_TEMP}/performance-smoke.json" \
+            --sizes 0,64 \
+            --tags 256 \
+            --operations seal,open-success \
+            --samples 1 \
+            --large-samples 1 \
+            --target-ms 1
+
   streamframe-domain-analysis:
     name: StreamFrame analysis (${{ matrix.compiler }})
     runs-on: ubuntu-latest

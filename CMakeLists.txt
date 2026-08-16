@@ -4,6 +4,7 @@ project(perfectvaluecubesymmetricencryption VERSION 0.1.0 LANGUAGES CXX)
 option(PVCROTSYMENC1_BUILD_TESTS "Build PVC-RotSymEnc-1 tests" ON)
 option(PVCROTSYMENC1_BUILD_FUZZERS "Build Clang libFuzzer differential targets" OFF)
 option(PVCROTSYMENC1_BUILD_ANALYSIS "Build standalone cryptanalytic experiments" OFF)
+option(PVCROTSYMENC1_BUILD_BENCHMARKS "Build standalone performance benchmarks" OFF)
 option(PVCROTSYMENC1_WARNINGS_AS_ERRORS "Treat warnings as errors" ON)
 set(PVCROTSYMENC1_EQUIVALENCE_CASES "512" CACHE STRING "A1-equivalence cases used by CTest")
 set(PVCROTSYMENC1_SANITIZER "none" CACHE STRING "Sanitizer profile: none, address, undefined, or memory")
@@ -109,6 +110,16 @@ if(PVCROTSYMENC1_BUILD_ANALYSIS)
     else()
         message(STATUS "Skipping x86-64 Unix timing characterization target")
     endif()
+endif()
+
+if(PVCROTSYMENC1_BUILD_BENCHMARKS)
+    add_executable(
+        pvc-rotsymenc1-performance-benchmark
+        analysis/performance_benchmark.cpp)
+    target_link_libraries(
+        pvc-rotsymenc1-performance-benchmark
+        PRIVATE pvc_rotsymenc1)
+    pvcrotsymenc1_warnings(pvc-rotsymenc1-performance-benchmark)
 endif()
 
 if(PVCROTSYMENC1_BUILD_TESTS)
