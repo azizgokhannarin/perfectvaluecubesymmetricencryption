@@ -94,10 +94,10 @@ std::size_t plaintext_length(std::size_t case_index, std::uint64_t& state) {
 void apply_structure(std::vector<std::uint8_t>& bytes, std::size_t case_index) {
     switch (case_index % 64U) {
         case 0U:
-            std::fill(bytes.begin(), bytes.end(), 0U);
+            std::fill(bytes.begin(), bytes.end(), std::uint8_t{0U});
             break;
         case 1U:
-            std::fill(bytes.begin(), bytes.end(), UINT8_C(0xFF));
+            std::fill(bytes.begin(), bytes.end(), std::uint8_t{0xFFU});
             break;
         case 2U:
             for (std::size_t index = 0U; index < bytes.size(); ++index) {
