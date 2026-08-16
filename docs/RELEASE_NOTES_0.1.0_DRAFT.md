@@ -29,6 +29,8 @@ No new cryptographic construction was introduced. PVC-RotSymEnc-1 is defined to 
 - opt-in 0 B-1 MiB seal/open performance characterization with retained raw
   samples, TSC ticks, corrected resident-memory measurements, and external
   system-library controls;
+- a fail-closed one-command reproducibility campaign with per-stage logs and
+  artifact hashes;
 - GitHub Actions CI.
 
 ## Local verification summary

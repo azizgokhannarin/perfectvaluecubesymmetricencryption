@@ -175,6 +175,25 @@ jobs:
           CBMC: ${{ runner.temp }}/cbmc/usr/bin/cbmc
         run: ./scripts/run_cbmc.sh
 
+  reproduce-all:
+    runs-on: ubuntu-24.04
+    env:
+      CBMC_VERSION: "6.10.0"
+      CBMC_SHA256: "d716c219c5318a54f5298f9d5f66766d599e2e37bede33224437a8ad487fc504"
+    steps:
+      - uses: actions/checkout@v7
+      - name: Download pinned CBMC
+        run: |
+          curl -L --fail --silent --show-error \
+            "https://github.com/diffblue/cbmc/releases/download/cbmc-${CBMC_VERSION}/ubuntu-24.04-cbmc-${CBMC_VERSION}-Linux.deb" \
+            -o "${RUNNER_TEMP}/cbmc.deb"
+          echo "${CBMC_SHA256}  ${RUNNER_TEMP}/cbmc.deb" | sha256sum --check
+          dpkg-deb --extract "${RUNNER_TEMP}/cbmc.deb" "${RUNNER_TEMP}/cbmc"
+      - name: Run one-command reproduction campaign
+        env:
+          CBMC: ${{ runner.temp }}/cbmc/usr/bin/cbmc
+        run: ./reproduce_all.sh --output "${RUNNER_TEMP}/reproduce-all"
+
   arm64-conformance:
     name: conformance (${{ matrix.platform }})
     runs-on: ${{ matrix.os }}

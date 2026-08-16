@@ -191,6 +191,18 @@ CXX=g++ ./scripts/run_performance_benchmark.sh \
   --require-tsc
 ```
 
+## One-command reproduction
+
+The fail-closed reproduction entry point runs the build/KAT/differential,
+fuzz-seed, CBMC, StreamFrame-domain, benchmark, and manifest checks while
+retaining per-stage logs and artifact hashes. CBMC 6.10.0 is required and no
+missing stage is silently skipped. See `docs/REPRODUCIBILITY.md` for the exact
+scope and limitations.
+
+```bash
+CBMC=/path/to/cbmc ./reproduce_all.sh
+```
+
 ## Usage
 
 ```bash
