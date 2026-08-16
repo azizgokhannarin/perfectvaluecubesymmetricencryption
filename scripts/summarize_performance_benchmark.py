@@ -14,7 +14,7 @@ from typing import Any
 def load_record(path: Path) -> dict[str, Any]:
     with path.open("r", encoding="utf-8") as source:
         record = json.load(source)
-    if record.get("runner_version") != 1:
+    if record.get("runner_version") not in (1, 2):
         raise ValueError(f"{path}: unsupported runner version")
 
     campaign = record.get("campaign")
@@ -55,6 +55,10 @@ def load_record(path: Path) -> dict[str, Any]:
             raise ValueError(f"{path}: non-positive throughput")
         if row.get("latency_nanoseconds_median", 0) <= 0:
             raise ValueError(f"{path}: non-positive latency")
+        if row.get("benchmark_version") == 2:
+            resident = row.get("current_rss_with_retained_output_kib_max")
+            if not isinstance(resident, int) or resident <= 0:
+                raise ValueError(f"{path}: missing current RSS measurement")
     return record
 
 
@@ -87,7 +91,7 @@ def main() -> int:
             "latency_ms_median",
             "mib_per_second_median",
             "tsc_ticks_per_byte_median",
-            "peak_rss_kib",
+            "current_rss_with_output_kib",
         )
     )
     for path, record in records:
@@ -102,7 +106,10 @@ def main() -> int:
                     format_number(row["latency_nanoseconds_median"] / 1.0e6),
                     format_number(row["mebibytes_per_second_median"]),
                     format_number(row["tsc_ticks_per_byte_median"]),
-                    row["peak_rss_after_measurement_kib"],
+                    row.get(
+                        "current_rss_with_retained_output_kib_max",
+                        row.get("peak_rss_after_measurement_kib"),
+                    ),
                 )
             )
     return 0

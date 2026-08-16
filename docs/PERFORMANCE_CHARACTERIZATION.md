@@ -2,10 +2,12 @@
 
 ## Status
 
-This document pre-registers the primary local campaign before its full run.
-The exploratory 1 MiB smoke used only to size the campaign is not a retained
-performance result. The candidate construction and canonical vectors are
-unchanged.
+This document pre-registers the primary local campaign. Attempt 1 exposed an
+invalid resident-memory metric and is retained separately; the amended metric
+below was fixed before the replacement primary run. The latency, TSC, corpus,
+sample-count, and ordering definitions were not changed. The exploratory 1 MiB
+smoke used only to size the campaign is not a retained performance result. The
+candidate construction and canonical vectors are unchanged.
 
 ## Question
 
@@ -63,10 +65,12 @@ This produces 48 isolated configurations per compiler.
   payload byte. These are reference-clock ticks, not dynamic core-cycle
   performance-counter measurements, so the report does not label them as
   literal CPU cycles.
-- `getrusage(RUSAGE_SELF).ru_maxrss` records peak resident KiB before and after
-  the measurement in each isolated process. It is a coarse process-level
-  footprint affected by the loader, runtime, allocator, prepared inputs, and
-  retained high-water behavior; it is not a precise heap-allocation profile.
+- On Linux, `/proc/self/statm` records current resident KiB before and after the
+  measurement and immediately after each timed batch while its final API output
+  remains live. The maximum retained-output sample is the reported footprint.
+  It is a coarse process-level value affected by the loader, runtime, allocator,
+  prepared inputs, and page residency; it is not a precise heap-allocation
+  profile or an all-instruction peak.
 - API-visible input and output buffer byte counts are retained separately from
   resident memory.
 
@@ -86,7 +90,21 @@ separate external controls; none is linked into this benchmark or candidate.
 
 ## Result
 
-Pending the pre-registered primary campaigns.
+Attempt 1 completed 48 cases with each compiler, but its `ru_maxrss` fields are
+invalid. Linux preserves the launcher's pre-`exec` high-water value: an
+otherwise identical zero-byte benchmark reported approximately 11 MiB when
+launched by the Python runner and 16 MiB when launched directly by the shell.
+The latency and TSC measurements did not depend on that field, but the complete
+attempt is classified as superseded rather than selectively accepted.
+
+The raw attempt is retained as:
+
+```text
+results-0.1.0-draft/performance/GCC14_ATTEMPT1_INVALID_RSS.json
+results-0.1.0-draft/performance/CLANG19_ATTEMPT1_INVALID_RSS.json
+```
+
+Pending the replacement primary campaigns using benchmark/runner version 2.
 
 ## Interpretation
 
@@ -102,7 +120,8 @@ Pending measurement.
 - Inputs are hot and deterministic; cold-cache, multi-threaded, streaming,
   concurrent, and adversarial scheduling behavior is not measured.
 - Allocation cost is part of the current public API result and cannot be
-  separated without measuring a different interface.
+  separated without measuring a different interface. The retained-output RSS
+  metric does not capture a transient peak that occurs earlier in a call.
 - Performance says nothing about cryptographic security.
 
 ## Reproduction

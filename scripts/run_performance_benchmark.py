@@ -210,7 +210,7 @@ def main() -> int:
         parser.error("tracked working tree is dirty; commit the benchmark definition first")
 
     record: dict[str, Any] = {
-        "runner_version": 1,
+        "runner_version": 2,
         "campaign": {
             "construction_version": "0.1.0-draft",
             "seed": "0x50455246424D4B31",

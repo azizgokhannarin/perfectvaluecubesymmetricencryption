@@ -7,6 +7,7 @@
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
+#include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <limits>
@@ -15,10 +16,11 @@
 #include <stdexcept>
 #include <string>
 #include <string_view>
+#include <utility>
 #include <vector>
 
-#if defined(__APPLE__) || defined(__linux__) || defined(__unix__)
-#include <sys/resource.h>
+#if defined(__linux__)
+#include <unistd.h>
 #endif
 
 #if defined(_MSC_VER) && (defined(_M_X64) || defined(_M_IX86))
@@ -66,6 +68,7 @@ struct TscStamp {
 struct Sample {
     std::uint64_t elapsed_nanoseconds{};
     std::optional<std::uint64_t> tsc_ticks;
+    std::optional<std::uint64_t> current_rss_with_output_kib;
 };
 
 volatile std::uint64_t g_sink{};
@@ -204,18 +207,20 @@ TscStamp read_tsc() noexcept {
 #endif
 }
 
-std::optional<std::uint64_t> peak_rss_kib() noexcept {
-#if defined(__APPLE__) || defined(__linux__) || defined(__unix__)
-    rusage usage{};
-    if (getrusage(RUSAGE_SELF, &usage) != 0 || usage.ru_maxrss < 0) {
+std::optional<std::uint64_t> current_rss_kib() noexcept {
+#if defined(__linux__)
+    std::ifstream statm("/proc/self/statm");
+    std::uint64_t total_pages{};
+    std::uint64_t resident_pages{};
+    if (!(statm >> total_pages >> resident_pages)) return std::nullopt;
+    (void)total_pages;
+    const long page_size = sysconf(_SC_PAGESIZE);
+    if (page_size <= 0) return std::nullopt;
+    const auto page_bytes = static_cast<std::uint64_t>(page_size);
+    if (resident_pages > std::numeric_limits<std::uint64_t>::max() / page_bytes) {
         return std::nullopt;
     }
-    const auto raw = static_cast<std::uint64_t>(usage.ru_maxrss);
-#if defined(__APPLE__)
-    return raw / UINT64_C(1024);
-#else
-    return raw;
-#endif
+    return (resident_pages * page_bytes) / UINT64_C(1024);
 #else
     return std::nullopt;
 #endif
@@ -232,11 +237,13 @@ Sample run_batch(const Config& config, const Fixture& fixture, std::size_t itera
     using Clock = std::chrono::steady_clock;
 
     std::uint64_t sink{};
+    pvcrotsymenc1::SealedMessage retained_sealed;
+    std::vector<std::uint8_t> retained_plaintext;
     const auto time_begin = Clock::now();
     const auto tsc_begin = read_tsc();
     for (std::size_t iteration = 0U; iteration < iterations; ++iteration) {
         if (config.operation == Operation::Seal) {
-            const auto sealed = pvcrotsymenc1::seal(
+            auto sealed = pvcrotsymenc1::seal(
                 fixture.keys,
                 fixture.nonce,
                 fixture.associated_data,
@@ -248,8 +255,9 @@ Sample run_batch(const Config& config, const Fixture& fixture, std::size_t itera
             }
             sink ^= consume(sealed.ciphertext);
             sink ^= consume(sealed.tag) + static_cast<std::uint64_t>(iteration);
+            if (iteration + 1U == iterations) retained_sealed = std::move(sealed);
         } else {
-            const auto opened = pvcrotsymenc1::open(
+            auto opened = pvcrotsymenc1::open(
                 fixture.keys,
                 fixture.nonce,
                 fixture.associated_data,
@@ -259,10 +267,12 @@ Sample run_batch(const Config& config, const Fixture& fixture, std::size_t itera
                 throw std::runtime_error("valid open self-check failed during benchmark");
             }
             sink ^= consume(*opened) + static_cast<std::uint64_t>(iteration);
+            if (iteration + 1U == iterations) retained_plaintext = std::move(*opened);
         }
     }
     const auto tsc_end = read_tsc();
     const auto time_end = Clock::now();
+    const auto current_rss_with_output = current_rss_kib();
     g_sink = sink;
 
     const auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(
@@ -279,7 +289,7 @@ Sample run_batch(const Config& config, const Fixture& fixture, std::size_t itera
         }
         ticks = tsc_end.ticks - tsc_begin.ticks;
     }
-    return Sample{static_cast<std::uint64_t>(elapsed), ticks};
+    return Sample{static_cast<std::uint64_t>(elapsed), ticks, current_rss_with_output};
 }
 
 std::size_t calibrated_iterations(const Config& config, const Fixture& fixture) {
@@ -390,15 +400,20 @@ void print_u64_array(const std::vector<std::uint64_t>& values) {
 void report(const Config& config,
             std::size_t iterations,
             const std::vector<Sample>& samples,
-            const std::optional<std::uint64_t>& peak_rss_before,
-            const std::optional<std::uint64_t>& peak_rss_after) {
+            const std::optional<std::uint64_t>& current_rss_before,
+            const std::optional<std::uint64_t>& current_rss_after) {
     std::vector<std::uint64_t> elapsed_values;
     std::vector<std::uint64_t> tick_values;
+    std::vector<std::uint64_t> current_rss_values;
     elapsed_values.reserve(samples.size());
     tick_values.reserve(samples.size());
+    current_rss_values.reserve(samples.size());
     for (const auto& sample : samples) {
         elapsed_values.push_back(sample.elapsed_nanoseconds);
         if (sample.tsc_ticks.has_value()) tick_values.push_back(*sample.tsc_ticks);
+        if (sample.current_rss_with_output_kib.has_value()) {
+            current_rss_values.push_back(*sample.current_rss_with_output_kib);
+        }
     }
 
     const auto median_elapsed = median(elapsed_values);
@@ -429,7 +444,7 @@ void report(const Config& config,
 
     std::cout << std::setprecision(17);
     std::cout << '{';
-    std::cout << "\"benchmark_version\":1";
+    std::cout << "\"benchmark_version\":2";
     std::cout << ",\"construction_version\":\"0.1.0-draft\"";
     std::cout << ",\"operation\":";
     print_json_string(std::cout, operation_name(config.operation));
@@ -464,14 +479,22 @@ void report(const Config& config,
     else std::cout << "null";
     std::cout << ",\"api_input_bytes\":" << input_bytes;
     std::cout << ",\"api_output_bytes\":" << output_bytes;
-    std::cout << ",\"peak_rss_before_measurement_kib\":";
-    print_optional_u64(peak_rss_before);
-    std::cout << ",\"peak_rss_after_measurement_kib\":";
-    print_optional_u64(peak_rss_after);
+    std::cout << ",\"current_rss_before_measurement_kib\":";
+    print_optional_u64(current_rss_before);
+    std::cout << ",\"current_rss_after_measurement_kib\":";
+    print_optional_u64(current_rss_after);
+    std::cout << ",\"current_rss_with_retained_output_kib_max\":";
+    if (current_rss_values.empty()) {
+        std::cout << "null";
+    } else {
+        std::cout << *std::max_element(current_rss_values.begin(), current_rss_values.end());
+    }
     std::cout << ",\"elapsed_nanoseconds_samples\":";
     print_u64_array(elapsed_values);
     std::cout << ",\"tsc_tick_samples\":";
     print_u64_array(tick_values);
+    std::cout << ",\"current_rss_with_retained_output_kib_samples\":";
+    print_u64_array(current_rss_values);
     std::cout << ",\"sink\":" << g_sink;
     std::cout << "}\n";
 }
@@ -482,7 +505,7 @@ int main(int argc, char** argv) {
     try {
         const auto config = parse_config(argc, argv);
         const auto fixture = make_fixture(config);
-        const auto peak_before = peak_rss_kib();
+        const auto current_rss_before = current_rss_kib();
         const auto iterations = calibrated_iterations(config, fixture);
 
         std::vector<Sample> samples;
@@ -490,8 +513,8 @@ int main(int argc, char** argv) {
         for (std::size_t sample = 0U; sample < config.samples; ++sample) {
             samples.push_back(run_batch(config, fixture, iterations));
         }
-        const auto peak_after = peak_rss_kib();
-        report(config, iterations, samples, peak_before, peak_after);
+        const auto current_rss_after = current_rss_kib();
+        report(config, iterations, samples, current_rss_before, current_rss_after);
         return 0;
     } catch (const std::exception& error) {
         std::cerr << "error: " << error.what() << '\n';
