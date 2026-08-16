@@ -104,6 +104,25 @@ jobs:
       - name: Deterministic fuzz smoke
         run: ctest --test-dir build-fuzz -L fuzz --output-on-failure
 
+  streamframe-domain-analysis:
+    name: StreamFrame analysis (${{ matrix.compiler }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [gcc, clang]
+    steps:
+      - uses: actions/checkout@v7
+      - name: Configure compiler
+        run: |
+          if [ "${{ matrix.compiler }}" = "clang" ]; then
+            echo "CXX=clang++" >> "$GITHUB_ENV"
+          else
+            echo "CXX=g++" >> "$GITHUB_ENV"
+          fi
+      - name: Run pre-registered StreamFrame campaign
+        run: ./scripts/run_streamframe_domain_audit.sh build-streamframe-domain
+
   bounded-verification:
     runs-on: ubuntu-24.04
     env:

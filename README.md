@@ -131,6 +131,20 @@ the exact bounds, source transformations, results, and limitations.
 CBMC=/path/to/cbmc ./scripts/run_cbmc.sh
 ```
 
+## StreamFrame-domain analysis
+
+The opt-in analysis campaign evaluates frozen C1 on real Candidate A1
+`StreamFrame` inputs. It covers related nonce/counter/tag-profile inputs,
+same-key output censuses, and exact Walsh spectra on restricted affine
+subspaces, with deterministic random-output controls. The recorded bounded
+negative result is not a PRF-security or full-construction security claim. See
+`docs/STREAMFRAME_DOMAIN_ANALYSIS.md` for parameters, results, and limitations.
+
+```bash
+CXX=g++ ./scripts/run_streamframe_domain_audit.sh build-streamframe-gcc
+CXX=clang++ ./scripts/run_streamframe_domain_audit.sh build-streamframe-clang
+```
+
 ## Usage
 
 ```bash

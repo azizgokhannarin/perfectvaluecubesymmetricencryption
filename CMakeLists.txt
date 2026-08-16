@@ -3,6 +3,7 @@ project(perfectvaluecubesymmetricencryption VERSION 0.1.0 LANGUAGES CXX)
 
 option(PVCROTSYMENC1_BUILD_TESTS "Build PVC-RotSymEnc-1 tests" ON)
 option(PVCROTSYMENC1_BUILD_FUZZERS "Build Clang libFuzzer differential targets" OFF)
+option(PVCROTSYMENC1_BUILD_ANALYSIS "Build standalone cryptanalytic experiments" OFF)
 option(PVCROTSYMENC1_WARNINGS_AS_ERRORS "Treat warnings as errors" ON)
 set(PVCROTSYMENC1_EQUIVALENCE_CASES "512" CACHE STRING "A1-equivalence cases used by CTest")
 set(PVCROTSYMENC1_SANITIZER "none" CACHE STRING "Sanitizer profile: none, address, undefined, or memory")
@@ -84,6 +85,16 @@ pvcrotsymenc1_warnings(pvc_rotsymenc1)
 add_executable(pvc-rotsymenc1 app/main.cpp)
 target_link_libraries(pvc-rotsymenc1 PRIVATE pvc_rotsymenc1)
 pvcrotsymenc1_warnings(pvc-rotsymenc1)
+
+if(PVCROTSYMENC1_BUILD_ANALYSIS)
+    add_executable(
+        pvc-rotsymenc1-streamframe-domain-audit
+        analysis/streamframe_domain_audit.cpp)
+    target_link_libraries(
+        pvc-rotsymenc1-streamframe-domain-audit
+        PRIVATE pvc_aead0 pvc_prf1_c1)
+    pvcrotsymenc1_warnings(pvc-rotsymenc1-streamframe-domain-audit)
+endif()
 
 if(PVCROTSYMENC1_BUILD_TESTS)
     enable_testing()

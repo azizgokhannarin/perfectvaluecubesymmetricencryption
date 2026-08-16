@@ -21,3 +21,14 @@ A1, and therefore PVC-RotSymEnc-1, is not nonce-misuse resistant. Under the same
 ## Wrapper-specific status
 
 The current RotSymEnc draft is required to be byte-exactly equivalent to A1. Wrapper-level testing therefore targets conformance drift, role/tag-profile confusion and API semantics rather than introducing a new cryptanalytic claim.
+
+## StreamFrame-domain campaign
+
+The version-1 StreamFrame campaign tested 49,152 related-input pairs, 12,288
+same-key census outputs, and six exact 4,096-point Walsh subspaces across the
+three tag profiles. The primary seed produced no full output equality or
+collision, no affine output bit, and no absolute per-bit z-score above 3.4375.
+An exploratory second seed did not reproduce a same-direction global Walsh
+maximum observed in the primary run. This is a bounded negative result, not a
+C1 PRF-security argument. Full parameters and limitations are recorded in
+`STREAMFRAME_DOMAIN_ANALYSIS.md`.
