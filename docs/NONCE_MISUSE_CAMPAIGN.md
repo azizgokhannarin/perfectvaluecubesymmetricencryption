@@ -2,9 +2,10 @@
 
 ## Status
 
-This document pre-registers campaign version 1. Results are pending. The
-candidate construction, public `seal`/`open` API, and canonical vectors are
-unchanged. All management code is an analysis-only research prototype.
+Campaign version 1 completed on 2026-08-16. Its definition was committed as
+`5a674eb` before the first measurement. The candidate construction, public
+`seal`/`open` API, and canonical vectors are unchanged. All management code is
+an analysis-only research prototype.
 
 ## Question
 
@@ -77,13 +78,45 @@ acceptance, sanitizer finding, or compiler disagreement is an alarm.
 
 ## Result
 
-Pending the first campaign run after this definition is committed.
+GCC 14.2 and Clang 19.1 Release runs produced byte-identical records. Clang
+AddressSanitizer and UndefinedBehaviorSanitizer runs produced the same record
+and reported no candidate-path finding. LeakSanitizer could not run locally
+because the managed environment is `ptrace`-restricted, so the retained local
+ASan run used `detect_leaks=0`; CI keeps leak detection enabled.
+GitHub Actions run `31971780631` passed all 23 jobs, including all four nonce
+campaign profiles on hosted GNU/Linux runners.
+
+- The exact detector observed same-key reuse and did not classify the same
+  nonce under a different key as reuse.
+- Reusing a key and nonce reproduced the ciphertext/plaintext XOR relation for
+  all 96 tested bytes. Both messages still authenticated successfully.
+- The 65,536-sample 192-bit simulation had zero collisions, with birthday
+  expectation `3.421087e-49`. The 24-bit control observed 129 collisions versus
+  expectation `1.279688e+02`.
+- All 257 restart allocations were unique and contiguous. A different scope
+  was rejected without changing the state.
+- Across four process-crash points, two resumes used the preserved old state
+  and two used the persisted advanced state. No nonce previously returned to a
+  caller was returned again.
+- Eight processes made 1,024 unique, gap-free allocations.
+- Restoring a saved state file repeated all eight post-snapshot nonces. The
+  independent in-memory detector, which was not rolled back, caught all eight.
+
+The pre-registered unexpected-failure count was zero. The XOR disclosure and
+snapshot rollback repeat were the two expected known misuse findings.
 
 ## Interpretation
 
-Pending measurement. A passing prototype will not make the construction
-nonce-misuse resistant. It will only characterize one operational allocation
-strategy and its stated failure boundaries.
+Within the tested process-crash and local-filesystem model, write-ahead state
+persistence and inter-process locking prevented reuse of a nonce that had
+already been returned. This does not make the construction nonce-misuse
+resistant. Snapshot restoration defeats the counter unless an external
+non-rollbackable authority or durable reuse history is present.
+
+The 192-bit collision simulation is consistent with its negligible birthday
+expectation at this sample count, while the reduced-width control shows that
+the campaign can observe collisions. It does not validate a random-number
+generator or prove collision freedom.
 
 ## Limitations
 
@@ -109,3 +142,6 @@ BUILD_TYPE=RelWithDebInfo SANITIZER=address CXX=clang++ \
 BUILD_TYPE=RelWithDebInfo SANITIZER=undefined CXX=clang++ \
   ./scripts/run_nonce_misuse_campaign.sh build-nonce-misuse-ubsan
 ```
+
+Retained raw records and environment details are under
+`results-0.1.0-draft/nonce-misuse/`.

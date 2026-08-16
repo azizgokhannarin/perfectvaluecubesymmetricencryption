@@ -56,6 +56,8 @@ Cross-platform transcript:      4096/4096, 6 toolchain/platform combinations
 Cross-platform mismatches:      0
 Performance cases:              96/96 primary, plus targeted replication
 Large-payload throughput:       about 0.066 MiB/s GCC, 0.089 MiB/s Clang
+Nonce management profiles:      4/4; 2 expected known misuse findings
+Nonce campaign CI:              4/4 profiles; full run 23/23 jobs
 One-command reproduction:       local 9/9 stages; CI 19/19 jobs
 ```
 
@@ -67,3 +69,6 @@ The cross-platform campaign found no byte-output divergence at the tested
 bounds; this does not establish portability outside the recorded matrix.
 The performance figures characterize one reference implementation and host;
 they are not security properties or cross-machine guarantees.
+The nonce campaign reproduced the specified reuse disclosure and showed that
+snapshot rollback defeats a standalone persistent counter; the tested helper
+prototype is not a supported API or a misuse-resistance claim.

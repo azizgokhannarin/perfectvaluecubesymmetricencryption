@@ -183,6 +183,8 @@ jobs:
       CXX: ${{ matrix.cxx }}
       BUILD_TYPE: ${{ matrix.build_type }}
       SANITIZER: ${{ matrix.sanitizer }}
+      ASAN_OPTIONS: "detect_leaks=1:halt_on_error=1"
+      UBSAN_OPTIONS: "halt_on_error=1:print_stacktrace=1"
     steps:
       - uses: actions/checkout@v7
       - name: Run pre-registered nonce misuse campaign

@@ -56,6 +56,19 @@ Performance characterization on Intel Core i7-10710U, CPU 0:
   Attempt 1 ru_maxrss method: invalid, retained, replaced by current RSS
   targeted Clang 1 MiB open replication: primary tag-profile anomaly not reproduced
 
+Nonce management and misuse campaign, definition commit 5a674eb:
+  GCC 14.2 and Clang 19.1 Release outputs: byte-identical
+  deterministic 192-bit simulation: 65,536 samples, collisions=0
+  reduced 24-bit control: 256 x 4,096 samples, collisions=129
+  restart allocations: 257 unique; scope mismatch rejected
+  process-crash points: 4; previously returned nonce reuse=0
+  multi-process allocations: 1,024 unique, gaps=0
+  snapshot rollback: 8/8 post-snapshot nonces repeated and detected
+  known misuse findings: 2; unexpected failures: 0
+  Clang ASan/UBSan findings: 0
+  local LeakSanitizer: unavailable under documented ptrace restriction
+  GitHub Actions run 31971780631: 23/23 jobs; nonce matrix 4/4
+
 One-command reproduction campaign, commit 930ecdd:
   local fail-closed stages: 9/9 plus artifact manifest
   GitHub Actions run 31967427920: 19/19 jobs

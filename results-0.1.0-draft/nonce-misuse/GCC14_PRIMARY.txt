@@ -1,0 +1,16 @@
+PVC-RotSymEnc-1 nonce management and misuse campaign
+campaign_version=1
+construction_version=0.1.0-draft
+seed=0x4E4F4E43454D4754
+reuse-detector same_key_reuse=1 different_key_allowed=1 tag_profile_independent_policy=1
+nonce-reuse-xor bytes=96 relation_reproduced=1 authentication_repairs_confidentiality=0
+random-collision width=192 samples=65536 collisions=0 birthday_expectation=3.421087e-49
+random-collision-control width=24 trials=256 samples_per_trial=4096 collisions=129 birthday_expectation=1.279688e+02
+random-collision-estimate width=192 q=2^64 probability_approx=2.710505e-20
+persistent-restart allocations=257 unique=257 scope_mismatch_rejected=1
+process-crash points=4 old_state_preserved=2 advanced_state_preserved=2 returned_nonce_reuse=0
+multiprocess-allocation workers=8 allocations_per_worker=128 total=1024 collisions=0 gaps=0
+snapshot-rollback repeated_nonces=8 detector_caught=8 counter_alone_prevents_rollback=0
+known_misuse_findings=2
+unexpected_failure_count=0
+interpretation=operational-prototype-not-a-security-proof

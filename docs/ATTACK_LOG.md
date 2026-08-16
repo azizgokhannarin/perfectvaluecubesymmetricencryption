@@ -1,5 +1,59 @@
 # Attack Log
 
+## 2026-08-16: Nonce reuse and allocator rollback
+
+### Classification
+
+Reproduction of a specified full-construction misuse consequence and an
+operational state-management warning. This is not a new attack in the
+nonce-respecting security model, and the allocator prototype is not part of
+the candidate construction.
+
+### Question
+
+Can the known same-key/same-nonce confidentiality loss be reproduced through
+the canonical wrapper, and do process crashes, concurrent callers, or restored
+snapshots cause an analysis-only persistent counter to repeat returned nonces?
+
+### Method and parameters
+
+Campaign version 1 used seed `0x4E4F4E43454D4754`, a 96-byte nonce-reuse pair,
+65,536 simulated 192-bit nonces, a 24-bit collision control, 257 restart
+allocations, four injected process-crash points, eight processes making 1,024
+allocations, and an eight-allocation snapshot branch. GCC 14.2 and Clang 19.1
+Release outputs were compared byte for byte; Clang ASan and UBSan were also run.
+
+### Result
+
+Same-key/same-nonce encryption reproduced the plaintext XOR relation over all
+96 bytes while both tags remained valid. Normal restart, injected process
+termination, and multi-process allocation produced no reuse of a nonce already
+returned to a caller. Restoring the state snapshot repeated all eight nonces
+allocated after that snapshot; a detector whose state was not restored caught
+all eight. No unexpected campaign or sanitizer finding occurred within the
+tested model.
+
+### Interpretation and limitations
+
+The XOR result confirms the documented requirement that a nonce never repeat
+under `K_enc`; authentication does not repair that confidentiality loss. The
+persistent counter addresses tested normal restart and process-concurrency
+cases, but it cannot independently detect rollback or cloned state. Process
+termination is not sudden power loss, `/tmp` was a local `tmpfs`, and network
+filesystems, dishonest storage, VM clones, and cross-host allocation were not
+tested. A bounded collision simulation is not evidence of global collision
+freedom or random-generator quality.
+
+### Reproduction
+
+```bash
+CXX=g++ ./scripts/run_nonce_misuse_campaign.sh build-nonce-misuse-gcc
+CXX=clang++ ./scripts/run_nonce_misuse_campaign.sh build-nonce-misuse-clang
+```
+
+See `NONCE_MISUSE_CAMPAIGN.md` and the retained raw records for the complete
+method, sanitizer commands, and limitations.
+
 ## 2026-08-16: Secret-key-dependent C1 timing
 
 ### Classification
