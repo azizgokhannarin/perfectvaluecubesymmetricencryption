@@ -1,0 +1,13 @@
+
+** Results:
+verification/cbmc/counter_harness.c function main
+[main.overflow.1] line 9 arithmetic overflow on unsigned - in payload_length - (unsigned long int)1u: SUCCESS
+[main.overflow.2] line 9 arithmetic overflow on unsigned + in (unsigned long int)1u + (payload_length - (unsigned long int)1u) / (unsigned long int)32u: SUCCESS
+[main.assertion.1] line 11 every admissible payload uses at most 2^59 blocks: SUCCESS
+[main.assertion.2] line 13 the size_t loop bound cannot wrap a 64-bit counter: SUCCESS
+[main.overflow.3] line 16 arithmetic overflow on unsigned - in blocks - (unsigned long int)1u: SUCCESS
+[main.assertion.3] line 17 the final stream counter is representable without wrap: SUCCESS
+[main.assertion.4] line 19 the final stream offset remains inside the payload: SUCCESS
+[main.overflow.4] line 19 arithmetic overflow on unsigned * in final_counter * (unsigned long int)32u: SUCCESS
+[main.overflow.5] line 19 arithmetic overflow on unsigned - in payload_length - (unsigned long int)1u: SUCCESS
+VERIFICATION SUCCESSFUL

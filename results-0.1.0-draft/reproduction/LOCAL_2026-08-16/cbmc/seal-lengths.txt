@@ -1,0 +1,20 @@
+
+** Results:
+/home/agn/Projects/perfectvaluecubesymmetricencryption/build-reproduce-all/cbmc/pvc_aead0_aead_cbmc.cpp function apply_keystream
+[apply_keystream.unwind.1] line 82 unwinding assertion loop 1: SUCCESS
+[apply_keystream.unwind.0] line 89 unwinding assertion loop 0: SUCCESS
+
+verification/cbmc/aead_harness.cpp function verify_seal_lengths
+[verify_seal_lengths.assertion.1] line 158 seal preserves the plaintext length: SUCCESS
+[verify_seal_lengths.assertion.2] line 160 seal returns the selected tag length: SUCCESS
+[verify_seal_lengths.assertion.3] line 162 seal derives exactly one stream block per payload block: SUCCESS
+
+verification/cbmc/include/cbmc_std.hpp function insert
+[insert.unwind.0] line 118 unwinding assertion loop 0: SUCCESS
+
+verification/cbmc/include/cbmc_std.hpp function operator=
+[operator=.unwind.0] line 84 unwinding assertion loop 0: SUCCESS
+
+verification/cbmc/include/cbmc_std.hpp function vector
+[vector.unwind.0] line 78 unwinding assertion loop 0: SUCCESS
+VERIFICATION SUCCESSFUL

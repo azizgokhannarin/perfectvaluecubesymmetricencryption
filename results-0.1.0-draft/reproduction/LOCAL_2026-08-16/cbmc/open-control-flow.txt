@@ -1,0 +1,33 @@
+
+** Results:
+/home/agn/Projects/perfectvaluecubesymmetricencryption/build-reproduce-all/cbmc/pvc_aead0_aead_cbmc.cpp function apply_keystream
+[apply_keystream.unwind.1] line 82 unwinding assertion loop 1: SUCCESS
+[apply_keystream.unwind.0] line 89 unwinding assertion loop 0: SUCCESS
+
+verification/cbmc/aead_harness.cpp function research_keyed_return_output_a2
+[research_keyed_return_output_a2.assertion.1] line 55 each C1 stream input is one complete StreamFrame: SUCCESS
+[research_keyed_return_output_a2.assertion.2] line 58 open authenticates before the first decrypt block: SUCCESS
+[research_keyed_return_output_a2.assertion.3] line 60 open only decrypts after successful verification: SUCCESS
+
+verification/cbmc/aead_harness.cpp function verify_open_control_flow
+[verify_open_control_flow.assertion.1] line 187 an invalid tag length cannot enter verification: SUCCESS
+[verify_open_control_flow.assertion.2] line 189 an invalid tag length cannot enter decryption: SUCCESS
+[verify_open_control_flow.assertion.3] line 191 an invalid tag length cannot return plaintext: SUCCESS
+[verify_open_control_flow.assertion.4] line 194 a valid tag length is verified: SUCCESS
+[verify_open_control_flow.assertion.5] line 195 a failed verification cannot enter decryption: SUCCESS
+[verify_open_control_flow.assertion.6] line 197 a failed verification cannot return plaintext: SUCCESS
+[verify_open_control_flow.assertion.7] line 200 successful open performed verification: SUCCESS
+[verify_open_control_flow.assertion.8] line 201 successful verification returns plaintext: SUCCESS
+[verify_open_control_flow.assertion.9] line 202 open success preserves the ciphertext length: SUCCESS
+[verify_open_control_flow.assertion.10] line 204 open derives exactly one stream block per payload block: SUCCESS
+
+verification/cbmc/aead_harness.cpp function verify_tag
+[verify_tag.assertion.1] line 89 open calls M1 verification once: SUCCESS
+[verify_tag.assertion.2] line 90 only a supported tag length reaches M1 verification: SUCCESS
+
+verification/cbmc/include/cbmc_std.hpp function insert
+[insert.unwind.0] line 118 unwinding assertion loop 0: SUCCESS
+
+verification/cbmc/include/cbmc_std.hpp function vector
+[vector.unwind.0] line 78 unwinding assertion loop 0: SUCCESS
+VERIFICATION SUCCESSFUL

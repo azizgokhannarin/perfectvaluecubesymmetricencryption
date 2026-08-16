@@ -1,0 +1,302 @@
+
+** Results:
+/home/agn/Projects/perfectvaluecubesymmetricencryption/build-reproduce-all/cbmc/pvc_aead0_aead_cbmc.cpp function append_u64_be
+[append_u64_be.undefined-shift.1] line 32 shift distance too large in value >> shift: SUCCESS
+
+verification/cbmc/aead_harness.cpp function verify_frames
+[verify_frames.pointer_dereference.1] line 102 dereference failure: pointer NULL in *return_value_operator[]: SUCCESS
+[verify_frames.pointer_dereference.2] line 102 dereference failure: pointer invalid in *return_value_operator[]: SUCCESS
+[verify_frames.pointer_dereference.3] line 102 dereference failure: deallocated dynamic object in *return_value_operator[]: SUCCESS
+[verify_frames.pointer_dereference.4] line 102 dereference failure: dead object in *return_value_operator[]: SUCCESS
+[verify_frames.pointer_dereference.5] line 102 dereference failure: pointer outside object bounds in *return_value_operator[]: SUCCESS
+[verify_frames.pointer_dereference.6] line 102 dereference failure: invalid integer address in *return_value_operator[]: SUCCESS
+[verify_frames.assertion.1] line 110 StreamFrame has exactly 48 bytes: SUCCESS
+[verify_frames.assertion.2] line 111 StreamFrame binds the tag profile: SUCCESS
+[verify_frames.pointer_dereference.7] line 111 dereference failure: pointer NULL in *return_value_operator[]$0: SUCCESS
+[verify_frames.pointer_dereference.8] line 111 dereference failure: pointer invalid in *return_value_operator[]$0: SUCCESS
+[verify_frames.pointer_dereference.9] line 111 dereference failure: deallocated dynamic object in *return_value_operator[]$0: SUCCESS
+[verify_frames.pointer_dereference.10] line 111 dereference failure: dead object in *return_value_operator[]$0: SUCCESS
+[verify_frames.pointer_dereference.11] line 111 dereference failure: pointer outside object bounds in *return_value_operator[]$0: SUCCESS
+[verify_frames.pointer_dereference.12] line 111 dereference failure: invalid integer address in *return_value_operator[]$0: SUCCESS
+[verify_frames.assertion.3] line 113 StreamFrame preserves every nonce byte: SUCCESS
+[verify_frames.pointer_dereference.13] line 113 dereference failure: pointer NULL in *return_value_operator[]$1: SUCCESS
+[verify_frames.pointer_dereference.14] line 113 dereference failure: pointer invalid in *return_value_operator[]$1: SUCCESS
+[verify_frames.pointer_dereference.15] line 113 dereference failure: deallocated dynamic object in *return_value_operator[]$1: SUCCESS
+[verify_frames.pointer_dereference.16] line 113 dereference failure: dead object in *return_value_operator[]$1: SUCCESS
+[verify_frames.pointer_dereference.17] line 113 dereference failure: pointer outside object bounds in *return_value_operator[]$1: SUCCESS
+[verify_frames.pointer_dereference.18] line 113 dereference failure: invalid integer address in *return_value_operator[]$1: SUCCESS
+[verify_frames.pointer_dereference.19] line 113 dereference failure: pointer NULL in *return_value_operator[]$2: SUCCESS
+[verify_frames.pointer_dereference.20] line 113 dereference failure: pointer invalid in *return_value_operator[]$2: SUCCESS
+[verify_frames.pointer_dereference.21] line 113 dereference failure: deallocated dynamic object in *return_value_operator[]$2: SUCCESS
+[verify_frames.pointer_dereference.22] line 113 dereference failure: dead object in *return_value_operator[]$2: SUCCESS
+[verify_frames.pointer_dereference.23] line 113 dereference failure: pointer outside object bounds in *return_value_operator[]$2: SUCCESS
+[verify_frames.pointer_dereference.24] line 113 dereference failure: invalid integer address in *return_value_operator[]$2: SUCCESS
+[verify_frames.undefined-shift.1] line 118 shift distance too large in counter >> shift: SUCCESS
+[verify_frames.assertion.4] line 119 StreamFrame encodes the counter in big-endian order: SUCCESS
+[verify_frames.pointer_dereference.25] line 119 dereference failure: pointer NULL in *return_value_operator[]$3: SUCCESS
+[verify_frames.pointer_dereference.26] line 119 dereference failure: pointer invalid in *return_value_operator[]$3: SUCCESS
+[verify_frames.pointer_dereference.27] line 119 dereference failure: deallocated dynamic object in *return_value_operator[]$3: SUCCESS
+[verify_frames.pointer_dereference.28] line 119 dereference failure: dead object in *return_value_operator[]$3: SUCCESS
+[verify_frames.pointer_dereference.29] line 119 dereference failure: pointer outside object bounds in *return_value_operator[]$3: SUCCESS
+[verify_frames.pointer_dereference.30] line 119 dereference failure: invalid integer address in *return_value_operator[]$3: SUCCESS
+[verify_frames.assertion.5] line 130 AuthContext size equals its fixed prefix plus AD length: SUCCESS
+[verify_frames.assertion.6] line 132 AuthContext binds the tag profile: SUCCESS
+[verify_frames.pointer_dereference.31] line 132 dereference failure: pointer NULL in *return_value_operator[]$4: SUCCESS
+[verify_frames.pointer_dereference.32] line 132 dereference failure: pointer invalid in *return_value_operator[]$4: SUCCESS
+[verify_frames.pointer_dereference.33] line 132 dereference failure: deallocated dynamic object in *return_value_operator[]$4: SUCCESS
+[verify_frames.pointer_dereference.34] line 132 dereference failure: dead object in *return_value_operator[]$4: SUCCESS
+[verify_frames.pointer_dereference.35] line 132 dereference failure: pointer outside object bounds in *return_value_operator[]$4: SUCCESS
+[verify_frames.pointer_dereference.36] line 132 dereference failure: invalid integer address in *return_value_operator[]$4: SUCCESS
+[verify_frames.unwind.3] line 133 unwinding assertion loop 3: SUCCESS
+[verify_frames.array_bounds.1] line 134 array 'associated_data' upper bound in associated_data[(signed long int)index]: SUCCESS
+[verify_frames.assertion.7] line 134 AuthContext preserves every associated-data byte: SUCCESS
+[verify_frames.pointer_dereference.37] line 134 dereference failure: pointer NULL in *return_value_operator[]$5: SUCCESS
+[verify_frames.pointer_dereference.38] line 134 dereference failure: pointer invalid in *return_value_operator[]$5: SUCCESS
+[verify_frames.pointer_dereference.39] line 134 dereference failure: deallocated dynamic object in *return_value_operator[]$5: SUCCESS
+[verify_frames.pointer_dereference.40] line 134 dereference failure: dead object in *return_value_operator[]$5: SUCCESS
+[verify_frames.pointer_dereference.41] line 134 dereference failure: pointer outside object bounds in *return_value_operator[]$5: SUCCESS
+[verify_frames.pointer_dereference.42] line 134 dereference failure: invalid integer address in *return_value_operator[]$5: SUCCESS
+
+[pointer_dereference.13] file verification/cbmc/include/cbmc_std.hpp line 75 dereference failure: pointer NULL in this->size_: SUCCESS
+[pointer_dereference.14] file verification/cbmc/include/cbmc_std.hpp line 75 dereference failure: pointer invalid in this->size_: SUCCESS
+[pointer_dereference.15] file verification/cbmc/include/cbmc_std.hpp line 75 dereference failure: deallocated dynamic object in this->size_: SUCCESS
+[pointer_dereference.16] file verification/cbmc/include/cbmc_std.hpp line 75 dereference failure: dead object in this->size_: SUCCESS
+[pointer_dereference.17] file verification/cbmc/include/cbmc_std.hpp line 75 dereference failure: pointer outside object bounds in this->size_: SUCCESS
+[pointer_dereference.18] file verification/cbmc/include/cbmc_std.hpp line 75 dereference failure: invalid integer address in this->size_: SUCCESS
+[pointer_dereference.19] file verification/cbmc/include/cbmc_std.hpp line 75 dereference failure: pointer NULL in this->capacity_: SUCCESS
+[pointer_dereference.20] file verification/cbmc/include/cbmc_std.hpp line 75 dereference failure: pointer invalid in this->capacity_: SUCCESS
+[pointer_dereference.21] file verification/cbmc/include/cbmc_std.hpp line 75 dereference failure: deallocated dynamic object in this->capacity_: SUCCESS
+[pointer_dereference.22] file verification/cbmc/include/cbmc_std.hpp line 75 dereference failure: dead object in this->capacity_: SUCCESS
+[pointer_dereference.23] file verification/cbmc/include/cbmc_std.hpp line 75 dereference failure: pointer outside object bounds in this->capacity_: SUCCESS
+[pointer_dereference.24] file verification/cbmc/include/cbmc_std.hpp line 75 dereference failure: invalid integer address in this->capacity_: SUCCESS
+[pointer_dereference.25] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: pointer NULL in this->size_: SUCCESS
+[pointer_dereference.26] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: pointer invalid in this->size_: SUCCESS
+[pointer_dereference.27] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: deallocated dynamic object in this->size_: SUCCESS
+[pointer_dereference.28] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: dead object in this->size_: SUCCESS
+[pointer_dereference.29] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: pointer outside object bounds in this->size_: SUCCESS
+[pointer_dereference.30] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: invalid integer address in this->size_: SUCCESS
+[pointer_dereference.31] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: pointer NULL in other->size_: SUCCESS
+[pointer_dereference.32] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: pointer invalid in other->size_: SUCCESS
+[pointer_dereference.33] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: deallocated dynamic object in other->size_: SUCCESS
+[pointer_dereference.34] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: dead object in other->size_: SUCCESS
+[pointer_dereference.35] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: pointer outside object bounds in other->size_: SUCCESS
+[pointer_dereference.36] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: invalid integer address in other->size_: SUCCESS
+[pointer_dereference.37] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: pointer NULL in this->capacity_: SUCCESS
+[pointer_dereference.38] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: pointer invalid in this->capacity_: SUCCESS
+[pointer_dereference.39] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: deallocated dynamic object in this->capacity_: SUCCESS
+[pointer_dereference.40] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: dead object in this->capacity_: SUCCESS
+[pointer_dereference.41] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: pointer outside object bounds in this->capacity_: SUCCESS
+[pointer_dereference.42] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: invalid integer address in this->capacity_: SUCCESS
+[pointer_dereference.43] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: pointer NULL in other->capacity_: SUCCESS
+[pointer_dereference.44] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: pointer invalid in other->capacity_: SUCCESS
+[pointer_dereference.45] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: deallocated dynamic object in other->capacity_: SUCCESS
+[pointer_dereference.46] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: dead object in other->capacity_: SUCCESS
+[pointer_dereference.47] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: pointer outside object bounds in other->capacity_: SUCCESS
+[pointer_dereference.48] file verification/cbmc/include/cbmc_std.hpp line 77 dereference failure: invalid integer address in other->capacity_: SUCCESS
+[pointer_dereference.1] file verification/cbmc/include/cbmc_std.hpp line 144 dereference failure: pointer NULL in this->data_: SUCCESS
+[pointer_dereference.2] file verification/cbmc/include/cbmc_std.hpp line 144 dereference failure: pointer invalid in this->data_: SUCCESS
+[pointer_dereference.3] file verification/cbmc/include/cbmc_std.hpp line 144 dereference failure: deallocated dynamic object in this->data_: SUCCESS
+[pointer_dereference.4] file verification/cbmc/include/cbmc_std.hpp line 144 dereference failure: dead object in this->data_: SUCCESS
+[pointer_dereference.5] file verification/cbmc/include/cbmc_std.hpp line 144 dereference failure: pointer outside object bounds in this->data_: SUCCESS
+[pointer_dereference.6] file verification/cbmc/include/cbmc_std.hpp line 144 dereference failure: invalid integer address in this->data_: SUCCESS
+[pointer_dereference.7] file verification/cbmc/include/cbmc_std.hpp line 144 dereference failure: pointer NULL in this->size_: SUCCESS
+[pointer_dereference.8] file verification/cbmc/include/cbmc_std.hpp line 144 dereference failure: pointer invalid in this->size_: SUCCESS
+[pointer_dereference.9] file verification/cbmc/include/cbmc_std.hpp line 144 dereference failure: deallocated dynamic object in this->size_: SUCCESS
+[pointer_dereference.10] file verification/cbmc/include/cbmc_std.hpp line 144 dereference failure: dead object in this->size_: SUCCESS
+[pointer_dereference.11] file verification/cbmc/include/cbmc_std.hpp line 144 dereference failure: pointer outside object bounds in this->size_: SUCCESS
+[pointer_dereference.12] file verification/cbmc/include/cbmc_std.hpp line 144 dereference failure: invalid integer address in this->size_: SUCCESS
+verification/cbmc/include/cbmc_std.hpp function array
+[array.assertion.1] line 42 ten-element initializer matches array extent: SUCCESS
+[array.array_bounds.1] line 43 array.std::array<unsigned_char,10>::elements dynamic object upper bound in this->elements[(signed long int)0u]: SUCCESS
+[array.pointer_dereference.1] line 43 dereference failure: pointer NULL in this->elements: SUCCESS
+[array.pointer_dereference.2] line 43 dereference failure: pointer invalid in this->elements: SUCCESS
+[array.pointer_dereference.3] line 43 dereference failure: deallocated dynamic object in this->elements: SUCCESS
+[array.pointer_dereference.4] line 43 dereference failure: dead object in this->elements: SUCCESS
+[array.pointer_dereference.5] line 43 dereference failure: pointer outside object bounds in this->elements: SUCCESS
+[array.pointer_dereference.6] line 43 dereference failure: invalid integer address in this->elements: SUCCESS
+[array.array_bounds.2] line 44 array.std::array<unsigned_char,10>::elements dynamic object upper bound in this->elements[(signed long int)1u]: SUCCESS
+[array.pointer_dereference.7] line 44 dereference failure: pointer NULL in this->elements: SUCCESS
+[array.pointer_dereference.8] line 44 dereference failure: pointer invalid in this->elements: SUCCESS
+[array.pointer_dereference.9] line 44 dereference failure: deallocated dynamic object in this->elements: SUCCESS
+[array.pointer_dereference.10] line 44 dereference failure: dead object in this->elements: SUCCESS
+[array.pointer_dereference.11] line 44 dereference failure: pointer outside object bounds in this->elements: SUCCESS
+[array.pointer_dereference.12] line 44 dereference failure: invalid integer address in this->elements: SUCCESS
+[array.array_bounds.3] line 45 array.std::array<unsigned_char,10>::elements dynamic object upper bound in this->elements[(signed long int)2u]: SUCCESS
+[array.pointer_dereference.13] line 45 dereference failure: pointer NULL in this->elements: SUCCESS
+[array.pointer_dereference.14] line 45 dereference failure: pointer invalid in this->elements: SUCCESS
+[array.pointer_dereference.15] line 45 dereference failure: deallocated dynamic object in this->elements: SUCCESS
+[array.pointer_dereference.16] line 45 dereference failure: dead object in this->elements: SUCCESS
+[array.pointer_dereference.17] line 45 dereference failure: pointer outside object bounds in this->elements: SUCCESS
+[array.pointer_dereference.18] line 45 dereference failure: invalid integer address in this->elements: SUCCESS
+[array.array_bounds.4] line 46 array.std::array<unsigned_char,10>::elements dynamic object upper bound in this->elements[(signed long int)3u]: SUCCESS
+[array.pointer_dereference.19] line 46 dereference failure: pointer NULL in this->elements: SUCCESS
+[array.pointer_dereference.20] line 46 dereference failure: pointer invalid in this->elements: SUCCESS
+[array.pointer_dereference.21] line 46 dereference failure: deallocated dynamic object in this->elements: SUCCESS
+[array.pointer_dereference.22] line 46 dereference failure: dead object in this->elements: SUCCESS
+[array.pointer_dereference.23] line 46 dereference failure: pointer outside object bounds in this->elements: SUCCESS
+[array.pointer_dereference.24] line 46 dereference failure: invalid integer address in this->elements: SUCCESS
+[array.array_bounds.5] line 47 array.std::array<unsigned_char,10>::elements dynamic object upper bound in this->elements[(signed long int)4u]: SUCCESS
+[array.pointer_dereference.25] line 47 dereference failure: pointer NULL in this->elements: SUCCESS
+[array.pointer_dereference.26] line 47 dereference failure: pointer invalid in this->elements: SUCCESS
+[array.pointer_dereference.27] line 47 dereference failure: deallocated dynamic object in this->elements: SUCCESS
+[array.pointer_dereference.28] line 47 dereference failure: dead object in this->elements: SUCCESS
+[array.pointer_dereference.29] line 47 dereference failure: pointer outside object bounds in this->elements: SUCCESS
+[array.pointer_dereference.30] line 47 dereference failure: invalid integer address in this->elements: SUCCESS
+[array.array_bounds.6] line 48 array.std::array<unsigned_char,10>::elements dynamic object upper bound in this->elements[(signed long int)5u]: SUCCESS
+[array.pointer_dereference.31] line 48 dereference failure: pointer NULL in this->elements: SUCCESS
+[array.pointer_dereference.32] line 48 dereference failure: pointer invalid in this->elements: SUCCESS
+[array.pointer_dereference.33] line 48 dereference failure: deallocated dynamic object in this->elements: SUCCESS
+[array.pointer_dereference.34] line 48 dereference failure: dead object in this->elements: SUCCESS
+[array.pointer_dereference.35] line 48 dereference failure: pointer outside object bounds in this->elements: SUCCESS
+[array.pointer_dereference.36] line 48 dereference failure: invalid integer address in this->elements: SUCCESS
+[array.array_bounds.7] line 49 array.std::array<unsigned_char,10>::elements dynamic object upper bound in this->elements[(signed long int)6u]: SUCCESS
+[array.pointer_dereference.37] line 49 dereference failure: pointer NULL in this->elements: SUCCESS
+[array.pointer_dereference.38] line 49 dereference failure: pointer invalid in this->elements: SUCCESS
+[array.pointer_dereference.39] line 49 dereference failure: deallocated dynamic object in this->elements: SUCCESS
+[array.pointer_dereference.40] line 49 dereference failure: dead object in this->elements: SUCCESS
+[array.pointer_dereference.41] line 49 dereference failure: pointer outside object bounds in this->elements: SUCCESS
+[array.pointer_dereference.42] line 49 dereference failure: invalid integer address in this->elements: SUCCESS
+[array.array_bounds.8] line 50 array.std::array<unsigned_char,10>::elements dynamic object upper bound in this->elements[(signed long int)7u]: SUCCESS
+[array.pointer_dereference.43] line 50 dereference failure: pointer NULL in this->elements: SUCCESS
+[array.pointer_dereference.44] line 50 dereference failure: pointer invalid in this->elements: SUCCESS
+[array.pointer_dereference.45] line 50 dereference failure: deallocated dynamic object in this->elements: SUCCESS
+[array.pointer_dereference.46] line 50 dereference failure: dead object in this->elements: SUCCESS
+[array.pointer_dereference.47] line 50 dereference failure: pointer outside object bounds in this->elements: SUCCESS
+[array.pointer_dereference.48] line 50 dereference failure: invalid integer address in this->elements: SUCCESS
+[array.array_bounds.9] line 51 array.std::array<unsigned_char,10>::elements dynamic object upper bound in this->elements[(signed long int)8u]: SUCCESS
+[array.pointer_dereference.49] line 51 dereference failure: pointer NULL in this->elements: SUCCESS
+[array.pointer_dereference.50] line 51 dereference failure: pointer invalid in this->elements: SUCCESS
+[array.pointer_dereference.51] line 51 dereference failure: deallocated dynamic object in this->elements: SUCCESS
+[array.pointer_dereference.52] line 51 dereference failure: dead object in this->elements: SUCCESS
+[array.pointer_dereference.53] line 51 dereference failure: pointer outside object bounds in this->elements: SUCCESS
+[array.pointer_dereference.54] line 51 dereference failure: invalid integer address in this->elements: SUCCESS
+[array.array_bounds.10] line 52 array.std::array<unsigned_char,10>::elements dynamic object upper bound in this->elements[(signed long int)9u]: SUCCESS
+[array.pointer_dereference.55] line 52 dereference failure: pointer NULL in this->elements: SUCCESS
+[array.pointer_dereference.56] line 52 dereference failure: pointer invalid in this->elements: SUCCESS
+[array.pointer_dereference.57] line 52 dereference failure: deallocated dynamic object in this->elements: SUCCESS
+[array.pointer_dereference.58] line 52 dereference failure: dead object in this->elements: SUCCESS
+[array.pointer_dereference.59] line 52 dereference failure: pointer outside object bounds in this->elements: SUCCESS
+[array.pointer_dereference.60] line 52 dereference failure: invalid integer address in this->elements: SUCCESS
+
+verification/cbmc/include/cbmc_std.hpp function begin
+[begin.pointer_dereference.1] line 151 dereference failure: pointer NULL in this->data_: SUCCESS
+[begin.pointer_dereference.2] line 151 dereference failure: pointer invalid in this->data_: SUCCESS
+[begin.pointer_dereference.3] line 151 dereference failure: deallocated dynamic object in this->data_: SUCCESS
+[begin.pointer_dereference.4] line 151 dereference failure: dead object in this->data_: SUCCESS
+[begin.pointer_dereference.5] line 151 dereference failure: pointer outside object bounds in this->data_: SUCCESS
+[begin.pointer_dereference.6] line 151 dereference failure: invalid integer address in this->data_: SUCCESS
+
+verification/cbmc/include/cbmc_std.hpp function end
+[end.pointer_dereference.13] line 98 dereference failure: pointer NULL in this->size_: SUCCESS
+[end.pointer_dereference.14] line 98 dereference failure: pointer invalid in this->size_: SUCCESS
+[end.pointer_dereference.15] line 98 dereference failure: deallocated dynamic object in this->size_: SUCCESS
+[end.pointer_dereference.16] line 98 dereference failure: dead object in this->size_: SUCCESS
+[end.pointer_dereference.17] line 98 dereference failure: pointer outside object bounds in this->size_: SUCCESS
+[end.pointer_dereference.18] line 98 dereference failure: invalid integer address in this->size_: SUCCESS
+[end.pointer_dereference.1] line 152 dereference failure: pointer NULL in this->data_: SUCCESS
+[end.pointer_dereference.2] line 152 dereference failure: pointer invalid in this->data_: SUCCESS
+[end.pointer_dereference.3] line 152 dereference failure: deallocated dynamic object in this->data_: SUCCESS
+[end.pointer_dereference.4] line 152 dereference failure: dead object in this->data_: SUCCESS
+[end.pointer_dereference.5] line 152 dereference failure: pointer outside object bounds in this->data_: SUCCESS
+[end.pointer_dereference.6] line 152 dereference failure: invalid integer address in this->data_: SUCCESS
+[end.pointer_dereference.7] line 152 dereference failure: pointer NULL in this->size_: SUCCESS
+[end.pointer_dereference.8] line 152 dereference failure: pointer invalid in this->size_: SUCCESS
+[end.pointer_dereference.9] line 152 dereference failure: deallocated dynamic object in this->size_: SUCCESS
+[end.pointer_dereference.10] line 152 dereference failure: dead object in this->size_: SUCCESS
+[end.pointer_dereference.11] line 152 dereference failure: pointer outside object bounds in this->size_: SUCCESS
+[end.pointer_dereference.12] line 152 dereference failure: invalid integer address in this->size_: SUCCESS
+
+verification/cbmc/include/cbmc_std.hpp function insert
+[insert.assertion.1] line 117 A1 only appends to its frames: SUCCESS
+[insert.unwind.0] line 118 unwinding assertion loop 0: SUCCESS
+
+verification/cbmc/include/cbmc_std.hpp function operator[]
+[operator[].assertion.1] line 60 std::array index is in bounds: SUCCESS
+[operator[].assertion.2] line 130 std::vector index is in bounds: SUCCESS
+[operator[].pointer_dereference.1] line 130 dereference failure: pointer NULL in this->size_: SUCCESS
+[operator[].pointer_dereference.2] line 130 dereference failure: pointer invalid in this->size_: SUCCESS
+[operator[].pointer_dereference.3] line 130 dereference failure: deallocated dynamic object in this->size_: SUCCESS
+[operator[].pointer_dereference.4] line 130 dereference failure: dead object in this->size_: SUCCESS
+[operator[].pointer_dereference.5] line 130 dereference failure: pointer outside object bounds in this->size_: SUCCESS
+[operator[].pointer_dereference.6] line 130 dereference failure: invalid integer address in this->size_: SUCCESS
+
+verification/cbmc/include/cbmc_std.hpp function push_back
+[push_back.assertion.1] line 110 frame write stays inside reserved capacity: SUCCESS
+[push_back.pointer_dereference.1] line 110 dereference failure: pointer NULL in this->size_: SUCCESS
+[push_back.pointer_dereference.2] line 110 dereference failure: pointer invalid in this->size_: SUCCESS
+[push_back.pointer_dereference.3] line 110 dereference failure: deallocated dynamic object in this->size_: SUCCESS
+[push_back.pointer_dereference.4] line 110 dereference failure: dead object in this->size_: SUCCESS
+[push_back.pointer_dereference.5] line 110 dereference failure: pointer outside object bounds in this->size_: SUCCESS
+[push_back.pointer_dereference.6] line 110 dereference failure: invalid integer address in this->size_: SUCCESS
+[push_back.pointer_dereference.7] line 110 dereference failure: pointer NULL in this->capacity_: SUCCESS
+[push_back.pointer_dereference.8] line 110 dereference failure: pointer invalid in this->capacity_: SUCCESS
+[push_back.pointer_dereference.9] line 110 dereference failure: deallocated dynamic object in this->capacity_: SUCCESS
+[push_back.pointer_dereference.10] line 110 dereference failure: dead object in this->capacity_: SUCCESS
+[push_back.pointer_dereference.11] line 110 dereference failure: pointer outside object bounds in this->capacity_: SUCCESS
+[push_back.pointer_dereference.12] line 110 dereference failure: invalid integer address in this->capacity_: SUCCESS
+[push_back.array_bounds.1] line 112 array.std::vector<unsigned_char>::elements_ dynamic object upper bound in this->elements_[(signed long int)this->size_]: SUCCESS
+[push_back.pointer_dereference.13] line 112 dereference failure: pointer NULL in this->elements_: SUCCESS
+[push_back.pointer_dereference.14] line 112 dereference failure: pointer invalid in this->elements_: SUCCESS
+[push_back.pointer_dereference.15] line 112 dereference failure: deallocated dynamic object in this->elements_: SUCCESS
+[push_back.pointer_dereference.16] line 112 dereference failure: dead object in this->elements_: SUCCESS
+[push_back.pointer_dereference.17] line 112 dereference failure: pointer outside object bounds in this->elements_: SUCCESS
+[push_back.pointer_dereference.18] line 112 dereference failure: invalid integer address in this->elements_: SUCCESS
+[push_back.pointer_dereference.19] line 112 dereference failure: pointer NULL in *value: SUCCESS
+[push_back.pointer_dereference.20] line 112 dereference failure: pointer invalid in *value: SUCCESS
+[push_back.pointer_dereference.21] line 112 dereference failure: deallocated dynamic object in *value: SUCCESS
+[push_back.pointer_dereference.22] line 112 dereference failure: dead object in *value: SUCCESS
+[push_back.pointer_dereference.23] line 112 dereference failure: pointer outside object bounds in *value: SUCCESS
+[push_back.pointer_dereference.24] line 112 dereference failure: invalid integer address in *value: SUCCESS
+[push_back.pointer_dereference.25] line 113 dereference failure: pointer NULL in this->size_: SUCCESS
+[push_back.pointer_dereference.26] line 113 dereference failure: pointer invalid in this->size_: SUCCESS
+[push_back.pointer_dereference.27] line 113 dereference failure: deallocated dynamic object in this->size_: SUCCESS
+[push_back.pointer_dereference.28] line 113 dereference failure: dead object in this->size_: SUCCESS
+[push_back.pointer_dereference.29] line 113 dereference failure: pointer outside object bounds in this->size_: SUCCESS
+[push_back.pointer_dereference.30] line 113 dereference failure: invalid integer address in this->size_: SUCCESS
+
+verification/cbmc/include/cbmc_std.hpp function reserve
+[reserve.assertion.1] line 102 bounded reserve fits the model: SUCCESS
+[reserve.pointer_dereference.1] line 104 dereference failure: pointer NULL in this->capacity_: SUCCESS
+[reserve.pointer_dereference.2] line 104 dereference failure: pointer invalid in this->capacity_: SUCCESS
+[reserve.pointer_dereference.3] line 104 dereference failure: deallocated dynamic object in this->capacity_: SUCCESS
+[reserve.pointer_dereference.4] line 104 dereference failure: dead object in this->capacity_: SUCCESS
+[reserve.pointer_dereference.5] line 104 dereference failure: pointer outside object bounds in this->capacity_: SUCCESS
+[reserve.pointer_dereference.6] line 104 dereference failure: invalid integer address in this->capacity_: SUCCESS
+
+verification/cbmc/include/cbmc_std.hpp function size
+[size.pointer_dereference.7] line 93 dereference failure: pointer NULL in this->size_: SUCCESS
+[size.pointer_dereference.8] line 93 dereference failure: pointer invalid in this->size_: SUCCESS
+[size.pointer_dereference.9] line 93 dereference failure: deallocated dynamic object in this->size_: SUCCESS
+[size.pointer_dereference.10] line 93 dereference failure: dead object in this->size_: SUCCESS
+[size.pointer_dereference.11] line 93 dereference failure: pointer outside object bounds in this->size_: SUCCESS
+[size.pointer_dereference.12] line 93 dereference failure: invalid integer address in this->size_: SUCCESS
+[size.pointer_dereference.1] line 149 dereference failure: pointer NULL in this->size_: SUCCESS
+[size.pointer_dereference.2] line 149 dereference failure: pointer invalid in this->size_: SUCCESS
+[size.pointer_dereference.3] line 149 dereference failure: deallocated dynamic object in this->size_: SUCCESS
+[size.pointer_dereference.4] line 149 dereference failure: dead object in this->size_: SUCCESS
+[size.pointer_dereference.5] line 149 dereference failure: pointer outside object bounds in this->size_: SUCCESS
+[size.pointer_dereference.6] line 149 dereference failure: invalid integer address in this->size_: SUCCESS
+
+verification/cbmc/include/cbmc_std.hpp function vector
+[vector.array_bounds.1] line 78 array.std::vector<unsigned_char>::elements_ dynamic object upper bound in this->elements_[(signed long int)index]: SUCCESS
+[vector.array_bounds.2] line 78 array.std::vector<unsigned_char>::elements_ dynamic object upper bound in other->elements_[(signed long int)index]: SUCCESS
+[vector.pointer_dereference.1] line 78 dereference failure: pointer NULL in this->size_: SUCCESS
+[vector.pointer_dereference.2] line 78 dereference failure: pointer invalid in this->size_: SUCCESS
+[vector.pointer_dereference.3] line 78 dereference failure: deallocated dynamic object in this->size_: SUCCESS
+[vector.pointer_dereference.4] line 78 dereference failure: dead object in this->size_: SUCCESS
+[vector.pointer_dereference.5] line 78 dereference failure: pointer outside object bounds in this->size_: SUCCESS
+[vector.pointer_dereference.6] line 78 dereference failure: invalid integer address in this->size_: SUCCESS
+[vector.pointer_dereference.7] line 78 dereference failure: pointer NULL in this->elements_: SUCCESS
+[vector.pointer_dereference.8] line 78 dereference failure: pointer invalid in this->elements_: SUCCESS
+[vector.pointer_dereference.9] line 78 dereference failure: deallocated dynamic object in this->elements_: SUCCESS
+[vector.pointer_dereference.10] line 78 dereference failure: dead object in this->elements_: SUCCESS
+[vector.pointer_dereference.11] line 78 dereference failure: pointer outside object bounds in this->elements_: SUCCESS
+[vector.pointer_dereference.12] line 78 dereference failure: invalid integer address in this->elements_: SUCCESS
+[vector.pointer_dereference.13] line 78 dereference failure: pointer NULL in other->elements_: SUCCESS
+[vector.pointer_dereference.14] line 78 dereference failure: pointer invalid in other->elements_: SUCCESS
+[vector.pointer_dereference.15] line 78 dereference failure: deallocated dynamic object in other->elements_: SUCCESS
+[vector.pointer_dereference.16] line 78 dereference failure: dead object in other->elements_: SUCCESS
+[vector.pointer_dereference.17] line 78 dereference failure: pointer outside object bounds in other->elements_: SUCCESS
+[vector.pointer_dereference.18] line 78 dereference failure: invalid integer address in other->elements_: SUCCESS
+[vector.unwind.0] line 78 unwinding assertion loop 0: SUCCESS
+VERIFICATION SUCCESSFUL

@@ -1,0 +1,5 @@
+cmake=cmake version 3.31.6
+python=Python 3.13.5
+main_compiler=g++ (Debian 14.2.0-19) 14.2.0
+fuzz_compiler=Debian clang version 19.1.7 (3+b1)
+cbmc=6.10.0 (cbmc-6.10.0)

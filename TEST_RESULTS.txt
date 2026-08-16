@@ -56,4 +56,12 @@ Performance characterization on Intel Core i7-10710U, CPU 0:
   Attempt 1 ru_maxrss method: invalid, retained, replaced by current RSS
   targeted Clang 1 MiB open replication: primary tag-profile anomaly not reproduced
 
+One-command reproduction campaign, commit 930ecdd:
+  local fail-closed stages: 9/9 plus artifact manifest
+  GitHub Actions run 31967427920: 19/19 jobs
+  KAT: 5/5; differential: 4096/4096; fuzz seeds: 2/2
+  CBMC harnesses: 4/4; StreamFrame alarm_count: 0 at tested bounds
+  performance reproduction: 18/18; before/after manifests: passed
+  local LeakSanitizer: unavailable under documented ptrace restriction
+
 PVC-RotSymEnc-1 adds no cryptographic transform beyond frozen Candidate A1.

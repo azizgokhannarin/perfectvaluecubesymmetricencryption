@@ -2,9 +2,10 @@
 
 ## Status
 
-This document pre-registers the first one-command campaign. The campaign result
-is pending. The script changes assurance and packaging only; the candidate
-construction and canonical vectors are unchanged.
+The one-command campaign was pre-registered in commit
+`930ecdd4d945883a1ad97839f3361afa6acad84c` and then executed from that clean
+tree locally and in GitHub Actions. The script changes assurance and packaging
+only; the candidate construction and canonical vectors are unchanged.
 
 ## Question
 
@@ -58,14 +59,40 @@ The campaign fixes these deterministic subcampaign parameters:
 
 ## Result
 
-Pending the first clean-tree campaign.
+The local GNU/Linux campaign completed all stages in 4 minutes 7 seconds:
+
+| Stage | Recorded result |
+|---|---|
+| dependency preflight | CMake 3.31.6, Python 3.13.5, GCC 14.2, Clang 19.1.7, CBMC 6.10.0 |
+| manifests before | source, profile, dependency, and nested Candidate A1 passed |
+| Release tests | 6/6, including 4,096 equivalence cases |
+| KAT/differential | 5/5 KAT, 4,096/4,096 differential, zero mismatch |
+| conformance fingerprint | 4,096 cases, 2,533,365 bytes, fixed SHA-256 matched |
+| fuzz seeds | 2/2 deterministic libFuzzer campaigns passed |
+| CBMC | frames, seal lengths, open control flow, and counter domain passed |
+| StreamFrame domain | `alarm_count=0` at the registered bounds |
+| performance | 18/18 cases; successful-open plaintext checks passed |
+| manifests after | all retained manifests passed again |
+| artifact integrity | every file in `ARTIFACTS.SHA256` matched |
+
+The local runner used `ASAN_OPTIONS=detect_leaks=0` because LeakSanitizer cannot
+initialize under its independently reproduced `ptrace` restriction. ASan and
+UBSan remained active. GitHub Actions run `31967427920` completed all 19 jobs,
+including the new `reproduce-all` job with default leak detection.
+
+The complete retained local evidence is under:
+
+```text
+results-0.1.0-draft/reproduction/LOCAL_2026-08-16/
+```
 
 ## Interpretation
 
-A passing campaign will establish that the documented local assurance package
-can be executed through one fail-closed entry point in the recorded environment.
-It will not establish cryptographic security or eliminate the individual
-limitations of any constituent experiment.
+The result establishes that the documented local assurance package executed
+through one fail-closed entry point in both recorded GNU/Linux environments.
+It does not establish cryptographic security or eliminate the individual
+limitations of any constituent experiment. No new construction defect or
+implementation disagreement was observed in this campaign.
 
 ## Limitations
 

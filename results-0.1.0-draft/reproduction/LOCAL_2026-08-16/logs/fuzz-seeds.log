@@ -1,0 +1,57 @@
+-- The CXX compiler identification is Clang 19.1.7
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/clang++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/agn/Projects/perfectvaluecubesymmetricencryption/build-reproduce-all/build-fuzz
+[ 10%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/cube.cpp.o
+[ 10%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/controller.cpp.o
+[ 15%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/controller_b.cpp.o
+[ 21%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/finalization.cpp.o
+[ 26%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/key_schedule.cpp.o
+[ 31%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/return_pass.cpp.o
+[ 36%] Linking CXX static library libpvc_prf1_c1.a
+[ 36%] Built target pvc_prf1_c1
+[ 47%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_mac0_m1_independent.dir/external/pvc_mac0_m1/independent/cpp_spec/src/mac.cpp.o
+[ 47%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_mac0_m1.dir/external/pvc_mac0_m1/src/mac.cpp.o
+[ 52%] Linking CXX static library libpvc_mac0_m1_independent.a
+[ 52%] Built target pvc_mac0_m1_independent
+[ 57%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_aead0_independent.dir/independent/cpp_spec/src/aead.cpp.o
+[ 63%] Linking CXX static library libpvc_mac0_m1.a
+[ 63%] Built target pvc_mac0_m1
+[ 68%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_aead0.dir/src/aead.cpp.o
+[ 73%] Linking CXX static library libpvc_aead0_independent.a
+[ 73%] Built target pvc_aead0_independent
+[ 78%] Linking CXX static library libpvc_aead0.a
+[ 78%] Built target pvc_aead0
+[ 84%] Building CXX object CMakeFiles/pvc_rotsymenc1.dir/src/symmetric_encryption.cpp.o
+[ 89%] Linking CXX static library libpvc_rotsymenc1.a
+[ 89%] Built target pvc_rotsymenc1
+[ 94%] Building CXX object CMakeFiles/pvc-rotsymenc1-fuzz-seal-equivalence.dir/fuzz/seal_equivalence.cpp.o
+[100%] Linking CXX executable pvc-rotsymenc1-fuzz-seal-equivalence
+[100%] Built target pvc-rotsymenc1-fuzz-seal-equivalence
+[ 36%] Built target pvc_prf1_c1
+[ 57%] Built target pvc_mac0_m1
+[ 57%] Built target pvc_mac0_m1_independent
+[ 78%] Built target pvc_aead0
+[ 78%] Built target pvc_aead0_independent
+[ 89%] Built target pvc_rotsymenc1
+[ 94%] Building CXX object CMakeFiles/pvc-rotsymenc1-fuzz-open-equivalence.dir/fuzz/open_equivalence.cpp.o
+[100%] Linking CXX executable pvc-rotsymenc1-fuzz-open-equivalence
+[100%] Built target pvc-rotsymenc1-fuzz-open-equivalence
+Internal ctest changing into directory: /home/agn/Projects/perfectvaluecubesymmetricencryption/build-reproduce-all/build-fuzz
+Test project /home/agn/Projects/perfectvaluecubesymmetricencryption/build-reproduce-all/build-fuzz
+    Start 7: pvc-rotsymenc1-fuzz-seal-equivalence-smoke
+1/2 Test #7: pvc-rotsymenc1-fuzz-seal-equivalence-smoke ...   Passed    1.93 sec
+    Start 8: pvc-rotsymenc1-fuzz-open-equivalence-smoke
+2/2 Test #8: pvc-rotsymenc1-fuzz-open-equivalence-smoke ...   Passed    1.40 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Label Time Summary:
+fuzz    =   3.33 sec*proc (2 tests)
+
+Total Test time (real) =   3.33 sec

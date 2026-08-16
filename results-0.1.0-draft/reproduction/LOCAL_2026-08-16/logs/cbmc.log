@@ -1,0 +1,9 @@
+[CBMC] frames
+VERIFICATION SUCCESSFUL
+[CBMC] seal-lengths
+VERIFICATION SUCCESSFUL
+[CBMC] open-control-flow
+VERIFICATION SUCCESSFUL
+[CBMC] counter-domain
+VERIFICATION SUCCESSFUL
+CBMC bounded verification completed. Logs: /home/agn/Projects/perfectvaluecubesymmetricencryption/build-reproduce-all/cbmc

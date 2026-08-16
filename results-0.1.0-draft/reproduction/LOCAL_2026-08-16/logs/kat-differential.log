@@ -1,0 +1,4 @@
+verified 5 PVC-RotSymEnc-1 vectors
+equivalence_cases=4096 mismatches=0
+conformance_version=1 seed=0x43524F5353504C31 cases=4096 output=/tmp/pvc-rotsymenc1-conformance-tkal56z9/transcript.bin
+conformance_match=1 transcript_bytes=2533365 sha256=42c2f89ac1e55d260cf8e90914f01e7fbcd39f54a50c814147bb1e5cc344ad8e

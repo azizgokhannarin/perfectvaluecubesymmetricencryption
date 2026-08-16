@@ -1,0 +1,56 @@
+-- The CXX compiler identification is GNU 14.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/agn/Projects/perfectvaluecubesymmetricencryption/build-reproduce-all/build-release
+[  9%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/controller.cpp.o
+[  9%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/cube.cpp.o
+[ 14%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/controller_b.cpp.o
+[ 19%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/finalization.cpp.o
+[ 23%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/key_schedule.cpp.o
+[ 28%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/return_pass.cpp.o
+[ 33%] Linking CXX static library libpvc_prf1_c1.a
+[ 33%] Built target pvc_prf1_c1
+[ 38%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_mac0_m1.dir/external/pvc_mac0_m1/src/mac.cpp.o
+[ 42%] Linking CXX static library libpvc_mac0_m1.a
+[ 42%] Built target pvc_mac0_m1
+[ 47%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_aead0.dir/src/aead.cpp.o
+[ 52%] Linking CXX static library libpvc_aead0.a
+[ 52%] Built target pvc_aead0
+[ 57%] Building CXX object CMakeFiles/pvc_rotsymenc1.dir/src/symmetric_encryption.cpp.o
+[ 61%] Linking CXX static library libpvc_rotsymenc1.a
+[ 61%] Built target pvc_rotsymenc1
+[ 71%] Building CXX object CMakeFiles/pvc-rotsymenc1.dir/app/main.cpp.o
+[ 66%] Building CXX object CMakeFiles/pvc-rotsymenc1-tests.dir/tests/test_main.cpp.o
+[ 76%] Linking CXX executable pvc-rotsymenc1-tests
+[ 76%] Built target pvc-rotsymenc1-tests
+[ 80%] Building CXX object CMakeFiles/pvc-rotsymenc1-equivalence.dir/tests/equivalence.cpp.o
+[ 85%] Linking CXX executable pvc-rotsymenc1
+[ 85%] Built target pvc-rotsymenc1
+[ 90%] Building CXX object CMakeFiles/pvc-rotsymenc1-cross-platform-conformance.dir/tests/cross_platform_conformance.cpp.o
+[ 95%] Linking CXX executable pvc-rotsymenc1-equivalence
+[ 95%] Built target pvc-rotsymenc1-equivalence
+[100%] Linking CXX executable pvc-rotsymenc1-cross-platform-conformance
+[100%] Built target pvc-rotsymenc1-cross-platform-conformance
+Internal ctest changing into directory: /home/agn/Projects/perfectvaluecubesymmetricencryption/build-reproduce-all/build-release
+Test project /home/agn/Projects/perfectvaluecubesymmetricencryption/build-reproduce-all/build-release
+    Start 1: pvc-rotsymenc1-canonical-vector
+1/6 Test #1: pvc-rotsymenc1-canonical-vector ........   Passed    0.00 sec
+    Start 2: pvc-rotsymenc1-roundtrip
+2/6 Test #2: pvc-rotsymenc1-roundtrip ...............   Passed    0.00 sec
+    Start 3: pvc-rotsymenc1-tamper-reject
+3/6 Test #3: pvc-rotsymenc1-tamper-reject ...........   Passed    0.00 sec
+    Start 4: pvc-rotsymenc1-tag-profile-invalid
+4/6 Test #4: pvc-rotsymenc1-tag-profile-invalid .....   Passed    0.00 sec
+    Start 5: pvc-rotsymenc1-a1-byte-equivalence
+5/6 Test #5: pvc-rotsymenc1-a1-byte-equivalence .....   Passed    0.00 sec
+    Start 6: pvc-rotsymenc1-a1-equivalence-corpus
+6/6 Test #6: pvc-rotsymenc1-a1-equivalence-corpus ...   Passed   22.81 sec
+
+100% tests passed, 0 tests failed out of 6
+
+Total Test time (real) =  22.83 sec

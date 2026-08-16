@@ -54,6 +54,7 @@ Cross-platform transcript:      4096/4096, 6 toolchain/platform combinations
 Cross-platform mismatches:      0
 Performance cases:              96/96 primary, plus targeted replication
 Large-payload throughput:       about 0.066 MiB/s GCC, 0.089 MiB/s Clang
+One-command reproduction:       local 9/9 stages; CI 19/19 jobs
 ```
 
 The conformance evidence establishes reproducibility of the public wrapper in

@@ -197,7 +197,8 @@ The fail-closed reproduction entry point runs the build/KAT/differential,
 fuzz-seed, CBMC, StreamFrame-domain, benchmark, and manifest checks while
 retaining per-stage logs and artifact hashes. CBMC 6.10.0 is required and no
 missing stage is silently skipped. See `docs/REPRODUCIBILITY.md` for the exact
-scope and limitations.
+scope and limitations. The first clean-tree local and GitHub Actions campaigns
+completed every stage; this is reproducibility evidence, not a security result.
 
 ```bash
 CBMC=/path/to/cbmc ./reproduce_all.sh

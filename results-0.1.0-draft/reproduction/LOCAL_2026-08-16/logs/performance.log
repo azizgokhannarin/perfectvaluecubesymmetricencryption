@@ -1,0 +1,49 @@
+-- The CXX compiler identification is GNU 14.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/agn/Projects/perfectvaluecubesymmetricencryption/build-reproduce-all/build-performance
+[ 13%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/controller.cpp.o
+[ 13%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/cube.cpp.o
+[ 20%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/controller_b.cpp.o
+[ 26%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/finalization.cpp.o
+[ 33%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/key_schedule.cpp.o
+[ 40%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_prf1_c1.dir/external/pvc_mac0_m1/external/pvc_prf1_c1/src/return_pass.cpp.o
+[ 46%] Linking CXX static library libpvc_prf1_c1.a
+[ 46%] Built target pvc_prf1_c1
+[ 53%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_mac0_m1.dir/external/pvc_mac0_m1/src/mac.cpp.o
+[ 60%] Linking CXX static library libpvc_mac0_m1.a
+[ 60%] Built target pvc_mac0_m1
+[ 66%] Building CXX object external/pvc_aead0_a1/CMakeFiles/pvc_aead0.dir/src/aead.cpp.o
+[ 73%] Linking CXX static library libpvc_aead0.a
+[ 73%] Built target pvc_aead0
+[ 80%] Building CXX object CMakeFiles/pvc_rotsymenc1.dir/src/symmetric_encryption.cpp.o
+[ 86%] Linking CXX static library libpvc_rotsymenc1.a
+[ 86%] Built target pvc_rotsymenc1
+[ 93%] Building CXX object CMakeFiles/pvc-rotsymenc1-performance-benchmark.dir/analysis/performance_benchmark.cpp.o
+[100%] Linking CXX executable pvc-rotsymenc1-performance-benchmark
+[100%] Built target pvc-rotsymenc1-performance-benchmark
+case=1/18 operation=seal tag_bits=128 message_bytes=0 samples=3
+case=2/18 operation=open-success tag_bits=128 message_bytes=0 samples=3
+case=3/18 operation=seal tag_bits=192 message_bytes=0 samples=3
+case=4/18 operation=open-success tag_bits=192 message_bytes=0 samples=3
+case=5/18 operation=seal tag_bits=256 message_bytes=0 samples=3
+case=6/18 operation=open-success tag_bits=256 message_bytes=0 samples=3
+case=7/18 operation=seal tag_bits=128 message_bytes=64 samples=3
+case=8/18 operation=open-success tag_bits=128 message_bytes=64 samples=3
+case=9/18 operation=seal tag_bits=192 message_bytes=64 samples=3
+case=10/18 operation=open-success tag_bits=192 message_bytes=64 samples=3
+case=11/18 operation=seal tag_bits=256 message_bytes=64 samples=3
+case=12/18 operation=open-success tag_bits=256 message_bytes=64 samples=3
+case=13/18 operation=seal tag_bits=128 message_bytes=4096 samples=3
+case=14/18 operation=open-success tag_bits=128 message_bytes=4096 samples=3
+case=15/18 operation=seal tag_bits=192 message_bytes=4096 samples=3
+case=16/18 operation=open-success tag_bits=192 message_bytes=4096 samples=3
+case=17/18 operation=seal tag_bits=256 message_bytes=4096 samples=3
+case=18/18 operation=open-success tag_bits=256 message_bytes=4096 samples=3
+wrote 18 cases to /home/agn/Projects/perfectvaluecubesymmetricencryption/build-reproduce-all/performance.json
+verified 18 performance cases: /home/agn/Projects/perfectvaluecubesymmetricencryption/build-reproduce-all/performance.json
