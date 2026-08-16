@@ -19,10 +19,24 @@
 
 ## Stage R2 — public review candidate
 
-- freeze a `v1.0.0-rc1` public profile if no byte ambiguity is found;
-- publish consolidated cryptanalysis map;
-- publish paper/ePrint material linking C1, M1, A1 and RotSymEnc;
+Status: active. `v0.1.0-draft-review.1` is the first frozen human-review
+snapshot. The construction remains at draft status until external evidence is
+evaluated.
+
+Completed for the snapshot:
+
+- consolidated cryptanalysis map and reproducibility package;
+- fixed review entry point, non-claims, and finding-report format.
+
+Active:
+
 - solicit external cryptanalysis and independent implementations.
+
+Pending external-review work:
+
+- prepare paper/ePrint material linking C1, M1, A1 and RotSymEnc;
+- consider a `v1.0.0-rc1` public profile only after review findings are triaged
+  and no unresolved byte ambiguity remains.
 
 ## Stage R3 — external evidence
 

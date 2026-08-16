@@ -70,12 +70,22 @@ from C1, not to an additional rotation layer in the public wrapper.
 
 > Research software only. Do not use PVC-RotSymEnc-1 to protect production data, credentials, firmware, financial transactions, safety-critical systems, or other real secrets.
 
+## External review requested
+
+`v0.1.0-draft-review.1` is the frozen baseline for independent human
+evaluation. Reviewers are invited to reproduce, challenge, and falsify the
+specification, implementation, component assumptions, and retained evidence.
+Start with `PUBLIC_REVIEW.md`; this is not a production release or a claim of
+cryptographic security.
+
 ## Current status
 
 | Item | Status |
 |---|---|
 | Public algorithm | PVC-RotSymEnc-1 |
 | Repository draft | 0.1.0-draft |
+| Public review snapshot | v0.1.0-draft-review.1 |
+| External evaluation | requested |
 | Cryptographic construction | byte-exact Candidate A1 / v0.2.0 |
 | Encryption key | independent 256-bit `K_enc` |
 | Authentication key | independent 256-bit `K_mac` |
@@ -89,6 +99,7 @@ from C1, not to an additional rotation layer in the public wrapper.
 
 ## Public-review entry points
 
+- `PUBLIC_REVIEW.md` — concise review request, known findings and reproduction path.
 - `SPECIFICATION.md` — normative PVC-RotSymEnc-1 profile.
 - `CRYPTANALYSIS_CHALLENGE.md` — review and falsification targets.
 - `docs/SECURITY_TARGET.md` — targets and explicit non-claims.

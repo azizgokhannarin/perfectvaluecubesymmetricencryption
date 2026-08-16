@@ -1,5 +1,13 @@
 # Changelog
 
+## Public review snapshot 1 - 2026-08-17
+
+- Froze `v0.1.0-draft-review.1` as the first independent human-review baseline.
+- Added a concise public review request and structured finding-report form.
+- Consolidated the reviewer entry path, known findings, non-claims, and
+  reproducibility instructions without changing construction bytes, public API,
+  or canonical vectors.
+
 ## 0.1.0-draft
 
 - Introduced public algorithm name `PVC-RotSymEnc-1`.
@@ -16,3 +24,11 @@
   origin tracking, plus explicit `-O0`, `-O2` and `-O3` CI conformance jobs.
 - Added a reproducible MSan/`libstdc++` boundary control and documented the
   instrumented-standard-library limitation without changing the construction.
+- Added CBMC bounded implementation verification, StreamFrame-domain analysis,
+  timing characterization, cross-platform conformance, performance
+  characterization, a one-command reproduction campaign, nonce-misuse
+  analysis, and software fault-injection diagnostics.
+- Retained explicit positive findings and bounded negative campaigns in the
+  attack log and versioned result artifacts. See
+  `docs/RELEASE_NOTES_0.1.0_DRAFT.md` for the complete measured summary and
+  limitations.

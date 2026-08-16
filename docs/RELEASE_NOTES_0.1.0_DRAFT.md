@@ -2,6 +2,14 @@
 
 This is the first public umbrella-profile draft for the Perfect Value Cube symmetric-encryption line.
 
+## Public review snapshot
+
+`v0.1.0-draft-review.1` freezes the first independent human-review baseline.
+It adds review navigation and reporting surfaces only; the construction,
+public API, and canonical vectors remain those of `0.1.0-draft`. See
+`PUBLIC_REVIEW.md` for the requested attacks, known findings, reproduction
+path, and explicit non-claims.
+
 ## Cryptographic status
 
 No new cryptographic construction was introduced. PVC-RotSymEnc-1 is defined to be byte-exactly equivalent to frozen PVC-AEAD-0 Candidate A1 / v0.2.0, which in turn pins Candidate M1 / v0.2.0 and Candidate C1 / v0.9.0.

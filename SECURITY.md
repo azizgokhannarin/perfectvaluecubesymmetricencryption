@@ -10,3 +10,13 @@ Security reports should distinguish:
 4. PVC-PRF-1 Candidate C1 defects.
 
 For reproducibility, include exact version, compiler, commands, complete test inputs or deterministic generators, and raw outputs.
+
+Public, reproducible cryptanalysis and conformance results should use the
+repository's **Cryptanalysis or conformance finding** issue form. A report that
+should initially remain private can use GitHub private vulnerability reporting
+from the repository's Security page. Do not include real keys, credentials, or
+production data in either channel.
+
+Because this repository is explicitly not for production use, no production
+deployment is covered by a security-support promise or response-time service
+level.

@@ -1,0 +1,79 @@
+name: Cryptanalysis or conformance finding
+description: Report a reproducible attack, structural result, or implementation disagreement
+title: "[Finding]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        PVC-RotSymEnc-1 is experimental research. Report facts, measurements, interpretations, and limitations separately. Do not include real secrets or credentials.
+  - type: input
+    id: version
+    attributes:
+      label: Review target
+      description: Exact Git tag or full commit SHA used for the result.
+      placeholder: v0.1.0-draft-review.1
+    validations:
+      required: true
+  - type: dropdown
+    id: classification
+    attributes:
+      label: Finding class
+      description: Choose the closest class from CRYPTANALYSIS_CHALLENGE.md.
+      options:
+        - RSE-C1 conformance break
+        - RSE-C2 wrapper drift
+        - RSE-C3 role confusion
+        - RSE-C4 nonce or domain failure
+        - RSE-C5 authentication gap
+        - RSE-C6 profile confusion
+        - RSE-C7 parsing or length ambiguity
+        - RSE-C8 underlying C1, M1, or A1 result
+        - Independent negative campaign or replication
+        - Other research finding
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Question or hypothesis
+      description: State the property that was tested or falsified.
+    validations:
+      required: true
+  - type: textarea
+    id: reproducer
+    attributes:
+      label: Reproduction
+      description: Provide exact inputs or a deterministic generator, commands, compiler, flags, seed, sample count, and search budget.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Result
+      description: Report the observed output or minimal reproducer. Link raw artifacts when necessary.
+    validations:
+      required: true
+  - type: textarea
+    id: interpretation
+    attributes:
+      label: Interpretation
+      description: Explain what the result suggests and whether it affects the wrapper, A1, M1, or C1.
+    validations:
+      required: true
+  - type: textarea
+    id: limitations
+    attributes:
+      label: Limitations
+      description: State what the experiment or attack does not establish.
+    validations:
+      required: true
+  - type: checkboxes
+    id: integrity
+    attributes:
+      label: Research integrity
+      options:
+        - label: I have not treated a bounded negative result as a proof of security.
+          required: true
+        - label: The report contains no real keys, private data, credentials, or production secrets.
+          required: true
