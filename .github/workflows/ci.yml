@@ -9,7 +9,7 @@ jobs:
       matrix:
         compiler: [gcc, clang]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Configure compiler
         run: |
           if [ "${{ matrix.compiler }}" = "clang" ]; then
@@ -32,7 +32,7 @@ jobs:
       CC: clang
       CXX: clang++
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Configure
         run: |
           cmake -S . -B build-fuzz \
