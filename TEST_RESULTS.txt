@@ -8,9 +8,27 @@ Clang Release:
   CTest: 6/6
   A1 equivalence: 4096/4096, mismatches=0
 
-GCC Debug ASan+UBSan:
+Clang 19.1.7 RelWithDebInfo AddressSanitizer:
   CTest: 6/6
-  A1 equivalence CTest budget: 256/256
+  A1 equivalence CTest budget: 512/512
+  LeakSanitizer: disabled locally because the managed runner is ptrace-restricted
+
+Clang 19.1.7 RelWithDebInfo UndefinedBehaviorSanitizer:
+  CTest: 6/6
+  A1 equivalence CTest budget: 512/512
+
+Clang 19.1.7 RelWithDebInfo MemorySanitizer:
+  origin tracking: level 2
+  CTest: 6/6
+  A1 equivalence CTest budget: 512/512
+  candidate-path findings: 0
+  limitation: system libc/libstdc++ are not fully MSan-instrumented
+
+Clang 19.1.7 optimization conformance:
+  -O0 CTest: 6/6
+  -O2 CTest: 6/6
+  -O3 CTest: 6/6
+  wrapper/A1 mismatches: 0
 
 Official public-profile vectors:
   verified 5/5
@@ -21,6 +39,11 @@ Clang 19.1.7 libFuzzer + ASan + UBSan:
   open differential: 4096 executions, mismatches=0
   sanitizer findings: 0
   LeakSanitizer: disabled because the managed runner is ptrace-restricted
+
+MSan standard-library boundary control:
+  reproduced the initial std::ctype/memcmp report without PVC code
+  classified as destructor poisoning crossing into uninstrumented libstdc++
+  strict candidate suite rerun with destructor poisoning enabled: 6/6
 
 Candidate A1 retained manifests:
   verified

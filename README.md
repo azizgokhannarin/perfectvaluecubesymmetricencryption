@@ -91,6 +91,26 @@ For a broader wrapper-to-A1 equivalence campaign:
 ./build/pvc-rotsymenc1-equivalence --count 4096
 ```
 
+## Sanitizer and optimization matrix
+
+`PVCROTSYMENC1_SANITIZER` selects an opt-in whole-tree test profile: `address`,
+`undefined`, or `memory`. The default is `none`. MemorySanitizer requires
+upstream Clang on Linux, FreeBSD, or NetBSD; it enables origin tracking level 2.
+Sanitizer profiles and libFuzzer profiles are intentionally separate.
+
+```bash
+CC=clang CXX=clang++ cmake -S . -B build-msan \
+  -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+  -DPVCROTSYMENC1_SANITIZER=memory
+cmake --build build-msan -j
+MSAN_OPTIONS=halt_on_error=1:exit_code=86 \
+  ctest --test-dir build-msan --output-on-failure
+```
+
+CI independently exercises ASan, UBSan, MSan, and explicit `-O0`, `-O2`, and
+`-O3` builds. See `docs/SANITIZER_MATRIX.md` for the exact matrix, results, and
+instrumented-standard-library limitation.
+
 ## Differential fuzzing
 
 Two opt-in Clang libFuzzer targets compare the public wrapper with the

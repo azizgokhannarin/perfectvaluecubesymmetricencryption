@@ -3,8 +3,8 @@
 
 #include <algorithm>
 #include <array>
+#include <cstdio>
 #include <cstdint>
-#include <iostream>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -41,4 +41,4 @@ bool equivalence() {
     const auto a=pvcaead0::seal(ak,an,ad,p,pvcaead0::TagSize::Bits256); return r.ciphertext==a.ciphertext && r.tag==a.tag;
 }
 }
-int main(int argc,char** argv){ if(argc!=3||std::string(argv[1])!="--case") return 2; const std::string c=argv[2]; bool ok=false; if(c=="canonical-vector")ok=canonical(); else if(c=="roundtrip")ok=roundtrip(); else if(c=="tamper-reject")ok=tamper(); else if(c=="tag-profile-invalid")ok=invalid(); else if(c=="a1-byte-equivalence")ok=equivalence(); else return 2; if(!ok){std::cerr<<"FAIL "<<c<<'\n';return 1;} std::cout<<"PASS "<<c<<'\n';return 0; }
+int main(int argc,char** argv){ if(argc!=3||std::string(argv[1])!="--case") return 2; const std::string c=argv[2]; bool ok=false; if(c=="canonical-vector")ok=canonical(); else if(c=="roundtrip")ok=roundtrip(); else if(c=="tamper-reject")ok=tamper(); else if(c=="tag-profile-invalid")ok=invalid(); else if(c=="a1-byte-equivalence")ok=equivalence(); else return 2; if(!ok){std::fprintf(stderr,"FAIL %s\n",c.c_str());return 1;} std::printf("PASS %s\n",c.c_str());return 0; }

@@ -6,6 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         compiler: [gcc, clang]
     steps:
@@ -25,6 +26,61 @@ jobs:
         run: cmake --build build -j2
       - name: Test
         run: ctest --test-dir build --output-on-failure
+
+  sanitizer:
+    name: sanitizer (${{ matrix.profile }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [address, undefined, memory]
+    env:
+      CC: clang
+      CXX: clang++
+      ASAN_OPTIONS: "detect_leaks=1:halt_on_error=1"
+      UBSAN_OPTIONS: "halt_on_error=1:print_stacktrace=1"
+      MSAN_OPTIONS: "halt_on_error=1:exit_code=86"
+    steps:
+      - uses: actions/checkout@v7
+      - name: Configure
+        run: |
+          cmake -S . -B build-sanitizer \
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DPVCROTSYMENC1_SANITIZER=${{ matrix.profile }} \
+            -DPVCROTSYMENC1_WARNINGS_AS_ERRORS=ON
+      - name: Build
+        run: cmake --build build-sanitizer --parallel 2
+      - name: Test
+        run: ctest --test-dir build-sanitizer --output-on-failure
+
+  optimization:
+    name: optimization (${{ matrix.level }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - level: O0
+            flag: -O0
+          - level: O2
+            flag: -O2
+          - level: O3
+            flag: -O3
+    env:
+      CC: clang
+      CXX: clang++
+    steps:
+      - uses: actions/checkout@v7
+      - name: Configure
+        run: |
+          cmake -S . -B build-optimization \
+            -DCMAKE_BUILD_TYPE= \
+            "-DCMAKE_CXX_FLAGS=${{ matrix.flag }}" \
+            -DPVCROTSYMENC1_WARNINGS_AS_ERRORS=ON
+      - name: Build
+        run: cmake --build build-optimization --parallel 2
+      - name: Test
+        run: ctest --test-dir build-optimization --output-on-failure
 
   fuzz-smoke:
     runs-on: ubuntu-latest

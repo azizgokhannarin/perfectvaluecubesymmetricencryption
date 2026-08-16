@@ -1,9 +1,9 @@
 #include "pvcrotsymenc1/symmetric_encryption.hpp"
 #include "pvcaead0/aead.hpp"
 
+#include <cstdio>
 #include <cstdint>
 #include <cstdlib>
-#include <iostream>
 #include <string>
 #include <vector>
 
@@ -27,9 +27,9 @@ int main(int argc,char** argv){
         const auto rt=selector==0U?pvcrotsymenc1::TagSize::Bits128:selector==1U?pvcrotsymenc1::TagSize::Bits192:pvcrotsymenc1::TagSize::Bits256;
         const auto at=selector==0U?pvcaead0::TagSize::Bits128:selector==1U?pvcaead0::TagSize::Bits192:pvcaead0::TagSize::Bits256;
         const auto r=pvcrotsymenc1::seal(rk,rn,ad,p,rt); const auto a=pvcaead0::seal(ak,an,ad,p,at);
-        if(r.ciphertext!=a.ciphertext||r.tag!=a.tag){std::cerr<<"mismatch case="<<c<<'\n';return 1;}
+        if(r.ciphertext!=a.ciphertext||r.tag!=a.tag){std::fprintf(stderr,"mismatch case=%zu\n",c);return 1;}
         const auto ro=pvcrotsymenc1::open(rk,rn,ad,r.ciphertext,r.tag); const auto ao=pvcaead0::open(ak,an,ad,a.ciphertext,a.tag);
-        if(!ro||!ao||*ro!=p||*ao!=p){std::cerr<<"open mismatch case="<<c<<'\n';return 1;}
+        if(!ro||!ao||*ro!=p||*ao!=p){std::fprintf(stderr,"open mismatch case=%zu\n",c);return 1;}
     }
-    std::cout<<"equivalence_cases="<<count<<" mismatches=0\n"; return 0;
+    std::printf("equivalence_cases=%zu mismatches=0\n",count); return 0;
 }

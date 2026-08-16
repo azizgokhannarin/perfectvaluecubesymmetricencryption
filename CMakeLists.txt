@@ -5,6 +5,8 @@ option(PVCROTSYMENC1_BUILD_TESTS "Build PVC-RotSymEnc-1 tests" ON)
 option(PVCROTSYMENC1_BUILD_FUZZERS "Build Clang libFuzzer differential targets" OFF)
 option(PVCROTSYMENC1_WARNINGS_AS_ERRORS "Treat warnings as errors" ON)
 set(PVCROTSYMENC1_EQUIVALENCE_CASES "512" CACHE STRING "A1-equivalence cases used by CTest")
+set(PVCROTSYMENC1_SANITIZER "none" CACHE STRING "Sanitizer profile: none, address, undefined, or memory")
+set_property(CACHE PVCROTSYMENC1_SANITIZER PROPERTY STRINGS none address undefined memory)
 
 function(pvcrotsymenc1_warnings target)
     if(MSVC)
@@ -19,6 +21,47 @@ function(pvcrotsymenc1_warnings target)
         endif()
     endif()
 endfunction()
+
+set(_pvcrotsymenc1_supported_sanitizers none address undefined memory)
+list(FIND _pvcrotsymenc1_supported_sanitizers
+     "${PVCROTSYMENC1_SANITIZER}"
+     _pvcrotsymenc1_sanitizer_index)
+if(_pvcrotsymenc1_sanitizer_index EQUAL -1)
+    message(FATAL_ERROR
+        "Unsupported PVCROTSYMENC1_SANITIZER='${PVCROTSYMENC1_SANITIZER}'. "
+        "Expected one of: none, address, undefined, memory")
+endif()
+
+if(PVCROTSYMENC1_BUILD_FUZZERS AND NOT PVCROTSYMENC1_SANITIZER STREQUAL "none")
+    message(FATAL_ERROR
+        "PVCROTSYMENC1_SANITIZER must be 'none' when fuzzers are enabled; "
+        "fuzzer targets use their fixed AddressSanitizer/UBSan profile")
+endif()
+
+if(NOT PVCROTSYMENC1_SANITIZER STREQUAL "none")
+    if(MSVC OR NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        message(FATAL_ERROR
+            "PVCROTSYMENC1_SANITIZER requires GCC or Clang")
+    endif()
+    if(PVCROTSYMENC1_SANITIZER STREQUAL "memory")
+        set(_pvcrotsymenc1_msan_systems Linux FreeBSD NetBSD)
+        if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang"
+           OR NOT CMAKE_SYSTEM_NAME IN_LIST _pvcrotsymenc1_msan_systems)
+            message(FATAL_ERROR
+                "MemorySanitizer requires upstream Clang on Linux, FreeBSD, or NetBSD")
+        endif()
+    endif()
+
+    add_compile_options(
+        "-fsanitize=${PVCROTSYMENC1_SANITIZER}"
+        -fno-omit-frame-pointer)
+    add_link_options("-fsanitize=${PVCROTSYMENC1_SANITIZER}")
+    if(PVCROTSYMENC1_SANITIZER STREQUAL "memory")
+        add_compile_options(
+            -fsanitize-memory-track-origins=2
+            -fno-optimize-sibling-calls)
+    endif()
+endif()
 
 if(PVCROTSYMENC1_BUILD_FUZZERS)
     if(NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")

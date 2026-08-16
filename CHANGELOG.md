@@ -12,3 +12,7 @@
 - Added opt-in Clang libFuzzer differential targets for valid `seal` tuples and
   arbitrary or malformed `open` tuples, with ASan/UBSan instrumentation,
   deterministic seed corpora and CI smoke coverage.
+- Added opt-in whole-tree ASan, UBSan and MSan CMake profiles, including MSan
+  origin tracking, plus explicit `-O0`, `-O2` and `-O3` CI conformance jobs.
+- Added a reproducible MSan/`libstdc++` boundary control and documented the
+  instrumented-standard-library limitation without changing the construction.

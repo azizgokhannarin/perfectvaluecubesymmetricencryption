@@ -17,7 +17,8 @@ No new cryptographic construction was introduced. PVC-RotSymEnc-1 is defined to 
 - RotSymEnc-specific machine-readable vectors;
 - wrapper-to-A1 deterministic equivalence test;
 - coverage-guided differential fuzzing for `seal` and `open` behavior;
-- GCC/Clang/ASan+UBSan verification;
+- GCC/Clang and separate ASan/UBSan/MSan verification;
+- explicit `-O0`, `-O2` and `-O3` conformance builds;
 - GitHub Actions CI.
 
 ## Local verification summary
@@ -25,10 +26,13 @@ No new cryptographic construction was introduced. PVC-RotSymEnc-1 is defined to 
 ```text
 GCC Release CTest:              6/6
 Clang Release CTest:            6/6
-ASan + UBSan CTest:             6/6
+ASan CTest:                     6/6
+UBSan CTest:                    6/6
+MSan CTest:                     6/6
+Clang -O0/-O2/-O3 CTest:      18/18
 Release A1 equivalence:      4096/4096 (GCC)
 Release A1 equivalence:      4096/4096 (Clang)
-Sanitizer equivalence:        256/256
+Sanitizer equivalence:       1536/1536
 Official RotSymEnc vectors:      5/5
 Wrapper/A1 mismatches:             0
 ```
