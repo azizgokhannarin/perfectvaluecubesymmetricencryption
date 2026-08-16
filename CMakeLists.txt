@@ -96,6 +96,14 @@ if(PVCROTSYMENC1_BUILD_ANALYSIS)
         PRIVATE pvc_aead0 pvc_prf1_c1)
     pvcrotsymenc1_warnings(pvc-rotsymenc1-streamframe-domain-audit)
 
+    add_executable(
+        pvc-rotsymenc1-fault-injection-campaign
+        analysis/fault_injection_campaign.cpp)
+    target_link_libraries(
+        pvc-rotsymenc1-fault-injection-campaign
+        PRIVATE pvc_rotsymenc1 pvc_aead0 pvc_mac0_m1 pvc_prf1_c1)
+    pvcrotsymenc1_warnings(pvc-rotsymenc1-fault-injection-campaign)
+
     if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
         add_executable(
             pvc-rotsymenc1-nonce-misuse-campaign

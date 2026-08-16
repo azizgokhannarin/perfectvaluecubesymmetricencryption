@@ -219,6 +219,18 @@ nonce-misuse resistant. See `docs/NONCE_MISUSE_CAMPAIGN.md`.
 CXX=g++ ./scripts/run_nonce_misuse_campaign.sh build-nonce-misuse-gcc
 ```
 
+## Fault-injection analysis
+
+An opt-in software campaign maps single-bit tag/MAC/state faults,
+post-authentication nonce/counter corruption, and explicit comparison or
+authentication-gate skip models. The harness does not change the construction
+or claim physical fault feasibility or fault resistance. See
+`docs/FAULT_INJECTION_CAMPAIGN.md`.
+
+```bash
+CXX=g++ ./scripts/run_fault_injection_campaign.sh build-fault-gcc
+```
+
 ## Cross-platform conformance
 
 A versioned 4,096-case corpus compares byte-exact seal/open transcripts across

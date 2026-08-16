@@ -28,6 +28,8 @@ No new cryptographic construction was introduced. PVC-RotSymEnc-1 is defined to 
   macOS ARM64, and Windows x64 with GCC, Clang, Apple Clang, MSVC, and clang-cl;
 - opt-in nonce-management and misuse analysis with analysis-only detector and
   persistent-counter prototypes;
+- opt-in software fault-injection analysis covering canonical data faults,
+  finalization-adjacent C1 state faults, and explicit control-flow models;
 - opt-in 0 B-1 MiB seal/open performance characterization with retained raw
   samples, TSC ticks, corrected resident-memory measurements, and external
   system-library controls;
